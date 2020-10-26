@@ -5,3 +5,7 @@
  */
 
 // You can delete this file if you're not using it
+
+require("fontsource-almendra");
+require("fontsource-pacifico");
+require("fontsource-aleo");

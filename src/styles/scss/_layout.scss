@@ -1,0 +1,31 @@
+@import "variables";
+
+#wrapper {
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: 1px solid red;
+    display: flex; flex-flow: column; 
+
+    #logo {
+        font-size: 4rem;
+        font-family: 'Pacifico', cursive;
+        color: $logo-color;
+        text-align: center;
+        position: fixed;
+        top: 10%;
+        left: 0;
+        right: 0;
+
+        @include media-breakpoint-up(md) {
+            left: 25%;
+            right: 25%;
+        }
+
+        @include media-breakpoint-up(xl) {
+            top: 5%;
+            right: 5%;
+            left: unset;
+        }
+    }
+}

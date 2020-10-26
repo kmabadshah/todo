@@ -1,0 +1,86 @@
+@import "../../../node_modules/bootstrap/scss/functions";
+@import "../../../node_modules/bootstrap/scss/variables";
+@import "../../../node_modules/bootstrap/scss/mixins";
+
+$logo-color: brown;
+$primary-color: #C08DC9;
+$input-color: #DDBBBB;
+
+
+$grid-breakpoints: (
+    // xxxs: 0,
+    // xxs: 320px,
+    // xs: 568px,
+    xs: 0px,
+    sm: 576px,
+    md: 768px,
+    md2: 850px,
+    lg: 992px,
+    xl: 1200px,
+    xl2: 1440px,
+    xl3: 1600px
+);
+
+
+
+
+@mixin login-and-signup-card {
+    box-shadow: 20px 4px 250px 0px #e0d4cb;
+    padding: 0rem 2rem;
+    position: fixed;
+    top: 25%;
+    bottom: 25%;
+    left: 10%; right: 10%;
+
+    @include media-breakpoint-up(md) {
+        left: 25%; right: 25%;
+    }
+
+    @include media-breakpoint-up(md2) {
+        left: 20%; right: 20%;
+    }
+
+    @include media-breakpoint-up(xl) {
+        left: 5rem;
+        right: unset;
+    }
+
+    #title {
+        color: $primary-color;
+        font-size: 3rem;
+        margin-bottom: 2rem;
+        margin-top: auto;
+        font-family: "Aleo", serif;
+    }
+
+
+    .field {
+        border: 1px solid $input-color;
+        height: 4rem;
+        width: 100%;
+        text-indent: 10px;
+        margin-bottom: 1rem;
+
+        &::placeholder {
+            font-family: "Almendra", serif;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        &:focus {
+            border-color: $primary-color;
+            border-width: 2px;
+        }
+    }
+
+    #btn-submit {
+        border: 1px solid $primary-color;
+        background-color: white;
+        color: $primary-color;
+        padding: 0.75rem 2rem;
+        font-size: 1.5rem;
+        font-family: "Aleo", serif;
+        margin: auto 0;
+    }
+}
