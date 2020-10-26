@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{Wwxz:function(n,t,e){"use strict";e.r(t),e.d(t,"default",(function(){return c}));var u=e("q1tI"),r=e.n(u);function c(){return r.a.createElement("h1",null,"Singup ")}}}]);
+//# sourceMappingURL=component---src-pages-signup-js-8e38803e91ed45018e83.js.map

@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./src/pages/signup.js"],"names":["Singup"],"mappings":"2FAAA,wEAEe,SAASA,IACtB,OAAO","file":"component---src-pages-signup-js-8e38803e91ed45018e83.js","sourcesContent":["import React from \"react\";\n\nexport default function Singup() {\n  return <h1>Singup </h1>;\n}\n"],"sourceRoot":""}
