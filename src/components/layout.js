@@ -18,10 +18,8 @@ export default function Layout({ children }) {
     `
   );
 
-  const { publicURL: url } = query.allFile.edges[0].node;
-
   return (
-    <div style={{ backgroundImage: `url(${url})` }} id="wrapper">
+    <div id="wrapper">
       <h1 id="logo">Todo APP</h1>
       {children}
     </div>

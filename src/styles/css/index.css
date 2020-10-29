@@ -1,81 +1,90 @@
 #wrapper {
   height: 100vh;
-  background-size: cover;
-  background-repeat: no-repeat;
-  border: 1px solid red;
+  background-color: #fdfffc;
   display: flex;
   flex-flow: column;
+  justify-content: center;
 }
 #wrapper #logo {
-  font-size: 4rem;
+  font-size: 3rem;
   font-family: "Pacifico", cursive;
   color: brown;
-  text-align: center;
-  position: fixed;
-  top: 10%;
-  left: 0;
-  right: 0;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  padding-bottom: 2rem;
+  margin: 0;
+  height: 25%;
 }
-@media (min-width: 768px) {
+@media (min-width: 288px) {
   #wrapper #logo {
-    left: 25%;
-    right: 25%;
+    padding: 0;
+    margin-bottom: 1rem;
+  }
+}
+@media (min-width: 576px) {
+  #wrapper #logo {
+    font-size: 4rem;
   }
 }
 @media (min-width: 1200px) {
   #wrapper #logo {
-    top: 5%;
-    right: 5%;
-    left: unset;
+    align-items: start;
+    justify-content: end;
+    height: 15%;
+    margin-top: 3rem;
+    margin-right: 3rem;
   }
 }
 
 #login {
-  box-shadow: 20px 4px 250px 0px #e0d4cb;
-  padding: 0rem 2rem;
-  position: fixed;
-  top: 25%;
-  bottom: 25%;
-  left: 10%;
-  right: 10%;
+  width: 100%;
+  height: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+  margin-bottom: 1rem;
 }
-@media (min-width: 768px) {
-  #login {
-    left: 25%;
-    right: 25%;
+#login .card {
+  width: 40rem;
+  box-shadow: 20px 4px 250px 0px #e0d4cb;
+}
+@media (min-width: 576px) {
+  #login .card {
+    padding: 2rem 1rem;
   }
 }
-@media (min-width: 850px) {
-  #login {
-    left: 20%;
-    right: 20%;
+@media (min-width: 1200px) {
+  #login .card {
+    width: 35rem;
+    margin-right: auto;
+    margin-left: 5rem;
   }
 }
 @media (min-width: 1200px) {
   #login {
-    left: 5rem;
-    right: unset;
+    height: 85%;
   }
 }
 #login #title {
-  color: #C08DC9;
-  font-size: 3rem;
+  color: #c08dc9;
+  font-size: 2rem;
   margin-bottom: 2rem;
   margin-top: auto;
   font-family: "Aleo", serif;
 }
+@media (min-width: 576px) {
+  #login #title {
+    font-size: 3rem;
+  }
+}
 #login .field {
-  border: 1px solid #DDBBBB;
+  border: 1px solid #ddbbbb;
   height: 4rem;
   width: 100%;
   text-indent: 10px;
   margin-bottom: 1rem;
-}
-#login .field::-moz-placeholder {
-  font-family: "Almendra", serif;
-  font-size: 1.5rem;
-  letter-spacing: 1px;
-  color: rgba(0, 0, 0, 0.6);
 }
 #login .field::placeholder {
   font-family: "Almendra", serif;
@@ -84,29 +93,116 @@
   color: rgba(0, 0, 0, 0.6);
 }
 #login .field:focus {
-  border-color: #C08DC9;
+  border-color: #c08dc9;
   border-width: 2px;
 }
 #login #btn-submit {
-  border: 1px solid #C08DC9;
+  border: 1px solid #c08dc9;
   background-color: white;
-  color: #C08DC9;
-  padding: 0.75rem 2rem;
+  color: #c08dc9;
+  padding: 0.5rem 1.5rem;
   font-size: 1.5rem;
   font-family: "Aleo", serif;
-  margin: auto 0;
+}
+#login .err_msg {
+  align-self: start;
+  color: red;
+  margin-bottom: 1rem;
 }
 #login #rem-me {
   margin-left: 0.25rem;
   color: rgba(0, 0, 0, 0.75);
 }
 #login #btn-sign-up {
-  color: #C08DC9;
+  color: #c08dc9;
   font-weight: 600;
   background: transparent;
   border: none;
-  padding: 0;
-  margin: 0;
+  text-decoration: none;
+}
+
+#signup {
+  width: 100%;
+  height: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+}
+#signup .card {
+  width: 40rem;
+  box-shadow: 20px 4px 250px 0px #e0d4cb;
+}
+@media (min-width: 576px) {
+  #signup .card {
+    padding: 2rem 1rem;
+  }
+}
+@media (min-width: 1200px) {
+  #signup .card {
+    width: 35rem;
+    margin-right: auto;
+    margin-left: 5rem;
+  }
+}
+@media (min-width: 1200px) {
+  #signup {
+    height: 85%;
+  }
+}
+#signup #title {
+  color: #c08dc9;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  margin-top: auto;
+  font-family: "Aleo", serif;
+}
+@media (min-width: 576px) {
+  #signup #title {
+    font-size: 3rem;
+  }
+}
+#signup .field {
+  border: 1px solid #ddbbbb;
+  height: 4rem;
+  width: 100%;
+  text-indent: 10px;
+  margin-bottom: 1rem;
+}
+#signup .field::placeholder {
+  font-family: "Almendra", serif;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  color: rgba(0, 0, 0, 0.6);
+}
+#signup .field:focus {
+  border-color: #c08dc9;
+  border-width: 2px;
+}
+#signup #btn-submit {
+  border: 1px solid #c08dc9;
+  background-color: white;
+  color: #c08dc9;
+  padding: 0.5rem 1.5rem;
+  font-size: 1.5rem;
+  font-family: "Aleo", serif;
+}
+#signup .err_msg {
+  align-self: start;
+  color: red;
+  margin-bottom: 1rem;
+}
+#signup #btn-login {
+  color: #c08dc9;
+  font-weight: 600;
+  background: transparent;
+  border: none;
+  text-decoration: none;
+}
+
+:root {
+  overflow: auto;
 }
 
 * {
@@ -120,38 +216,48 @@ p {
   padding: 0;
 }
 
-.hvr-shutter-out-vertical {
+.hvr-sweep-to-top {
   display: inline-block;
   vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
   transform: perspective(1px) translateZ(0);
   box-shadow: 0 0 1px rgba(0, 0, 0, 0);
   position: relative;
-  background: #e1e1e1;
+  -webkit-transition-property: color;
   transition-property: color;
-  transition-duration: 0.3s;
+  -webkit-transition-duration: 0.3s;
+}
+.hvr-sweep-to-top:not([disabled]):hover, .hvr-sweep-to-top:not([disabled]):active, .hvr-sweep-to-top:not([disabled]):focus {
+  color: #fdfffc !important;
+}
+.hvr-sweep-to-top:not([disabled]):hover:before, .hvr-sweep-to-top:not([disabled]):active:before, .hvr-sweep-to-top:not([disabled]):focus:before {
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+}
+.hvr-sweep-to-top:disabled {
+  border-color: rgba(0, 0, 0, 0.4) !important;
+  color: rgba(0, 0, 0, 0.4) !important;
 }
 
-.hvr-shutter-out-vertical:before {
+.hvr-sweep-to-top:before {
   content: "";
   position: absolute;
   z-index: -1;
   top: 0;
-  bottom: 0;
   left: 0;
   right: 0;
-  background: #2098D1;
+  bottom: 0;
+  background: #c08dc9;
+  -webkit-transform: scaleY(0);
   transform: scaleY(0);
-  transform-origin: 50%;
+  -webkit-transform-origin: 50% 100%;
+  transform-origin: 50% 100%;
+  -webkit-transition-property: transform;
   transition-property: transform;
+  -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
 }
 
-.hvr-shutter-out-vertical:hover, .hvr-shutter-out-vertical:focus, .hvr-shutter-out-vertical:active {
-  color: white;
-}
-
-.hvr-shutter-out-vertical:hover:before, .hvr-shutter-out-vertical:focus:before, .hvr-shutter-out-vertical:active:before {
-  transform: scaleY(1);
-}
-/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3Njc3MvX2xheW91dC5zY3NzIiwiaW5kZXguY3NzIiwiLi4vc2Nzcy9fdmFyaWFibGVzLnNjc3MiLCIuLi8uLi8uLi9ub2RlX21vZHVsZXMvYm9vdHN0cmFwL3Njc3MvbWl4aW5zL19icmVha3BvaW50cy5zY3NzIiwiLi4vc2Nzcy9fbG9naW4uc2NzcyIsIi4uL3Njc3MvaW5kZXguc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQTtFQUNJLGFBQUE7RUFDQSxzQkFBQTtFQUNBLDRCQUFBO0VBQ0EscUJBQUE7RUFDQSxhQUFBO0VBQWUsaUJBQUE7QUNBbkI7QURFSTtFQUNJLGVBQUE7RUFDQSxnQ0FBQTtFQUNBLFlFUks7RUZTTCxrQkFBQTtFQUNBLGVBQUE7RUFDQSxRQUFBO0VBQ0EsT0FBQTtFQUNBLFFBQUE7QUNBUjtBRTJDSTtFSG5EQTtJQVdRLFNBQUE7SUFDQSxVQUFBO0VDQ1Y7QUFDRjtBRXFDSTtFSG5EQTtJQWdCUSxPQUFBO0lBQ0EsU0FBQTtJQUNBLFdBQUE7RUNFVjtBQUNGOztBRzVCQTtFRnlCSSxzQ0FBQTtFQUNBLGtCQUFBO0VBQ0EsZUFBQTtFQUNBLFFBQUE7RUFDQSxXQUFBO0VBQ0EsU0FBQTtFQUFXLFVBQUE7QURRZjtBRW9CSTtFQzFESjtJRmlDUSxTQUFBO0lBQVcsVUFBQTtFRFVqQjtBQUNGO0FFY0k7RUMxREo7SUZxQ1EsU0FBQTtJQUFXLFVBQUE7RURZakI7QUFDRjtBRVFJO0VDMURKO0lGeUNRLFVBQUE7SUFDQSxZQUFBO0VEYU47QUFDRjtBQ1hJO0VBQ0ksY0EzQ1E7RUE0Q1IsZUFBQTtFQUNBLG1CQUFBO0VBQ0EsZ0JBQUE7RUFDQSwwQkFBQTtBRGFSO0FDVEk7RUFDSSx5QkFBQTtFQUNBLFlBQUE7RUFDQSxXQUFBO0VBQ0EsaUJBQUE7RUFDQSxtQkFBQTtBRFdSO0FDVFE7RUFDSSw4QkFBQTtFQUNBLGlCQUFBO0VBQ0EsbUJBQUE7RUFDQSx5QkFBQTtBRFdaO0FDZlE7RUFDSSw4QkFBQTtFQUNBLGlCQUFBO0VBQ0EsbUJBQUE7RUFDQSx5QkFBQTtBRFdaO0FDUlE7RUFDSSxxQkFsRUk7RUFtRUosaUJBQUE7QURVWjtBQ05JO0VBQ0kseUJBQUE7RUFDQSx1QkFBQTtFQUNBLGNBMUVRO0VBMkVSLHFCQUFBO0VBQ0EsaUJBQUE7RUFDQSwwQkFBQTtFQUNBLGNBQUE7QURRUjtBR3RGSTtFQUNJLG9CQUFBO0VBQ0EsMEJBQUE7QUh3RlI7QUdyRkk7RUFDSSxjRk5RO0VFT1IsZ0JBQUE7RUFDQSx1QkFBQTtFQUNBLFlBQUE7RUFDQSxVQUFBO0VBQ0EsU0FBQTtBSHVGUjs7QUluR0E7RUFDSSxTQUFBO0VBQVcsVUFBQTtFQUFZLHNCQUFBO0FKd0czQjs7QUlyR0E7RUFDSSxTQUFBO0VBQVcsVUFBQTtBSnlHZjs7QUlwR0E7RUFDRSxxQkFBQTtFQUNBLHNCQUFBO0VBQ0EseUNBQUE7RUFDQSxvQ0FBQTtFQUNBLGtCQUFBO0VBQ0EsbUJBQUE7RUFDQSwwQkFBQTtFQUNBLHlCQUFBO0FKdUdGOztBSXJHQTtFQUNFLFdBQUE7RUFDQSxrQkFBQTtFQUNBLFdBQUE7RUFDQSxNQUFBO0VBQ0EsU0FBQTtFQUNBLE9BQUE7RUFDQSxRQUFBO0VBQ0EsbUJBQUE7RUFDQSxvQkFBQTtFQUNBLHFCQUFBO0VBQ0EsOEJBQUE7RUFDQSx5QkFBQTtFQUNBLG9DQUFBO0FKd0dGOztBSXRHQTtFQUNFLFlBQUE7QUp5R0Y7O0FJdkdBO0VBQ0Usb0JBQUE7QUowR0YiLCJmaWxlIjoiaW5kZXguY3NzIn0= */
+/*# sourceMappingURL=index.css.map */

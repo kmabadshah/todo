@@ -1,0 +1,9 @@
+@import "variables";
+
+#signup {
+    @include login-signup-card;
+
+    #btn-login {
+        @include btn-login-signup;
+    }
+}

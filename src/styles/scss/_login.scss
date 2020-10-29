@@ -1,7 +1,7 @@
 @import "variables";
 
 #login {
-    @include login-and-signup-card;
+    @include login-signup-card;
 
     #rem-me {
         margin-left: 0.25rem;
@@ -9,11 +9,6 @@
     }
 
     #btn-sign-up {
-        color: $primary-color;
-        font-weight: 600;
-        background: transparent;
-        border: none;
-        padding: 0;
-        margin: 0;
+        @include btn-login-signup;
     }
 }

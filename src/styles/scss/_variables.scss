@@ -3,84 +3,104 @@
 @import "../../../node_modules/bootstrap/scss/mixins";
 
 $logo-color: brown;
-$primary-color: #C08DC9;
-$input-color: #DDBBBB;
-
+$primary-color: #c08dc9;
+$input-color: #ddbbbb;
+$bg-primary: #fdfffc;
 
 $grid-breakpoints: (
-    // xxxs: 0,
-    // xxs: 320px,
-    // xs: 568px,
-    xs: 0px,
-    sm: 576px,
-    md: 768px,
-    md2: 850px,
-    lg: 992px,
-    xl: 1200px,
-    xl2: 1440px,
-    xl3: 1600px
+  // xxxs: 0,
+  // xxs: 320px,
+  // xs: 568px,
+  xs: 288px,
+  sm: 576px,
+  md: 768px,
+  md2: 850px,
+  lg: 992px,
+  xl: 1200px,
+  xl2: 1440px,
+  xl3: 1600px
 );
 
+@mixin btn-login-signup {
+  color: $primary-color;
+  font-weight: 600;
+  background: transparent;
+  border: none;
+  text-decoration: none;
+}
 
+@mixin login-signup-card {
+  width: 100%;
+  height: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+  margin-bottom: 1rem;
 
-
-@mixin login-and-signup-card {
+  .card {
+    width: 40rem;
     box-shadow: 20px 4px 250px 0px #e0d4cb;
-    padding: 0rem 2rem;
-    position: fixed;
-    top: 25%;
-    bottom: 25%;
-    left: 10%; right: 10%;
 
-    @include media-breakpoint-up(md) {
-        left: 25%; right: 25%;
+    @include media-breakpoint-up(sm) {
+      padding: 2rem 1rem;
     }
-
-    @include media-breakpoint-up(md2) {
-        left: 20%; right: 20%;
-    }
-
     @include media-breakpoint-up(xl) {
-        left: 5rem;
-        right: unset;
+      width: 35rem;
+      margin-right: auto;
+      margin-left: 5rem;
+    }
+  }
+
+  @include media-breakpoint-up(xl) {
+    height: 85%;
+  }
+
+  #title {
+    color: $primary-color;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    margin-top: auto;
+    font-family: "Aleo", serif;
+
+    @include media-breakpoint-up(sm) {
+      font-size: 3rem;
+    }
+  }
+
+  .field {
+    border: 1px solid $input-color;
+    height: 4rem;
+    width: 100%;
+    text-indent: 10px;
+    margin-bottom: 1rem;
+
+    &::placeholder {
+      font-family: "Almendra", serif;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+      color: rgba(0, 0, 0, 0.6);
     }
 
-    #title {
-        color: $primary-color;
-        font-size: 3rem;
-        margin-bottom: 2rem;
-        margin-top: auto;
-        font-family: "Aleo", serif;
+    &:focus {
+      border-color: $primary-color;
+      border-width: 2px;
     }
+  }
 
+  #btn-submit {
+    border: 1px solid $primary-color;
+    background-color: white;
+    color: $primary-color;
+    padding: 0.5rem 1.5rem;
+    font-size: 1.5rem;
+    font-family: "Aleo", serif;
+    // margin: auto 0;
+  }
 
-    .field {
-        border: 1px solid $input-color;
-        height: 4rem;
-        width: 100%;
-        text-indent: 10px;
-        margin-bottom: 1rem;
-
-        &::placeholder {
-            font-family: "Almendra", serif;
-            font-size: 1.5rem;
-            letter-spacing: 1px;
-            color: rgba(0, 0, 0, 0.6);
-        }
-
-        &:focus {
-            border-color: $primary-color;
-            border-width: 2px;
-        }
-    }
-
-    #btn-submit {
-        border: 1px solid $primary-color;
-        background-color: white;
-        color: $primary-color;
-        padding: 0.75rem 2rem;
-        font-size: 1.5rem;
-        font-family: "Aleo", serif;
-        margin: auto 0;
-    }
+  .err_msg {
+    align-self: start;
+    color: red;
+    margin-bottom: 1rem;
+  }
 }
