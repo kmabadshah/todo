@@ -1,46 +1,29 @@
 import React from "react";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../styles/css/index.css";
-import Layout from "../components/layout.js";
-import { Link } from "gatsby";
+import { Link, navigate } from "gatsby";
+import { Context } from "../components/wrapper.js";
 
-export default function Login() {
+export default function Main() {
+  const oldUser = false;
+  React.useEffect(() => {
+    if (oldUser) navigate("/login");
+    else navigate("/signup");
+  }, []);
+
   return (
-    <Layout>
-      <div id="login">
-        <div className="card my-auto">
-          <div className="card-body d-flex align-items-center justify-content-center flex-column">
-            <h1 id="title">Log In</h1>
-            <input
-              type="text"
-              placeholder="username"
-              className="field"
-              id="uname"
-            />
-            <input
-              type="text"
-              placeholder="password"
-              className="field"
-              id="pass"
-            />
-
-            <div className="d-flex w-100 align-items-center">
-              <input name="" type="checkbox" value="" />
-              <p id="rem-me">Remember me</p>
-              <Link className="ml-auto" id="btn-sign-up" to="signup">
-                Sign up
-              </Link>
-            </div>
-
-            <button
-              id="btn-submit"
-              className="align-self-start mt-4 hvr-sweep-to-top"
-            >
-              Submit
-            </button>
-          </div>
-        </div>
+    <div id="loader">
+      <div className="lds-dual-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
       </div>
-    </Layout>
+    </div>
   );
 }

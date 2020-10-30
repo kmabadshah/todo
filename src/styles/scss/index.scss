@@ -5,17 +5,19 @@
 @import "variables";
 
 :root {
-    overflow: auto;
+  overflow: auto;
 }
 
 * {
-    margin: 0; padding: 0; box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 p {
-    margin: 0; padding: 0;
+  margin: 0;
+  padding: 0;
 }
-
 
 // Button sweet to top START
 .hvr-sweep-to-top {
@@ -30,19 +32,21 @@ p {
   -webkit-transition-duration: 0.3s;
 
   &:not([disabled]) {
-      &:hover, &:active, &:focus {
-          color: $bg-primary !important;
+    &:hover,
+    &:active,
+    &:focus {
+      color: $bg-primary !important;
 
-          &:before {
-              -webkit-transform: scaleY(1);
-              transform: scaleY(1);
-          }
+      &:before {
+        -webkit-transform: scaleY(1);
+        transform: scaleY(1);
       }
-
+    }
   }
 
   &:disabled {
-      border-color: rgba(0, 0, 0, 0.4) !important; color: rgba(0, 0, 0, 0.4) !important;
+    border-color: rgba(0, 0, 0, 0.4) !important;
+    color: rgba(0, 0, 0, 0.4) !important;
   }
 }
 
@@ -67,3 +71,40 @@ p {
   transition-timing-function: ease-out;
 }
 // Button sweep to top END
+
+// Loader START
+
+#loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $bg-primary;
+  height: 100vh;
+}
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid;
+  border-color: brown transparent brown transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// Loader END

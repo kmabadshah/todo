@@ -3,7 +3,9 @@ import Layout from "../components/layout.js";
 import { Link } from "gatsby";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
-import { err_msgs } from "../components/constants";
+import { err_msgs, api } from "../components/constants";
+import { Context } from "../components/wrapper.js";
+import axios from "axios";
 
 export default function Signup() {
   const {
@@ -16,11 +18,32 @@ export default function Signup() {
     clearErrors,
   } = useForm();
 
+  const { token } = React.useContext(Context);
+
   const [userHasSubmitted, setUserHasSubmitted] = React.useState(false);
 
   const onValidSubmit = data => {
     setUserHasSubmitted(true);
-    setTimeout(() => setUserHasSubmitted(false), 1000);
+
+    const { queryData } = axios
+      .post(
+        `${api}/todoers`,
+        { username: data.uname, password: data.pass },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then(data => {
+        console.log(data);
+        setUserHasSubmitted(false);
+        return data;
+      })
+      .catch(err => {
+        console.log(err.response);
+        setUserHasSubmitted(false);
+      });
   };
 
   function evalUname(value) {
@@ -122,7 +145,7 @@ export default function Signup() {
                   "Submit"
                 )}
               </button>
-              <Link to="/" id="btn-login" className="align-self-end mb-3">
+              <Link to="/login" id="btn-login" className="align-self-end mb-3">
                 Log In
               </Link>
             </div>

@@ -1,5 +1,8 @@
 import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
+import { api, cred } from "./constants.js";
+import axios from "axios";
+import { Context } from "./wrapper";
 
 export default function Layout({ children }) {
   const query = useStaticQuery(
@@ -17,6 +20,9 @@ export default function Layout({ children }) {
       }
     `
   );
+
+  const wrapperData = React.useContext(Context);
+  /* console.log(wrapperData); */
 
   return (
     <div id="wrapper">
