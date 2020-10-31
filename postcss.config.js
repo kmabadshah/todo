@@ -1,9 +1,5 @@
-const postcssPresetEnv = require(`postcss-preset-env`);
+const auxer = require(`autoprefixer`);
 
 modules.exports = () => {
-  plugins: [
-    postcssPresetEnv({
-      stage: 2,
-    }),
-  ];
+  plugins: [auxer.process(require.resolve("./src/styles/css/index.css"))];
 };
