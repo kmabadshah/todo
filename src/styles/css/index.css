@@ -10,7 +10,7 @@
   font-family: "Pacifico", cursive;
   color: brown;
   display: flex;
-  align-items: end;
+  align-items: space-end;
   justify-content: center;
   padding-bottom: 2rem;
   margin: 0;
@@ -29,8 +29,8 @@
 }
 @media (min-width: 1200px) {
   #wrapper #logo {
-    align-items: start;
-    justify-content: end;
+    align-items: space-start;
+    justify-content: space-end;
     height: 15%;
     margin-top: 3rem;
     margin-right: 3rem;
