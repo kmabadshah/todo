@@ -5,6 +5,3 @@
  */
 
 // You can delete this file if you're not using it
-
-const postEnv = require("postcss-preset-env");
-postEnv.process("../styles/css/index.css");
