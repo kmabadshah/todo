@@ -69,5 +69,16 @@ module.exports = {
         develop: true, // Enable while using `gatsby develop`
       },
     },
+
+    {
+      resolve: `gatsby-plugin-postcss`,
+      options: {
+        postCssPlugins: [
+          require(`autoprefixer`).process(
+            require.resolve(`./styles/css/index.css`)
+          ),
+        ],
+      },
+    },
   ],
 };

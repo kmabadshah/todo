@@ -5,15 +5,6 @@ import { Link, navigate } from "gatsby";
 import { Context } from "../components/wrapper.js";
 
 export default function Main() {
-  import postCss from "postcss";
-  /* const postcssPresetEnv = require("postcss-preset-env"); */
-  /* const autoprefixer = require("autoprefixer"); */
-
-  /* postcss([autoprefixer])
-   *   .process(require.resolve("../styles/css/index.css"))
-   *   .then(data => console.log(data))
-   *   .catch(err => console.log(err)); */
-
   const oldUser = false;
   React.useEffect(() => {
     if (oldUser) navigate("/login");
