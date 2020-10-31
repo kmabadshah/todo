@@ -47,7 +47,9 @@
   "devDependencies": {
     "prettier": "2.1.2"
   },
-  "keywords": ["gatsby"],
+  "keywords": [
+    "gatsby"
+  ],
   "license": "0BSD",
   "scripts": {
     "preload-fonts": "gatsby-preload-fonts",
