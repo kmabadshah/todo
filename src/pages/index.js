@@ -5,6 +5,9 @@ import { Link, navigate } from "gatsby";
 import { Context } from "../components/wrapper.js";
 
 export default function Main() {
+  const postEnv = require("postcss-preset-env");
+  postEnv.process("../styles/css/index.css");
+
   const oldUser = false;
   React.useEffect(() => {
     if (oldUser) navigate("/login");
