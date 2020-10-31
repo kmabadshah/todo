@@ -75,7 +75,7 @@ module.exports = {
       options: {
         postCssPlugins: [
           require(`autoprefixer`).process(
-            require.resolve(`./styles/css/index.css`)
+            require.resolve(`./src/styles/css/index.css`)
           ),
         ],
       },
