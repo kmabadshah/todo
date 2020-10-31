@@ -1,12 +1,29 @@
 import React from "react";
 import { cred, api } from "./constants.js";
 import axios from "axios";
+import { useStaticQuery, graphql } from "gatsby";
 
 export const Context = React.createContext();
 
 export default function Wrapper({ children }) {
   const [token, setToken] = React.useState();
   const [randErr, setRandErr] = React.useState();
+  const {
+    allStrapiTodoer: { edges: users },
+  } = useStaticQuery(graphql`
+    {
+      allStrapiTodoer {
+        edges {
+          node {
+            uname
+            pass
+          }
+        }
+      }
+    }
+  `);
+
+  console.log(token);
 
   React.useEffect(() => {
     axios

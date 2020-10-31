@@ -7,6 +7,8 @@ import { err_msgs, api } from "../components/constants";
 import { Context } from "../components/wrapper.js";
 import axios from "axios";
 
+const { GraphQLClient: glClient, gql, request } = require("graphql-request");
+
 export default function Signup() {
   const {
     setError,
@@ -19,32 +21,47 @@ export default function Signup() {
   } = useForm();
 
   const { token } = React.useContext(Context);
-
   const [userHasSubmitted, setUserHasSubmitted] = React.useState(false);
 
-  const onValidSubmit = data => {
-    setUserHasSubmitted(true);
+  const onValidSubmit = async data => {
+    try {
+      console.log(data);
+      setUserHasSubmitted(true);
 
-    const { queryData } = axios
-      .post(
-        `${api}/todoers`,
-        { username: data.uname, password: data.pass },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then(data => {
-        console.log(data);
-        setUserHasSubmitted(false);
-        return data;
-      })
-      .catch(err => {
-        console.log(err.response);
-        setUserHasSubmitted(false);
+      const client = new glClient(`${api}/graphql`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
+
+      const query = gql`
+        mutation($uname: String!, $pass: String!) {
+          createTodoer(input: { data: { uname: $uname, pass: $pass } }) {
+            todoer {
+              id
+            }
+          }
+        }
+      `;
+
+      const res = await client.request(query, data);
+      console.log(res);
+
+      setUserHasSubmitted(false);
+    } catch (err) {
+      /* console.log(JSON.parse(JSON.stringify(err, undefined, 2))); */
+      console.log(err.response.errors);
+      console.log(typeof err);
+      setUserHasSubmitted(false);
+
+      setError("uname", {
+        type: "db_check",
+        message: "Username exists",
+      });
+    }
   };
+
+  console.log(isEmpty(errors));
 
   function evalUname(value) {
     if (value.length < 3 || value.length > 10) {
@@ -54,6 +71,10 @@ export default function Signup() {
     } else {
       return true;
     }
+  }
+
+  function isEmpty(obj) {
+    return Object.keys(obj).length === 0 && obj.constructor === Object;
   }
 
   return (
@@ -135,7 +156,7 @@ export default function Signup() {
                 id="btn-submit"
                 type="submit"
                 className="align-self-start hvr-sweep-to-top"
-                disabled={userHasSubmitted}
+                disabled={userHasSubmitted || !isEmpty(errors)}
               >
                 {userHasSubmitted ? (
                   <div class="spinner-border" role="status">
@@ -155,3 +176,23 @@ export default function Signup() {
     </Layout>
   );
 }
+
+/* const { queryData } = axios
+ *   .post(
+ *     `${api}/todoers`,
+ *     { username: data.uname, password: data.pass },
+ *     {
+ *       headers: {
+ *         Authorization: `Bearer ${token}`,
+ *       },
+ *     }
+ *   )
+ *   .then(data => {
+ *     console.log(data);
+ *     setUserHasSubmitted(false);
+ *     return data;
+ *   })
+ *   .catch(err => {
+ *     console.log(err.response);
+ *     setUserHasSubmitted(false);
+ *   }); */
