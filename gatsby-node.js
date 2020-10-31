@@ -18,6 +18,11 @@ exports.onCreateWebpackConfig = ({
         {
           test: /\.css$/,
           exclude: /node_modules/,
+          entry: [`/src/styles/css/index.css`],
+          output: {
+            filename: `index2.css`,
+            publicPath: `/src/styles/css/`,
+          },
           use: [
             {
               loader: "style-loader",
@@ -32,6 +37,7 @@ exports.onCreateWebpackConfig = ({
               loader: "postcss-loader",
             },
           ],
+          node: { fs: "empty" },
         },
       ],
     },
