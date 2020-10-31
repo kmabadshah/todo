@@ -9,6 +9,3 @@
 require("fontsource-almendra");
 require("fontsource-pacifico");
 require("fontsource-aleo");
-
-const postEnv = require("postcss-preset-env");
-postEnv.process("../styles/css/index.css");
