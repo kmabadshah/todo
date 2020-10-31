@@ -25,7 +25,6 @@ export default function Signup() {
 
   const onValidSubmit = async data => {
     try {
-      console.log(data);
       setUserHasSubmitted(true);
 
       const client = new glClient(`${api}/graphql`, {
@@ -45,23 +44,15 @@ export default function Signup() {
       `;
 
       const res = await client.request(query, data);
-      console.log(res);
-
       setUserHasSubmitted(false);
     } catch (err) {
-      /* console.log(JSON.parse(JSON.stringify(err, undefined, 2))); */
-      console.log(err.response.errors);
-      console.log(typeof err);
       setUserHasSubmitted(false);
-
       setError("uname", {
         type: "db_check",
         message: "Username exists",
       });
     }
   };
-
-  console.log(isEmpty(errors));
 
   function evalUname(value) {
     if (value.length < 3 || value.length > 10) {
