@@ -70,8 +70,13 @@ module.exports = {
       },
     },
 
-    {
-      resolve: `gatsby-plugin-postcss`,
-    },
+    // {
+    //   resolve: `gatsby-plugin-postcss`,
+    //   options: {
+    //     postCssPlugins: [
+    //       require(`autoprefixer`).process("./src/styles/css/index.css"),
+    //     ],
+    //   },
+    // },
   ],
 };
