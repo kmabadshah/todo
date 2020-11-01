@@ -52,12 +52,12 @@ export default function Signup() {
 
       bcrypt.hash(data.pass, 10, async (err, hash) => {
         data.pass = hash;
-        client.request(query, data);
+        await client.request(query, data);
       });
 
       /* await client.request(query, data); // send data */
 
-      setUserHasSubmitted(false);
+      /* setUserHasSubmitted(false); */
     } catch (err) {
       err.response.errors.forEach(item => {
         console.log(item);
