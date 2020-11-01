@@ -50,9 +50,8 @@ export default function Signup() {
       /* encryption */
       const bcrypt = await import("bcryptjs");
       bcrypt.hash(data.pass, 10, async (err, hash) => {
-        console.log(hash);
+        data.pass = hash;
         const res = await client.request(query, data);
-        console.log(res);
       });
 
       console.log("hello2");
