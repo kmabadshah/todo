@@ -47,38 +47,30 @@ export default function Signup() {
 
       /* encryption */
       const bcrypt = await import("bcryptjs");
-      /* const hash = bcrypt.hashSync(data.pass, 10);
-       * data.pass = hash; */
 
       bcrypt.hash(data.pass, 10, (err, hash) => {
         data.pass = hash;
-        client
+        client // send data
           .request(query, data)
           .then(res => {
             console.log(res);
             setUserHasSubmitted(false);
           })
           .catch(err => {
-            console.log(err);
+            err.response.errors.forEach(item => {
+              if (item.extensions.exception.detail.match(/exists/gi)) {
+                setError("uname", {
+                  type: "db_check",
+                  message: "Username exists",
+                });
+              }
+            });
+
             setUserHasSubmitted(false);
           });
       });
-
-      /* await client.request(query, data); // send data */
-
-      /* setUserHasSubmitted(false); */
     } catch (err) {
-      err.response.errors.forEach(item => {
-        console.log(item);
-        if (item.extensions.exception.detail.match(/exists/gi)) {
-          setError("uname", {
-            type: "db_check",
-            message: "Username exists",
-          });
-        }
-      });
-
-      setUserHasSubmitted(false);
+      console.log(err);
     }
   };
 
