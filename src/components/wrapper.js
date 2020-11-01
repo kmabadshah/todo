@@ -1,5 +1,6 @@
 import React from "react";
 import { cred, api } from "./constants.js";
+import axios from "axios";
 import { useStaticQuery, graphql } from "gatsby";
 
 export const Context = React.createContext();
@@ -10,15 +11,13 @@ export default function Wrapper({ children }) {
   const [currentUser, setCurrentUser] = React.useState();
 
   React.useEffect(() => {
-    import("axios").then(axios =>
-      axios
-        .post(`${api}/auth/local`, cred)
-        .then(data => setToken(data.data.jwt))
-        .catch(err => {
-          console.log(err);
-          setRandErr(err);
-        })
-    );
+    axios
+      .post(`${api}/auth/local`, cred)
+      .then(data => setToken(data.data.jwt))
+      .catch(err => {
+        console.log(err);
+        setRandErr(err);
+      });
   }, []);
 
   if (token) {
