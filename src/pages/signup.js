@@ -26,6 +26,7 @@ export default function Signup() {
   const onValidSubmit = async data => {
     try {
       setUserHasSubmitted(true);
+
       const { GraphQLClient: glClient, gql, request } = await import(
         "graphql-request"
       );
@@ -46,7 +47,16 @@ export default function Signup() {
         }
       `;
 
-      const res = await client.request(query, data);
+      // encryption
+      const bcrypt = await import("bcrypt");
+      bcrypt.hash(data.pass, 10, async (err, hash) => {
+        data.pass = hash;
+        const res = await client.request(query, data);
+
+        console.log(res);
+      });
+
+      console.log("hello");
       setUserHasSubmitted(false);
       setSuccess(true);
     } catch (err) {
