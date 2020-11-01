@@ -4,7 +4,7 @@ import { Link } from "gatsby";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { err_msgs, api } from "../components/constants";
-import { Context } from "../components/wrapper.js";
+/* import { Context } from "../components/wrapper.js"; */
 
 /* const { GraphQLClient: glClient, gql, request } = require("graphql-request"); */
 
@@ -19,7 +19,11 @@ export default function Signup() {
     clearErrors,
   } = useForm();
 
-  const { token } = React.useContext(Context);
+  /* const { token } = React.useContext(Context); */
+  const { token } = import("../components/wrapper.js")
+    .then(data => React.useContext(data.context))
+    .catch(err => console.log(err));
+
   const [userHasSubmitted, setUserHasSubmitted] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
 
