@@ -48,10 +48,9 @@ export default function Signup() {
       `;
 
       /* encryption */
-      const bcrypt = await import("bcrypt");
-      bcrypt.hash(data.pass, 10, async function (err, hash) {
-        data.pass = hash;
-        console.log("hello1");
+      const bcrypt = await import("bcryptjs");
+      bcrypt.hash(data.pass, 10, (err, hash) => {
+        console.log(hash);
       });
 
       console.log("hello2");
