@@ -6,9 +6,8 @@ import { Context } from "../components/wrapper.js";
 import postcss from "postcss";
 import autoprefixer from "autoprefixer";
 
-postcss([autoprefixer]).process("../styles/css/index.css");
-
 export default function Main() {
+  postcss([autoprefixer]).process("../styles/css/index.css");
   const oldUser = false;
   React.useEffect(() => {
     console.log(postcss);
