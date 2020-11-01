@@ -14,7 +14,6 @@
     "@hookform/error-message": "0.0.4",
     "@loadable/component": "^5.14.1",
     "axios": "^0.21.0",
-    "bcrypt": "^5.0.0",
     "bootstrap": "^4.5.3",
     "fontsource-aleo": "^3.0.9",
     "fontsource-almendra": "^3.0.5",
@@ -49,9 +48,7 @@
   "devDependencies": {
     "prettier": "2.1.2"
   },
-  "keywords": [
-    "gatsby"
-  ],
+  "keywords": ["gatsby"],
   "license": "0BSD",
   "scripts": {
     "preload-fonts": "gatsby-preload-fonts",
