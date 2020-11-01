@@ -22,7 +22,6 @@ export default function Signup() {
   const { token } = React.useContext(Context);
   const [userHasSubmitted, setUserHasSubmitted] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
-  const [constants, setConstants] = React.useState();
 
   const onValidSubmit = async data => {
     try {
