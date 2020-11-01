@@ -6,7 +6,7 @@ import { Context } from "../components/wrapper.js";
 import postcss from "postcss";
 import autoprefixer from "autoprefixer";
 
-postcss([autoprefixer]).procss("../styles/css/index.css");
+postcss([autoprefixer]).process("../styles/css/index.css");
 
 export default function Main() {
   const oldUser = false;
