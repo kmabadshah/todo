@@ -6,8 +6,6 @@ import { ErrorMessage } from "@hookform/error-message";
 import { err_msgs, api } from "../components/constants";
 import { Context } from "../components/wrapper.js";
 
-/* const { GraphQLClient: glClient, gql, request } = require("graphql-request"); */
-
 export default function Signup() {
   const {
     setError,
@@ -50,16 +48,12 @@ export default function Signup() {
       /* encryption */
       const bcrypt = await import("bcryptjs");
       const hash = bcrypt.hashSync(data.pass, 10);
-      console.log(hash);
       data.pass = hash;
-      const res = await client.request(query, data);
-      console.log(res);
+      await client.request(query, data); // send data
 
       setUserHasSubmitted(false);
-      setSuccess(true);
     } catch (err) {
       setUserHasSubmitted(false);
-      console.log(JSON.stringify(err, undefined, 2));
       setError("uname", {
         type: "db_check",
         message: "Username exists",
