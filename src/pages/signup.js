@@ -46,9 +46,9 @@ export default function Signup() {
       `;
 
       /* encryption */
-      const bcrypt = await import("bcryptjs");
-      const hash = bcrypt.hashSync(data.pass, 10);
-      data.pass = hash;
+      /* const bcrypt = await import("bcryptjs");
+       * const hash = bcrypt.hashSync(data.pass, 10);
+       * data.pass = hash; */
       await client.request(query, data); // send data
 
       setUserHasSubmitted(false);
