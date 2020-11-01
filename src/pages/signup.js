@@ -47,17 +47,26 @@ export default function Signup() {
 
       /* encryption */
       const bcrypt = await import("bcryptjs");
-      /* const hash = bcrypt.hashSync(data.pass, 10);
-       * data.pass = hash; */
+      const hash = bcrypt.hashSync(data.pass, 10);
+      data.pass = hash;
 
-      bcrypt.hash(data.pass, 10, async (err, hash) => {
-        data.pass = hash;
-        await client.request(query, data);
-      });
+      /* bcrypt.hash(data.pass, 10, (err, hash) => {
+       *   data.pass = hash;
+       *   client
+       *     .request(query, data)
+       *     .then(res => {
+       *       console.log(res);
+       *       setUserHasSubmitted(false);
+       *     })
+       *     .catch(err => {
+       *       console.log(err);
+       *       setUserHasSubmitted(false);
+       *     });
+       * }); */
 
-      /* await client.request(query, data); // send data */
+      await client.request(query, data); // send data
 
-      /* setUserHasSubmitted(false); */
+      setUserHasSubmitted(false);
     } catch (err) {
       err.response.errors.forEach(item => {
         console.log(item);
