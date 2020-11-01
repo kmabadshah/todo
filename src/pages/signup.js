@@ -4,7 +4,7 @@ import { Link } from "gatsby";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { err_msgs, api } from "../components/constants";
-/* import { Context } from "../components/wrapper.js"; */
+import { Context } from "../components/wrapper.js";
 
 /* const { GraphQLClient: glClient, gql, request } = require("graphql-request"); */
 
@@ -19,18 +19,14 @@ export default function Signup() {
     clearErrors,
   } = useForm();
 
-  /* const { token } = React.useContext(Context); */
-  const { token } = import("../components/wrapper.js")
-    .then(data => React.useContext(data.context))
-    .catch(err => console.log(err));
-
+  const { token } = React.useContext(Context);
   const [userHasSubmitted, setUserHasSubmitted] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
+  const [constants, setConstants] = React.useState();
 
   const onValidSubmit = async data => {
     try {
       setUserHasSubmitted(true);
-
       const { GraphQLClient: glClient, gql, request } = await import(
         "graphql-request"
       );
@@ -53,7 +49,6 @@ export default function Signup() {
 
       const res = await client.request(query, data);
       setUserHasSubmitted(false);
-
       setSuccess(true);
     } catch (err) {
       setUserHasSubmitted(false);
