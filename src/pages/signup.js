@@ -53,15 +53,15 @@ export default function Signup() {
 
       setUserHasSubmitted(false);
     } catch (err) {
-      err.response.errors.forEach(item => {
-        console.log(item);
-        if (item.extensions.exception.detail.match(/exiSts/gi)) {
-          setError("uname", {
-            type: "db_check",
-            message: "Username exists",
-          });
-        }
-      });
+      /* err.response.errors.forEach(item => {
+       *   console.log(item);
+       *   if (item.extensions.exception.detail.match(/exists/gi)) {
+       *     setError("uname", {
+       *       type: "db_check",
+       *       message: "Username exists",
+       *     });
+       *   }
+       * }); */
 
       setUserHasSubmitted(false);
     }
