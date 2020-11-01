@@ -8,8 +8,6 @@ import { Context } from "../components/wrapper.js";
 
 /* const { GraphQLClient: glClient, gql, request } = require("graphql-request"); */
 
-const mongoose = require('mongoos');
-const 
 export default function Signup() {
   const {
     setError,
