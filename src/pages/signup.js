@@ -6,7 +6,7 @@ import { ErrorMessage } from "@hookform/error-message";
 import { err_msgs, api } from "../components/constants";
 import { Context } from "../components/wrapper.js";
 
-const { GraphQLClient: glClient, gql, request } = require("graphql-request");
+/* const { GraphQLClient: glClient, gql, request } = require("graphql-request"); */
 
 export default function Signup() {
   const {
@@ -26,6 +26,10 @@ export default function Signup() {
   const onValidSubmit = async data => {
     try {
       setUserHasSubmitted(true);
+
+      const { GraphQLClient: glClient, gql, request } = await import(
+        "graphql-request"
+      );
 
       const client = new glClient(`${api}/graphql`, {
         headers: {
