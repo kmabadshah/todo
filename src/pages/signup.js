@@ -52,7 +52,7 @@ export default function Signup() {
       const hash = bcrypt.hashSync(data.pass, 10);
       console.log(hash);
       data.pass = hash;
-      const res = await request(query, data);
+      const res = await client.request(query, data);
       console.log(res);
 
       setUserHasSubmitted(false);
