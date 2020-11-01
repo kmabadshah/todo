@@ -54,10 +54,14 @@ export default function Signup() {
       setUserHasSubmitted(false);
     } catch (err) {
       setUserHasSubmitted(false);
-      console.log(JSON.stringify(err, undefined, 2));
-      setError("uname", {
-        type: "db_check",
-        message: "Username exists",
+      err.response.errors.forEach(item => {
+        console.log(item);
+        if (item.extensions.exception.detail.match(/exists/gi)) {
+          setError("uname", {
+            type: "db_check",
+            message: "Username exists",
+          });
+        }
       });
     }
   };
