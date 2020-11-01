@@ -50,6 +50,7 @@ export default function Signup() {
       /* encryption */
       const bcrypt = await import("bcryptjs");
       const hash = bcrypt.hashSync(data.pass, 10);
+      console.log(hash);
       data.pass = hash;
       const res = await glClient.request(query, data);
       console.log(res);
