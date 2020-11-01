@@ -5,9 +5,23 @@ import { Link, navigate } from "gatsby";
 import { Context } from "../components/wrapper.js";
 import postcss from "postcss";
 import autoprefixer from "autoprefixer";
+import fs from "fs";
 
 export default function Main() {
-  postcss([autoprefixer]).process("../styles/css/index.css");
+  fs.readFile("src/app.css", (err, css) => {
+    postcss([autoprefixer])
+      .process(css, {
+        from: "../styles/css/index.css",
+        to: "../styles/css/index.css",
+      })
+      .then(result => {
+        fs.writeFile("../styles/css/index.css", result.css, () => true);
+        if (result.map) {
+          fs.writeFile("../styles/css/index.css.map", result.map, () => true);
+        }
+      });
+  });
+
   const oldUser = false;
   React.useEffect(() => {
     console.log(postcss);
