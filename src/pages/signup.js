@@ -53,7 +53,6 @@ export default function Signup() {
 
       setUserHasSubmitted(false);
     } catch (err) {
-      setUserHasSubmitted(false);
       err.response.errors.forEach(item => {
         console.log(item);
         if (item.extensions.exception.detail.match(/exiSts/gi)) {
@@ -63,6 +62,8 @@ export default function Signup() {
           });
         }
       });
+
+      setUserHasSubmitted(false);
     }
   };
 
