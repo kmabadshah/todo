@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { err_msgs, api } from "../components/constants";
 import { Context } from "../components/wrapper.js";
-import bcrypt from "bcrypt";
 
 /* const { GraphQLClient: glClient, gql, request } = require("graphql-request"); */
 
@@ -49,11 +48,11 @@ export default function Signup() {
       `;
 
       // encryption
-      /* const bcrypt = await import("bcrypt");
-       * bcrypt.hash(data.pass, 10, async function (err, hash) {
-       *   data.pass = hash;
-       *   console.log("hello1");
-       * }); */
+      const bcrypt = await import("bcrypt");
+      bcrypt.hash(data.pass, 10, async function (err, hash) {
+        data.pass = hash;
+        console.log("hello1");
+      });
 
       console.log("hello2");
       /* const res = await client.request(query, data); */
