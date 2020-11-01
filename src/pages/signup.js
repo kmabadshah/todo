@@ -22,6 +22,7 @@ export default function Signup() {
 
   const { token } = React.useContext(Context);
   const [userHasSubmitted, setUserHasSubmitted] = React.useState(false);
+  const [success, setSuccess] = React.useState(false);
 
   const onValidSubmit = async data => {
     try {
@@ -45,6 +46,8 @@ export default function Signup() {
 
       const res = await client.request(query, data);
       setUserHasSubmitted(false);
+
+      setSuccess(true);
     } catch (err) {
       setUserHasSubmitted(false);
       setError("uname", {
@@ -167,23 +170,3 @@ export default function Signup() {
     </Layout>
   );
 }
-
-/* const { queryData } = axios
- *   .post(
- *     `${api}/todoers`,
- *     { username: data.uname, password: data.pass },
- *     {
- *       headers: {
- *         Authorization: `Bearer ${token}`,
- *       },
- *     }
- *   )
- *   .then(data => {
- *     console.log(data);
- *     setUserHasSubmitted(false);
- *     return data;
- *   })
- *   .catch(err => {
- *     console.log(err.response);
- *     setUserHasSubmitted(false);
- *   }); */

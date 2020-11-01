@@ -8,22 +8,7 @@ export const Context = React.createContext();
 export default function Wrapper({ children }) {
   const [token, setToken] = React.useState();
   const [randErr, setRandErr] = React.useState();
-  const {
-    allStrapiTodoer: { edges: users },
-  } = useStaticQuery(graphql`
-    {
-      allStrapiTodoer {
-        edges {
-          node {
-            uname
-            pass
-          }
-        }
-      }
-    }
-  `);
-
-  console.log(token);
+  const [currentUser, setCurrentUser] = React.useState();
 
   React.useEffect(() => {
     axios
