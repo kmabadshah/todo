@@ -51,12 +51,11 @@ export default function Signup() {
       const bcrypt = await import("bcrypt");
       bcrypt.hash(data.pass, 10, async function (err, hash) {
         data.pass = hash;
-        const res = await client.request(query, data);
-
-        console.log(res);
+        console.log("hello1");
       });
 
-      console.log("hello");
+      console.log("hello2");
+      /* const res = await client.request(query, data); */
       setUserHasSubmitted(false);
       setSuccess(true);
     } catch (err) {
