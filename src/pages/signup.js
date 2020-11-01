@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { err_msgs, api } from "../components/constants";
 import { Context } from "../components/wrapper.js";
-import axios from "axios";
 
 const { GraphQLClient: glClient, gql, request } = require("graphql-request");
 

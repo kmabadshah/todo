@@ -1,6 +1,5 @@
 import React from "react";
 import { cred, api } from "./constants.js";
-import axios from "axios";
 import { useStaticQuery, graphql } from "gatsby";
 
 export const Context = React.createContext();
