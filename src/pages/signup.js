@@ -56,7 +56,7 @@ export default function Signup() {
       setUserHasSubmitted(false);
       err.response.errors.forEach(item => {
         console.log(item);
-        if (item.extensions.exception.detail.match(/exists/gi)) {
+        if (item.extensions.exception.detail.match(/exiSts/gi)) {
           setError("uname", {
             type: "db_check",
             message: "Username exists",
