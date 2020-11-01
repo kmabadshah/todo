@@ -8,19 +8,20 @@ import autoprefixer from "autoprefixer";
 import fs from "fs";
 
 export default function Main() {
-  /* fs.readFile("src/app.css", (err, css) => {
-   *   postcss([autoprefixer])
-   *     .process(css, {
-   *       from: "../styles/css/index.css",
-   *       to: "../styles/css/index.css",
-   *     })
-   *     .then(result => {
-   *       fs.writeFile("../styles/css/index.css", result.css, () => true);
-   *       if (result.map) {
-   *         fs.writeFile("../styles/css/index.css.map", result.map, () => true);
-   *       }
-   *     });
-   * }); */
+  fs.readFile("src/app.css", (err, css) => {
+    postcss([autoprefixer])
+      .process(css, {
+        from: "../styles/css/index.css",
+        to: "../styles/css/index.css",
+      })
+      .then(result => {
+        console.log("hello");
+        fs.writeFile("../styles/css/index.css", result.css, () => true);
+        if (result.map) {
+          fs.writeFile("../styles/css/index.css.map", result.map, () => true);
+        }
+      });
+  });
 
   const oldUser = false;
   React.useEffect(() => {
