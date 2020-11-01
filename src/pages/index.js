@@ -6,8 +6,6 @@ import { Context } from "../components/wrapper.js";
 import postcss from "postcss";
 import autoprefixer from "autoprefixer";
 
-console.log(__dir);
-
 export default function Main() {
   /* fs.readFile("src/app.css", (err, css) => {
    *   postcss([autoprefixer])
