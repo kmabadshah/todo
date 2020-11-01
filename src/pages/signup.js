@@ -59,7 +59,7 @@ export default function Signup() {
       setSuccess(true);
     } catch (err) {
       setUserHasSubmitted(false);
-      console.log(json.stringify(err));
+      console.log(JSON.stringify(err, undefined, 2));
       setError("uname", {
         type: "db_check",
         message: "Username exists",
