@@ -5,6 +5,7 @@ import { Link, navigate } from "gatsby";
 import { Context } from "../components/wrapper.js";
 import postcss from "postcss";
 import autoprefixer from "autoprefixer";
+import fs from "fs";
 
 export default function Main() {
   /* fs.readFile("src/app.css", (err, css) => {
