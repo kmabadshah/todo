@@ -4,7 +4,7 @@ import X from "../components/x.js";
 
 export default function User() {
   return (
-    <Router basepath="/user ">
+    <Router basepath="/user">
       <X path="1" />
     </Router>
   );
