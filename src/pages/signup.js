@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../components/layout.js";
-import { Link } from "gatsby";
+import { Link, navigate } from "gatsby";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { err_msgs, api } from "../components/constants";
@@ -17,7 +17,7 @@ export default function Signup() {
     clearErrors,
   } = useForm();
 
-  const { token, currentUser, setCurrentUser } = React.useContext(Context);
+  const { token, setCurrentUser } = React.useContext(Context);
   const [userHasSubmitted, setUserHasSubmitted] = React.useState(false);
   const [randErr, setRandErr] = React.useState(false);
 
@@ -58,6 +58,7 @@ export default function Signup() {
             setRandErr(false);
             setUserHasSubmitted(false);
             setCurrentUser(data);
+            navigate("/user");
           })
           .catch(err => {
             if (err.response) {
