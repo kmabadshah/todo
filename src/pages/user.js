@@ -1,5 +1,9 @@
 import React from "react";
 
 export default function User() {
-  return <h1>Hello World</h1>;
+  return (
+    <div id="user">
+      <h1>Hello World</h1>
+    </div>
+  );
 }
