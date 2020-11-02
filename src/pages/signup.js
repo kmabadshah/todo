@@ -66,7 +66,7 @@ export default function Signup() {
                   });
                 }
               });
-            }
+            } else console.log(err);
 
             setUserHasSubmitted(false);
           });
