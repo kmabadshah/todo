@@ -57,7 +57,7 @@ export default function Signup() {
           .then(res => {
             setRandErr(false);
             setUserHasSubmitted(false);
-            setCurrentUser(data);
+            setCurrentUser(res);
             navigate("/user");
           })
           .catch(err => {
