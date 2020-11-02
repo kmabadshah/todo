@@ -69,5 +69,10 @@ module.exports = {
         develop: true, // Enable while using `gatsby develop`
       },
     },
+
+    {
+      resolve: `gatsby-plugin-create-client-paths`,
+      options: { prefixes: [`/users/*`] },
+    },
   ],
 };
