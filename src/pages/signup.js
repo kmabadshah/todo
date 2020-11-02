@@ -66,7 +66,7 @@ export default function Signup() {
                   });
                 }
               });
-            } else console.log(JSON.stringify(err));
+            } else console.log(err);
 
             setUserHasSubmitted(false);
           });
@@ -92,6 +92,7 @@ export default function Signup() {
 
   return (
     <Layout>
+      <h1>Hello</h1>
       <div id="signup">
         <div className="card my-auto">
           <form
