@@ -3,6 +3,7 @@ import { Context } from "../components/wrapper";
 
 export default function User() {
   const { currentUser } = React.useContext(Context);
+  console.log(currentUser);
 
   return (
     <div id="user">
