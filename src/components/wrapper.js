@@ -13,7 +13,10 @@ export default function Wrapper({ children }) {
     import("axios").then(axios =>
       axios
         .post(`${api}/auth/local`, cred)
-        .then(data => setToken(data.data.jwt))
+        .then(data => {
+          setRandErr();
+          setToken(data.data.jwt);
+        })
         .catch(err => {
           setRandErr(err);
         })
