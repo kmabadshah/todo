@@ -7,7 +7,7 @@ export default function Users() {
   return (
     <Layout>
       <Router basepath="/app">
-        <X path="/" />
+        <h1>hello</h1>
       </Router>
     </Layout>
   );

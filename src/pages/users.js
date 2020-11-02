@@ -1,11 +1,11 @@
 import React from "react";
 import { Router } from "@reach/router";
-import App from "../components/app";
+import X from "../components/x";
 
 export default function Users() {
   return (
     <Router basepath="/users">
-      <App path="/" />
+      <X path="/" />
     </Router>
   );
 }
