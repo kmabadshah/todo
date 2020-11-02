@@ -17,7 +17,7 @@ export default function Signup() {
     clearErrors,
   } = useForm();
 
-  const { token } = React.useContext(Context);
+  const { token, currentUser, setCurrentUser } = React.useContext(Context);
   const [userHasSubmitted, setUserHasSubmitted] = React.useState(false);
   const [randErr, setRandErr] = React.useState(false);
 
@@ -76,6 +76,7 @@ export default function Signup() {
       });
     } catch (err) {
       setRandErr(true);
+      setUserHasSubmitted(false);
     }
   };
 
