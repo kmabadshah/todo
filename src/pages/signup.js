@@ -58,6 +58,7 @@ export default function Signup() {
           })
           .catch(err => {
             console.log("hello");
+            console.log(JSON.stringify(err, undefined, 2));
             console.log(err.response.status);
             err.response.errors.forEach(item => {
               if (item.extensions.exception.detail.match(/exists/gi)) {
