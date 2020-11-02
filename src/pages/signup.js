@@ -40,6 +40,7 @@ export default function Signup() {
         mutation($uname: String!, $pass: String!) {
           createTodoer(input: { data: { uname: $uname, pass: $pass } }) {
             todoer {
+              uname
               id
             }
           }
@@ -56,6 +57,7 @@ export default function Signup() {
           .then(res => {
             setRandErr(false);
             setUserHasSubmitted(false);
+            setCurrentUser(data);
           })
           .catch(err => {
             if (err.response) {
