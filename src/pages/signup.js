@@ -57,6 +57,7 @@ export default function Signup() {
             setUserHasSubmitted(false);
           })
           .catch(err => {
+            console.log("hello");
             console.log(err.response.status);
             err.response.errors.forEach(item => {
               if (item.extensions.exception.detail.match(/exists/gi)) {
