@@ -19,6 +19,7 @@ export default function Signup() {
 
   const { token } = React.useContext(Context);
   const [userHasSubmitted, setUserHasSubmitted] = React.useState(false);
+  const [randErr, setRandErr] = React.useState(false);
 
   const onValidSubmit = async data => {
     try {
@@ -65,13 +66,15 @@ export default function Signup() {
                   });
                 }
               });
-            } else console.log(err);
+            } else {
+              setRandErr(true);
+            }
 
             setUserHasSubmitted(false);
           });
       });
     } catch (err) {
-      console.log(err);
+      setRandErr(true);
     }
   };
 
@@ -91,6 +94,8 @@ export default function Signup() {
 
   return (
     <Layout>
+      <ErrorMessage errors={errors} name="" />
+
       <div id="signup">
         <div className="card my-auto">
           <form
