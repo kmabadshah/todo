@@ -24,7 +24,11 @@ export default function Wrapper({ children }) {
   }, []);
 
   if (token) {
-    return <Context.Provider value={{ token }}>{children}</Context.Provider>;
+    return (
+      <Context.Provider value={{ token, currentUser, setCurrentUser }}>
+        {children}
+      </Context.Provider>
+    );
   } else if (randErr) {
     return <h1>Something went wrong, please try again</h1>;
   } else {
