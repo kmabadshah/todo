@@ -19,7 +19,6 @@ export default function Signup() {
 
   const { token } = React.useContext(Context);
   const [userHasSubmitted, setUserHasSubmitted] = React.useState(false);
-  const [success, setSuccess] = React.useState(false);
 
   const onValidSubmit = async data => {
     try {
@@ -92,7 +91,6 @@ export default function Signup() {
 
   return (
     <Layout>
-      <h1>Hello</h1>
       <div id="signup">
         <div className="card my-auto">
           <form
