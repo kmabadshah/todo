@@ -15,7 +15,6 @@ export default function Wrapper({ children }) {
         .post(`${api}/auth/local`, cred)
         .then(data => setToken(data.data.jwt))
         .catch(err => {
-          console.log(err);
           setRandErr(err);
         })
     );
