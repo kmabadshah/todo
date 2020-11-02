@@ -94,7 +94,7 @@ export default function Signup() {
 
   return (
     <Layout>
-      <ErrorMessage errors={errors} name="" />
+      <p>{randErr && "Something went wrong, please try again"}</p>
 
       <div id="signup">
         <div className="card my-auto">
