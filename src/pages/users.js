@@ -3,9 +3,5 @@ import { Router } from "@reach/router";
 import X from "../components/x.js";
 
 export default function Users() {
-  return (
-    <Router basepath="/users">
-      <X path="/" />
-    </Router>
-  );
+  return <X path="/" />;
 }
