@@ -5,10 +5,8 @@ import Layout from "../components/layout";
 
 export default function Users() {
   return (
-    <Layout>
-      <Router basepath="/app">
-        <h1>hello</h1>
-      </Router>
-    </Layout>
+    <Router basepath="/app">
+      <X path="/" />
+    </Router>
   );
 }
