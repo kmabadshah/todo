@@ -74,7 +74,10 @@ export default function Signup() {
             setUserHasSubmitted(false);
           });
       });
+
+      // prettier ignore
     } catch (err) {
+      // prettier ignore
       setRandErr(true);
       setUserHasSubmitted(false);
     }
