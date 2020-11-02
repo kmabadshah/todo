@@ -24,6 +24,7 @@ export default function Signup() {
   const onValidSubmit = async data => {
     try {
       setUserHasSubmitted(true);
+      setRandErr(false);
 
       const { GraphQLClient: glClient, gql, request } = await import(
         "graphql-request"
@@ -53,7 +54,7 @@ export default function Signup() {
         client // send data
           .request(query, data)
           .then(res => {
-            console.log(res);
+            setRandErr(false);
             setUserHasSubmitted(false);
           })
           .catch(err => {
