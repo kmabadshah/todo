@@ -2,9 +2,9 @@ import React from "react";
 import { Router } from "@reach/router";
 import X from "../components/x.js";
 
-export default function Users() {
+export default function User() {
   return (
-    <Router basepath="/users">
+    <Router basepath="/user ">
       <X path="1" />
     </Router>
   );
