@@ -205,6 +205,9 @@
   display: flex;
   justify-content: center;
 }
+#navbar #btn-home {
+  background-color: yellow;
+}
 
 :root {
   overflow: auto;

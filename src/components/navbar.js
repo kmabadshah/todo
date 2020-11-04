@@ -3,13 +3,12 @@ import React from "react";
 export default function Navbar() {
   return (
     <div id="navbar">
-      <Link to="/user" id="btn-home">
+      <button to="/user" id="btn-home">
         Home
-      </Link>
-      <Link to="/about" id="btn-about">
+      </button>
+      <button to="/about" id="btn-about">
         About
-      </Link>
-      `
+      </button>
     </div>
   );
 }
