@@ -234,7 +234,11 @@
   flex-grow: 1;
   font-family: aleo, sans;
   font-size: 2.3rem;
-  padding: 1rem;
+  display: flex;
+}
+#todocard #card #init_input *,
+#todocard #card #btn-submit * {
+  border: 1px solid red;
 }
 #todocard #card #init_input::placeholder,
 #todocard #card #btn-submit::placeholder {
