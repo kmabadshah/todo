@@ -4,7 +4,9 @@
   display: flex;
   justify-content: center;
 
-  #btn-home {
+  #btn-home,
+  #btn-about {
     background-color: yellow;
+    border: none;
   }
 }

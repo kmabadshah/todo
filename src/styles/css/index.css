@@ -205,8 +205,10 @@
   display: flex;
   justify-content: center;
 }
-#navbar #btn-home {
+#navbar #btn-home,
+#navbar #btn-about {
   background-color: yellow;
+  border: none;
 }
 
 :root {
