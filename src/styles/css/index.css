@@ -231,7 +231,7 @@
 }
 #todocard #card #init_input,
 #todocard #card #btn-submit {
-  border: none;
+  flex-grow: 1;
 }
 
 :root {
