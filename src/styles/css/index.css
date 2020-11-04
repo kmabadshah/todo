@@ -227,6 +227,7 @@
 #todocard .card {
   background-color: #dff3e3;
   border: none;
+  flex-grow: 1;
 }
 #todocard .card #btn-submit {
   border: none;
