@@ -7,7 +7,7 @@ export default function User() {
   const { currentUser } = React.useContext(Context);
 
   return (
-    <div id="user">
+    <div id="user" className="d-flex flex-column">
       <Navbar />
       <TodoCard />
     </div>
