@@ -14,10 +14,11 @@
 
     #init_input,
     #btn-submit {
-      border: none;
+      // border: none;
       flex-grow: 1;
       font-family: aleo, sans;
       font-size: 2.3rem;
+      padding: 1rem;
 
       &::placeholder {
         color: rgba(0, 0, 0, 0.2);

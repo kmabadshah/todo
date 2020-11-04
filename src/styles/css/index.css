@@ -231,10 +231,10 @@
 }
 #todocard #card #init_input,
 #todocard #card #btn-submit {
-  border: none;
   flex-grow: 1;
   font-family: aleo, sans;
   font-size: 2.3rem;
+  padding: 1rem;
 }
 #todocard #card #init_input::placeholder,
 #todocard #card #btn-submit::placeholder {
