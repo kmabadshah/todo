@@ -201,6 +201,11 @@
   text-decoration: none;
 }
 
+#navbar {
+  display: flex;
+  justify-content: center;
+}
+
 :root {
   overflow: auto;
 }
