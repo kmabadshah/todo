@@ -14,15 +14,14 @@
 
     #init_input,
     #btn-submit {
-      // border: none;
+      border: none;
       flex-grow: 1;
       font-family: aleo, sans;
       font-size: 2.3rem;
       display: flex;
-
-      * {
-        border: 1px solid red;
-      }
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
 
       &::placeholder {
         color: rgba(0, 0, 0, 0.2);
