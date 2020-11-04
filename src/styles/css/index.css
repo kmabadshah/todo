@@ -228,6 +228,9 @@
   background-color: #dff3e3;
   border: none;
 }
+#todocard .card #btn-submit {
+  border: none;
+}
 
 :root {
   overflow: auto;

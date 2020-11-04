@@ -9,5 +9,9 @@
   .card {
     background-color: $user-green;
     border: none;
+
+    #btn-submit {
+      border: none;
+    }
   }
 }
