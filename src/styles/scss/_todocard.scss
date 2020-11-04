@@ -13,7 +13,7 @@
     // border: 1px solid red;
     flex-grow: 1;
 
-    #init_input,
+    #init-input,
     #btn-submit {
       border: none;
       flex-grow: 1;
@@ -27,6 +27,10 @@
       &::placeholder {
         color: rgba(0, 0, 0, 0.2);
       }
+    }
+
+    #btn-submit {
+      background-color: $user-yellow;
     }
   }
 }
