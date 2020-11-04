@@ -215,6 +215,7 @@
   margin: 2rem 1rem;
   font-family: aleo, sans;
   color: rgba(27, 6, 94, 0.5);
+  border-radius: 10px;
 }
 
 #todocard {
