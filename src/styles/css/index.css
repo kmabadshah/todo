@@ -204,7 +204,6 @@
 #navbar {
   display: flex;
   background-color: #dff3e3;
-  justify-content: center;
 }
 #navbar #btn-home,
 #navbar #btn-about {
