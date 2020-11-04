@@ -24,6 +24,11 @@
       justify-content: center;
       padding: 1rem 1.5rem;
 
+      * {
+        border: 1px solid red;
+        flex-grow: 1;
+      }
+
       &::placeholder {
         color: rgba(0, 0, 0, 0.2);
       }
@@ -31,6 +36,7 @@
 
     #btn-submit {
       background-color: $user-yellow;
+      font-size: 4rem;
     }
   }
 }
