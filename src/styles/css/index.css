@@ -239,7 +239,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 1rem 1.5rem;
 }
 #todocard #card #init_input::placeholder,
 #todocard #card #btn-submit::placeholder {
