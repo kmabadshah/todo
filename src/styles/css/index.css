@@ -224,6 +224,9 @@
   justify-content: center;
   flex-grow: 1;
 }
+#todocard .card {
+  flex-grow: 1;
+}
 
 :root {
   overflow: auto;
