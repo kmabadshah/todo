@@ -5,7 +5,7 @@ export default function TodoCard() {
     <div id="todocard">
       <div className="card">
         <div className="card-body">
-          <h1>Hello</h1>
+          <input type="text" />
         </div>
       </div>
     </div>
