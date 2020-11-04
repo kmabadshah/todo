@@ -6,13 +6,8 @@
   justify-content: center;
   flex-grow: 1;
 
-  .card {
+  #card {
     background-color: $user-green;
-    border: none;
-    flex-grow: 1;
-
-    #btn-submit {
-      border: none;
-    }
+    display: flex;
   }
 }
