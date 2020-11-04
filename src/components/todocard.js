@@ -6,7 +6,7 @@ export default function TodoCard() {
     <div id="todocard">
       <div className="card">
         <div className="card-body d-flex">
-          <input type="text" />
+          <input type="text" id="init_input" />
           <button id="btn-submit">
             <BsCheck />
           </button>
