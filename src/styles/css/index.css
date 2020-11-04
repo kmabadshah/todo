@@ -232,6 +232,7 @@
 #todocard #card #init_input,
 #todocard #card #btn-submit {
   flex-grow: 1;
+  font-family: aleo, sans;
 }
 
 :root {

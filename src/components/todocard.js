@@ -5,7 +5,7 @@ export default function TodoCard() {
   return (
     <div id="todocard">
       <div id="card">
-        <input type="text" id="init_input" />
+        <input type="text" id="init_input" placeholder="I will meditate..." />
         <button id="btn-submit">
           <BsCheck />
         </button>
