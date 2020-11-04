@@ -2,11 +2,13 @@
 
 #navbar {
   display: flex;
-  justify-content: center;
+  // justify-content: center;
   background-color: $user-green;
+  // justify-content: ;
 
   #btn-home,
   #btn-about {
+    flex-grow: 1;
     background-color: $user-orange;
     border: none;
     padding: 1rem 2rem;

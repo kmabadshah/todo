@@ -203,11 +203,11 @@
 
 #navbar {
   display: flex;
-  justify-content: center;
   background-color: #dff3e3;
 }
 #navbar #btn-home,
 #navbar #btn-about {
+  flex-grow: 1;
   background-color: #f7dba7;
   border: none;
   padding: 1rem 2rem;
