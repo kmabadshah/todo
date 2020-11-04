@@ -231,9 +231,14 @@
 }
 #todocard #card #init_input,
 #todocard #card #btn-submit {
+  border: none;
   flex-grow: 1;
   font-family: aleo, sans;
   font-size: 2.3rem;
+}
+#todocard #card #init_input::placeholder,
+#todocard #card #btn-submit::placeholder {
+  color: rgba(0, 0, 0, 0.2);
 }
 
 :root {
