@@ -227,8 +227,11 @@
 #todocard #card {
   background-color: #dff3e3;
   display: flex;
-  border: 1px solid red;
   flex-grow: 1;
+}
+#todocard #card #init_input,
+#todocard #card #btn-submit {
+  border: none;
 }
 
 :root {
