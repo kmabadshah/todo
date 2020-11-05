@@ -1,6 +1,20 @@
 import React from "react";
+import Layout from "../../components/layout.js";
 
-export default function View() {
+export default function View({
+  data: {
+    randErr,
+    handleSubmit,
+    onValidSubmit,
+    register,
+    err_msgs,
+    evalUname,
+    ErrorMessage,
+    errors,
+    register,
+    err_msgs,
+  },
+}) {
   return (
     <Layout>
       <p>{randErr && "Something went wrong, please try again"}</p>
