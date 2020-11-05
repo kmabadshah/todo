@@ -16,6 +16,7 @@ export default function View({
           id="todo-text"
           value={todoText}
           placeholder="I will meditate..."
+          required
         />
         <button id="btn-submit" onClick={() => setSubmitted(true)}>
           <BsCheck />
