@@ -11,18 +11,15 @@ export default function TodoCard() {
 
   return (
     <div id="todocard">
-      <div id="card">
-        <input
-          type="text"
-          onChange={e => setTodoText(e.target.value) & console.log(e.target.id)}
-          onKeyDown={e => e.key === "Enter" && setSubmitted(true)}
-          id="init-input"
-          placeholder="I will meditate..."
-        />
-        <button id="btn-submit" onClick={() => setSubmitted(true)}>
+      <form
+        id="card"
+        onSubmit={e => e.preventDefault & console.log(e.target.value)}
+      >
+        <input type="text" id="init-input" placeholder="I will meditate..." />
+        <button id="btn-submit">
           <BsCheck />
         </button>
-      </div>
+      </form>
     </div>
   );
 }
