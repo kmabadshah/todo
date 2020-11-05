@@ -1,6 +1,7 @@
 import React from "react";
 import { BsCheck } from "react-icons/bs";
 import { Context } from "./wrapper";
+import View from "./view";
 
 export default function TodoCard() {
   const [submitted, setSubmitted] = React.useState(false);
@@ -44,22 +45,11 @@ export default function TodoCard() {
   }, [submitted]);
 
   return (
-    <div id="todocard">
-      <div id="card">
-        <input
-          type="text"
-          onChange={e => setTodoText(e.target.value)}
-          onKeyDown={e =>
-            e.key === "Enter" ? setSubmitted(true) : setSubmitted(false)
-          }
-          id="todo-text"
-          value={todoText}
-          placeholder="I will meditate..."
-        />
-        <button id="btn-submit" onClick={() => setSubmitted(true)}>
-          <BsCheck />
-        </button>
-      </div>
-    </div>
+    <View
+      data={{
+        setSubmitted,
+        setTodoText,
+      }}
+    />
   );
 }
