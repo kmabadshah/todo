@@ -43,9 +43,11 @@ export default function TodoCard() {
           };
 
           const res = await client.request(query, data);
-          setCurrentUser(res);
+          const reUser = currentUser;
+          reUser.todos = res.updateTodoer.todoer.todos;
+          setCurrentUser(reUser);
 
-          console.log(res);
+          console.log(currentUser);
 
           setTodoText("");
         } catch (err) {
