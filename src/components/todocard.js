@@ -13,7 +13,7 @@ export default function TodoCard() {
     <div id="todocard">
       <form
         id="card"
-        onSubmit={e => e.preventDefault & console.log(e.target.value)}
+        onSubmit={e => e.preventDefault() & console.log(e.target.value)}
       >
         <input type="text" id="init-input" placeholder="I will meditate..." />
         <button id="btn-submit">
