@@ -8,7 +8,7 @@ export default function TodoCard() {
   function handleSubmit(e) {
     e.preventDefault();
     const data = new FormData(e.traget);
-    console.log(data.getAll());
+    console.log(data.getAll("todo-text"));
   }
 
   return (
