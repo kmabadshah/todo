@@ -110,9 +110,10 @@ export default function Signup() {
         evalUname,
         ErrorMessage,
         errors,
-        register,
-        err_msgs,
         Layout,
+        isEmpty,
+        userHasSubmitted,
+        Link,
       }}
     />
   );
