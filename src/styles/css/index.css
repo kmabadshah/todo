@@ -229,7 +229,7 @@
   display: flex;
   padding: 1.5rem;
 }
-#todocard #card #init-input,
+#todocard #card #todo-text,
 #todocard #card #btn-submit {
   border: none;
   flex-grow: 1;
@@ -240,15 +240,15 @@
   justify-content: center;
   padding: 1rem 1.5rem;
 }
-#todocard #card #init-input *,
+#todocard #card #todo-text *,
 #todocard #card #btn-submit * {
   flex-grow: 1;
 }
-#todocard #card #init-input::placeholder,
+#todocard #card #todo-text::placeholder,
 #todocard #card #btn-submit::placeholder {
   color: rgba(0, 0, 0, 0.2);
 }
-#todocard #card #init-input {
+#todocard #card #todo-text {
   padding: 1rem 1.5rem;
 }
 #todocard #card #btn-submit {
