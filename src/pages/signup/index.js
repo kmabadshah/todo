@@ -44,6 +44,9 @@ export default function Signup() {
             todoer {
               uname
               id
+              todos {
+                text
+              }
             }
           }
         }
