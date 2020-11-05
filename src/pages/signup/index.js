@@ -59,7 +59,9 @@ export default function Signup() {
           .then(res => {
             setRandErr(false);
             setUserHasSubmitted(false);
-            setCurrentUser(res);
+            setCurrentUser({
+              ...res.createTodoer.todoer,
+            });
             navigate("/user");
           })
           .catch(err => {
