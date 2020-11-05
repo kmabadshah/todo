@@ -13,7 +13,8 @@ export default function View({
     Link,
     userHasSubmitted,
     isEmpty,
-    getVAlues,
+    getValues,
+    Layout,
   },
 }) {
   return (
