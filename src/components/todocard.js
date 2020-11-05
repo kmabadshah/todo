@@ -8,42 +8,40 @@ export default function TodoCard() {
   const { token, currentUser } = React.useContext(Context);
 
   React.useEffect(() => {
-        (async () => {
-          if (submitted) {
-            const { api } = await import("./constants");
-            const { GraphQLClient: glClient, gql, request } = await import(
-              "graphql-request"
-            );
-            const client = new glClient(`${api}/graphql`, {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            });
-            const query = gql`
-            mutation($id: ID!) {
-              updateTodoer(
-                input: { where: { id: $id }, data: { todos: $todos } }
-              ) {
-                todoer {
-                  uname
-                  id
-                }
+    (async () => {
+      if (submitted) {
+        const { api } = await import("./constants");
+        const { GraphQLClient: glClient, gql, request } = await import(
+          "graphql-request"
+        );
+        const client = new glClient(`${api}/graphql`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const query = gql`
+          mutation($id: ID!) {
+            updateTodoer(
+              input: { where: { id: $id }, data: { todos: $todos } }
+            ) {
+              todoer {
+                uname
+                id
               }
             }
-          `;
-
-            console.log(currentUser);
-
-            const data = {
-              id: currentUser.createTodoer.id,
-            };
-
-            setTodoText("");
           }
-        })();
-  });
-    [submitted]
-  );
+        `;
+
+        console.log(currentUser);
+
+        // const data = {
+        //   id: currentUser.createTodoer.id,
+        // };
+
+        setTodoText("");
+      }
+    })();
+  }, [submitted]);
 
   return (
     <div id="todocard">
