@@ -6,7 +6,7 @@ import View from "./view";
 export default function TodoCard() {
   const [submitted, setSubmitted] = React.useState(false);
   const [todoText, setTodoText] = React.useState("");
-  const { token, currentUser } = React.useContext(Context);
+  const { token, currentUser, setCurrentUser } = React.useContext(Context);
 
   React.useEffect(() => {
     (async () => {
@@ -42,9 +42,9 @@ export default function TodoCard() {
               : [{ text: todoText }],
           };
 
-          console.log(data);
-
           const res = await client.request(query, data);
+          setCurrentUser(res);
+
           console.log(res);
 
           setTodoText("");
