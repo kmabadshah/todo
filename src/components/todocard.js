@@ -5,13 +5,14 @@ export default async function TodoCard() {
   const [submitted, setSubmitted] = React.useState(false);
   const [todoText, setTodoText] = React.useState("");
 
-  async function getData() {
-    const imp = await import("wrapper");
-    console.log(React.useContext(imp).token);
-  }
+  // async function getData() {
+  //   const imp = await import("wrapper");
+  //   console.log(React.useContext(imp).token);
+  // }
 
   React.useEffect(() => {
-    getData();
+    const { token } = React.useContext(import("wrapper").then(data => data));
+    console.log(token);
   }, []);
   // React.useEffect(() => (async () => {
   //   if (submitted) {
