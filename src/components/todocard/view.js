@@ -1,4 +1,5 @@
 import React from "react";
+import { BsCheck } from "react-icons/bs";
 
 export default function View({ data: { setSubmitted, setTodoText } }) {
   return (

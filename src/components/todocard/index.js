@@ -11,7 +11,7 @@ export default function TodoCard() {
   React.useEffect(() => {
     (async () => {
       if (submitted) {
-        const { api } = await import("./constants");
+        const { api } = await import("../constants");
         const { GraphQLClient: glClient, gql, request } = await import(
           "graphql-request"
         );
