@@ -11,35 +11,43 @@ export default function TodoCard() {
   React.useEffect(() => {
     (async () => {
       if (submitted) {
-        const { api } = await import("../constants");
-        const { GraphQLClient: glClient, gql, request } = await import(
-          "graphql-request"
-        );
-        const client = new glClient(`${api}/graphql`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        const query = gql`
-          mutation($id: ID!) {
-            updateTodoer(
-              input: { where: { id: $id }, data: { todos: $todos } }
-            ) {
-              todoer {
-                uname
-                id
+        try {
+          const { api } = await import("../constants");
+          const { GraphQLClient: glClient, gql, request } = await import(
+            "graphql-request"
+          );
+          const client = new glClient(`${api}/graphql`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          const query = gql`
+            mutation($id: ID!) {
+              updateTodoer(
+                input: { where: { id: $id }, data: { todos: $todos } }
+              ) {
+                todoer {
+                  uname
+                  id
+                }
               }
             }
-          }
-        `;
+          `;
 
-        console.log(currentUser);
+          const data = {
+            id: currentUser.id,
+            todos: currentUser.todos
+              ? [...currentUser.todos].concat(todoText)
+              : [todoText],
+          };
 
-        // const data = {
-        //   id: currentUser.createTodoer.id,
-        // };
+          const res = await client.request(query, data);
+          console.log(res);
 
-        setTodoText("");
+          setTodoText("");
+        } catch (err) {
+          console.log(err);
+        }
       }
     })();
   }, [submitted]);
