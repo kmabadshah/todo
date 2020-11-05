@@ -5,13 +5,6 @@ export default function TodoCard() {
   const [submitted, setSubmitted] = React.useState(false);
   const [todoText, setTodoText] = React.useState("");
 
-  const handleKeyDown = e => {
-    if (e.key === "Enter") {
-      setSubmitted(true);
-      setTodoText(e.target.value);
-    }
-  };
-
   React.useEffect(() => {
     console.log(todoText);
   }, [todoText]);
@@ -22,11 +15,11 @@ export default function TodoCard() {
         <input
           type="text"
           onChange={e => setTodoText(e.target.value)}
-          onKeyDown={e => e.key === "Enter" && hasSubmitted(true)}
+          onKeyDown={e => e.key === "Enter" && setSubmitted(true)}
           id="init-input"
           placeholder="I will meditate..."
         />
-        <button id="btn-submit" onClick={() => hasSubmitted(true)}>
+        <button id="btn-submit" onClick={() => setSubmitted(true)}>
           <BsCheck />
         </button>
       </div>
