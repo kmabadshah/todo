@@ -21,11 +21,12 @@ export default function TodoCard() {
       <div id="card">
         <input
           type="text"
-          onKeyDown={e => handleKeyDown(e)}
+          onChange={e => setTodoText(e.target.value)}
+          onKeyDown={e => e.key === "Enter" && hasSubmitted(true)}
           id="init-input"
           placeholder="I will meditate..."
         />
-        <button id="btn-submit">
+        <button id="btn-submit" onClick={() => hasSubmitted(true)}>
           <BsCheck />
         </button>
       </div>
