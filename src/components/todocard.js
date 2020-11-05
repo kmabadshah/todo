@@ -5,6 +5,10 @@ export default function TodoCard() {
   const [submitted, setSubmitted] = React.useState(false);
   const [todoText, setTodoText] = React.useState("");
 
+  React.useEffect(() => {
+    console.log(todoText);
+  }, [todoText]);
+
   return (
     <div id="todocard">
       <div id="card">
