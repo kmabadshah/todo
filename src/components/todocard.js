@@ -10,7 +10,9 @@ export default async function TodoCard() {
     console.log(React.useContext(imp).token);
   }
 
-  getData();
+  React.useEffect(() => {
+    getData();
+  }, []);
   // React.useEffect(() => (async () => {
   //   if (submitted) {
   //     const { GraphQLClient: glClient, gql, request } = await import(
