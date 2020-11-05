@@ -10,10 +10,11 @@ export default function View({
     evalUname,
     ErrorMessage,
     errors,
-    Link,
     userHasSubmitted,
     isEmpty,
     getValues,
+
+    Link,
     Layout,
   },
 }) {
