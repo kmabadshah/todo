@@ -37,7 +37,7 @@ export default function TodoCard() {
           const data = {
             id: currentUser.id,
             todos: currentUser.todos
-              ? [...currentUser.todos].concat(todoText)
+              ? [...currentUser.todos].concat({ text: todoText })
               : [todoText],
           };
 
