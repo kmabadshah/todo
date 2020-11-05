@@ -6,6 +6,7 @@ export default function TodoCard() {
   const [todoText, setTodoText] = React.useState("");
 
   function handleSubmit(e) {
+    e.preventDefault();
     const data = new FormData(e.traget);
     console.log(data);
   }
@@ -13,7 +14,12 @@ export default function TodoCard() {
   return (
     <div id="todocard">
       <form id="card" onSubmit={e => handleSubmit(e)}>
-        <input type="text" id="init-input" placeholder="I will meditate..." />
+        <input
+          type="text"
+          name="todo-text"
+          id="todo-text"
+          placeholder="I will meditate..."
+        />
         <button id="btn-submit">
           <BsCheck />
         </button>
