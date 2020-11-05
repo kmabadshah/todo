@@ -8,19 +8,19 @@ export default function TodoCard() {
   const { token, currentUser } = React.useContext(Context);
 
   React.useEffect(
-    () =>
-      (async () => {
-        if (submitted) {
-          const { api } = await import("./constants");
-          const { GraphQLClient: glClient, gql, request } = await import(
-            "graphql-request"
-          );
-          const client = new glClient(`${api}/graphql`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          const query = gql`
+    () => {
+        (async () => {
+          if (submitted) {
+            const { api } = await import("./constants");
+            const { GraphQLClient: glClient, gql, request } = await import(
+              "graphql-request"
+            );
+            const client = new glClient(`${api}/graphql`, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            });
+            const query = gql`
             mutation($id: ID!) {
               updateTodoer(
                 input: { where: { id: $id }, data: { todos: $todos } }
@@ -33,15 +33,16 @@ export default function TodoCard() {
             }
           `;
 
-          console.log(currentUser);
+            console.log(currentUser);
 
-          const data = {
-            id: currentUser.createTodoer.id,
-          };
+            const data = {
+              id: currentUser.createTodoer.id,
+            };
 
-          setTodoText("");
-        }
-      })(),
+            setTodoText("");
+          }
+        })();
+      }
     [submitted]
   );
 
