@@ -1,11 +1,11 @@
 import React from "react";
 import { BsCheck } from "react-icons/bs";
-import { Context } from "./wrapper";
+// import { Context } from "./wrapper";
 
 export default async function TodoCard() {
   const [submitted, setSubmitted] = React.useState(false);
   const [todoText, setTodoText] = React.useState("");
-  const { token, currentUser } = React.useContext(Context);
+  // const [token, currentUser] = React.useContext(Context);
 
   // React.useEffect(
   //   () =>
