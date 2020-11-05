@@ -5,14 +5,35 @@ export default function TodoCard() {
   const [submitted, setSubmitted] = React.useState(false);
   const [todoText, setTodoText] = React.useState("");
 
-  React.useEffect(() => {
-    if (submitted) {
-      console.log("hello");
-      setTodoText("");
-      console.log(todoText);
-      // setSubmitted(false);
-    }
-  }, [submitted]);
+  console.log(submitted && "hello");
+
+  // React.useEffect(() => {
+  //   if (submitted) {
+
+  //     const { GraphQLClient: glClient, gql, request } = await import(
+  //       "graphql-request"
+  //     );
+
+  //     const client = new glClient(`${api}/graphql`, {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
+
+  //     const query = gql`
+  //       mutation($uname: String!, $pass: String!) {
+  //         createTodoer(input: { data: { uname: $uname, pass: $pass } }) {
+  //           todoer {
+  //             uname
+  //             id
+  //           }
+  //         }
+  //       }
+  //     `;
+
+  //     setTodoText("");
+  //   }
+  // }, [submitted]);
 
   return (
     <div id="todocard">
