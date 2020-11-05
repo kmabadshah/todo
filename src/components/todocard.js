@@ -1,15 +1,18 @@
 import React from "react";
 import { BsCheck } from "react-icons/bs";
 
-export default function TodoCard() {
+export default async function TodoCard() {
   const [submitted, setSubmitted] = React.useState(false);
   const [todoText, setTodoText] = React.useState("");
 
-  console.log(submitted && "hello");
+  async function getData() {
+    const imp = await import("wrapper");
+    console.log(React.useContext(imp).token);
+  }
 
-  // React.useEffect(() => {
+  getData();
+  // React.useEffect(() => (async () => {
   //   if (submitted) {
-
   //     const { GraphQLClient: glClient, gql, request } = await import(
   //       "graphql-request"
   //     );
@@ -33,7 +36,7 @@ export default function TodoCard() {
 
   //     setTodoText("");
   //   }
-  // }, [submitted]);
+  // })(), [submitted]);
 
   return (
     <div id="todocard">
