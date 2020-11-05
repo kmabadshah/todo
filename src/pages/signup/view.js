@@ -10,8 +10,10 @@ export default function View({
     evalUname,
     ErrorMessage,
     errors,
-    register,
-    err_msgs,
+    Link,
+    userHasSubmitted,
+    isEmpty,
+    getVAlues,
   },
 }) {
   return (
