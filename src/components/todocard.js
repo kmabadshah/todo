@@ -9,7 +9,8 @@ export default function TodoCard() {
     if (submitted) {
       console.log("hello");
       setTodoText("");
-      setSubmitted(false);
+      console.log(todoText);
+      // setSubmitted(false);
     }
   }, [submitted]);
 
@@ -19,7 +20,9 @@ export default function TodoCard() {
         <input
           type="text"
           onChange={e => setTodoText(e.target.value)}
-          onKeyDown={e => e.key === "Enter" && setSubmitted(true)}
+          onKeyDown={e =>
+            e.key === "Enter" ? setSubmitted(true) : setSubmitted(false)
+          }
           id="todo-text"
           value={todoText}
           placeholder="I will meditate..."
