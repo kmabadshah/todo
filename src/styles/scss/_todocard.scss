@@ -11,7 +11,6 @@
     display: flex;
     padding: 1.5rem;
     // border: 1px solid red;
-    flex-grow: 1;
 
     #init-input,
     #btn-submit {
@@ -25,13 +24,17 @@
       padding: 1rem 1.5rem;
 
       * {
-        border: 1px solid red;
+        // border: 1px solid red;
         flex-grow: 1;
       }
 
       &::placeholder {
         color: rgba(0, 0, 0, 0.2);
       }
+    }
+
+    #init-input {
+      padding: 1rem 1.5rem;
     }
 
     #btn-submit {

@@ -228,7 +228,6 @@
   background-color: #dff3e3;
   display: flex;
   padding: 1.5rem;
-  flex-grow: 1;
 }
 #todocard #card #init-input,
 #todocard #card #btn-submit {
@@ -243,12 +242,14 @@
 }
 #todocard #card #init-input *,
 #todocard #card #btn-submit * {
-  border: 1px solid red;
   flex-grow: 1;
 }
 #todocard #card #init-input::placeholder,
 #todocard #card #btn-submit::placeholder {
   color: rgba(0, 0, 0, 0.2);
+}
+#todocard #card #init-input {
+  padding: 1rem 1.5rem;
 }
 #todocard #card #btn-submit {
   background-color: #f7dba7;
