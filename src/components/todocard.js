@@ -10,9 +10,7 @@ export default async function TodoCard() {
   //   console.log(React.useContext(imp).token);
   // }
 
-  React.useEffect(() => {
-    useSomething();
-  }, []);
+  useSomething();
   // React.useEffect(() => (async () => {
   //   if (submitted) {
   //     const { GraphQLClient: glClient, gql, request } = await import(
@@ -61,7 +59,8 @@ export default async function TodoCard() {
   );
 }
 
-function useSomething() {
-  const { token } = React.useContext(import("wrapper").then(data => data));
+function useSomething(func) {
+  const { token } = React.useContext(import("./wrapper").then(data => data));
   console.log(token);
+  // React.useEffect(func);
 }
