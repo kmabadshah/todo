@@ -11,14 +11,15 @@ export default function View({
           type="text"
           onChange={e => setTodoText(e.target.value)}
           onKeyDown={e =>
-            e.key === "Enter" ? setSubmitted(true) : setSubmitted(false)
+            e.key === "Enter" && todoText
+              ? setSubmitted(true)
+              : setSubmitted(false)
           }
           id="todo-text"
           value={todoText}
           placeholder="I will meditate..."
-          required
         />
-        <button id="btn-submit" onClick={() => setSubmitted(true)}>
+        <button id="btn-submit" onClick={() => todoText && setSubmitted(true)}>
           <BsCheck />
         </button>
       </div>
