@@ -8,6 +8,7 @@ export default function TodoCard() {
   React.useEffect(() => {
     if (submitted) {
       console.log("hello");
+      setTodoText("");
       setSubmitted(false);
     }
   }, [submitted]);
@@ -20,6 +21,7 @@ export default function TodoCard() {
           onChange={e => setTodoText(e.target.value)}
           onKeyDown={e => e.key === "Enter" && setSubmitted(true)}
           id="todo-text"
+          value={todoText}
           placeholder="I will meditate..."
         />
         <button id="btn-submit" onClick={() => setSubmitted(true)}>
