@@ -1,6 +1,6 @@
 import React from "react";
 import { BsCheck } from "react-icons/bs";
-import { Context } from "./wrapper";
+import { Context } from "../wrapper";
 import View from "./view";
 
 export default function TodoCard() {
