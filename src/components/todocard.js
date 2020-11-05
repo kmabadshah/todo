@@ -11,8 +11,7 @@ export default async function TodoCard() {
   // }
 
   React.useEffect(() => {
-    const { token } = React.useContext(import("wrapper").then(data => data));
-    console.log(token);
+    useSomething();
   }, []);
   // React.useEffect(() => (async () => {
   //   if (submitted) {
@@ -60,4 +59,9 @@ export default async function TodoCard() {
       </div>
     </div>
   );
+}
+
+function useSomething() {
+  const { token } = React.useContext(import("wrapper").then(data => data));
+  console.log(token);
 }
