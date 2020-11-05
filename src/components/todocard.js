@@ -14,9 +14,7 @@ export default function TodoCard() {
       <div id="card">
         <input
           type="text"
-          onChange={e =>
-            setTodoText(e.target.value) && console.log(e.target.id)
-          }
+          onChange={e => setTodoText(e.target.value) & console.log(e.target.id)}
           onKeyDown={e => e.key === "Enter" && setSubmitted(true)}
           id="init-input"
           placeholder="I will meditate..."
