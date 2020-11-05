@@ -59,10 +59,9 @@ export default async function TodoCard() {
   );
 }
 
-function useSomething(func) {
-  const { token } = React.useContext(
-    import("./wrapper").then(data => data.Context)
-  );
+async function useSomething(func) {
+  const { Context } = await import("./wrapper");
+  const { token } = React.useContext(Context);
   console.log(token);
   // React.useEffect(func);
 }
