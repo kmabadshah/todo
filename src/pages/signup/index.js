@@ -1,10 +1,10 @@
 import React from "react";
-import Layout from "../components/layout.js";
+import Layout from "../../../components/layout.js";
 import { Link, navigate } from "gatsby";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
-import { err_msgs, api } from "../components/constants";
-import { Context } from "../components/wrapper.js";
+import { err_msgs, api } from "../../../components/constants";
+import { Context } from "../../../components/wrapper.js";
 
 import View from "./view";
 
