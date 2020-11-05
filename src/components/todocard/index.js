@@ -27,8 +27,9 @@ export default function TodoCard() {
                 input: { where: { id: $id }, data: { todos: $todos } }
               ) {
                 todoer {
-                  uname
-                  id
+                  todos {
+                    text
+                  }
                 }
               }
             }
@@ -38,7 +39,7 @@ export default function TodoCard() {
             id: currentUser.id,
             todos: currentUser.todos
               ? [...currentUser.todos].concat({ text: todoText })
-              : [todoText],
+              : [{ text: todoText }],
           };
 
           console.log(data);
