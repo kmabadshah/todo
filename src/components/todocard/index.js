@@ -22,7 +22,7 @@ export default function TodoCard() {
             },
           });
           const query = gql`
-            mutation($id: ID!, $todos: [String]!) {
+            mutation($id: ID!, $todos: [editComponentMultipleTodoInput]!) {
               updateTodoer(
                 input: { where: { id: $id }, data: { todos: $todos } }
               ) {
