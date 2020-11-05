@@ -7,8 +7,7 @@ export default function TodoCard() {
   const [todoText, setTodoText] = React.useState("");
   const { token, currentUser } = React.useContext(Context);
 
-  React.useEffect(
-    () => {
+  React.useEffect(() => {
         (async () => {
           if (submitted) {
             const { api } = await import("./constants");
@@ -42,7 +41,7 @@ export default function TodoCard() {
             setTodoText("");
           }
         })();
-      }
+  });
     [submitted]
   );
 
