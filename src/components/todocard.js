@@ -8,6 +8,7 @@ export default function TodoCard() {
   React.useEffect(() => {
     if (submitted) {
       console.log("hello");
+      setSubmitted(false);
     }
   }, [submitted]);
 
