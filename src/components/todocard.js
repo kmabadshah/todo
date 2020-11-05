@@ -4,8 +4,9 @@ import { BsCheck } from "react-icons/bs";
 export default function TodoCard() {
   const [submitted, setSubmitted] = React.useState(false);
 
-  const handleChange = e => {
+  const handleKeyDown = e => {
     console.log(e.key);
+    console.log(e.target.value);
   };
 
   return (
@@ -13,7 +14,7 @@ export default function TodoCard() {
       <div id="card">
         <input
           type="text"
-          onKeydown={e => handleChange(e)}
+          onKeyDown={e => handleKeyDown(e)}
           id="init-input"
           placeholder="I will meditate..."
         />
