@@ -3,11 +3,18 @@ import { BsCheck } from "react-icons/bs";
 
 export default function TodoCard() {
   const [submitted, setSubmitted] = React.useState(false);
+  const [todoText, setTodoText] = React.useState("");
 
   const handleKeyDown = e => {
-    console.log(e.key);
-    console.log(e.target.value);
+    if (e.key === "Enter") {
+      setSubmitted(true);
+      setTodoText(e.target.value);
+    }
   };
+
+  React.useEffect(() => {
+    console.log(todoText);
+  }, [todoText]);
 
   return (
     <div id="todocard">
