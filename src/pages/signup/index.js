@@ -112,6 +112,7 @@ export default function Signup() {
         errors,
         register,
         err_msgs,
+        Layout,
       }}
     />
   );
