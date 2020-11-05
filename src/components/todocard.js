@@ -5,25 +5,20 @@ export default function TodoCard() {
   const [submitted, setSubmitted] = React.useState(false);
   const [todoText, setTodoText] = React.useState("");
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    const data = new FormData(e.traget);
-    console.log(data.getAll("todo-text"));
-  }
-
   return (
     <div id="todocard">
-      <form id="card" onSubmit={e => handleSubmit(e)}>
+      <div id="card">
         <input
           type="text"
-          name="todo-text"
+          onChange={e => setTodoText(e.target.value)}
+          onKeyDown={e => e.key === "Enter" && setSubmitted(true)}
           id="todo-text"
           placeholder="I will meditate..."
         />
-        <button id="btn-submit">
+        <button id="btn-submit" onClick={() => setSubmitted(true)}>
           <BsCheck />
         </button>
-      </form>
+      </div>
     </div>
   );
 }
