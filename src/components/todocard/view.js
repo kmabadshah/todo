@@ -1,7 +1,9 @@
 import React from "react";
 import { BsCheck } from "react-icons/bs";
 
-export default function View({ data: { setSubmitted, setTodoText } }) {
+export default function View({
+  data: { setSubmitted, setTodoText, todoText },
+}) {
   return (
     <div id="todocard">
       <div id="card">

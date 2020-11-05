@@ -49,6 +49,7 @@ export default function TodoCard() {
       data={{
         setSubmitted,
         setTodoText,
+        todoText,
       }}
     />
   );
