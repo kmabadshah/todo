@@ -17,11 +17,11 @@ export default function TodoCard() {
       setTodos(tempTodos);
       setTodoText("");
 
-      updateDB();
+      updateDB(tempTodos);
     }
   }, [submitted]);
 
-  async function updateDB() {
+  async function updateDB(tempTodos) {
     try {
       const { api } = await import("../constants");
       const { GraphQLClient: glClient, gql, request } = await import(
@@ -46,7 +46,7 @@ export default function TodoCard() {
 
       const data = {
         id: currentUser.id,
-        todos: todos,
+        todos: tempTodos,
       };
 
       /* const res =
