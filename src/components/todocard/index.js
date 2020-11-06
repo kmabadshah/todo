@@ -17,7 +17,9 @@ export default function TodoCard() {
   }, [submitted]);
 
   React.useEffect(() => {
-    setInterval(() => console.log("hello"), 1000);
+    setInterval(() => {
+      console.log(currentUser);
+    }, 1000);
   }, []);
 
   return (
