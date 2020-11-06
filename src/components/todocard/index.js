@@ -53,8 +53,6 @@ export default function TodoCard() {
         const res = await client.request(query, data);
 
         console.log(res);
-
-        setTodoText("");
       } catch (err) {
         console.log(err);
       }
