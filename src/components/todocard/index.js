@@ -25,7 +25,7 @@ export default function TodoCard() {
 
       updateDB(tempTodos);
     }
-  }, [submitted]);
+  }, [submitted, currentUser]);
 
   async function updateDB(tempTodos) {
     try {
