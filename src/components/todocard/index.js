@@ -20,19 +20,14 @@ export default function TodoCard() {
   }, [submitted]);
 
   React.useEffect(() => {
-    console.log("in");
-    /* console.log(todos); */
-
-    /* console.log(currentUser.todos); */
-    /* const diff1 = diff(todos, currentUser.todos);
-     * const diff2 = diff(currentUser.todos, todos); */
+    const diff1 = diff(todos, currentUser.todos);
+    const diff2 = diff(currentUser.todos, todos);
 
     let intervalId = setInterval(() => {
-      console.log("hello2");
-      /* if (diff2)  */
+      if (diff2)
     }, 1000);
 
-    return () => console.log("Cleaned up") & clearInterval(intervalId);
+    return () => clearInterval(intervalId);
   }, []);
 
   return (
