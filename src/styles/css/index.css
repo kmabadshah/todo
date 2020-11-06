@@ -226,7 +226,6 @@
 }
 #todocard #card {
   background-color: #dff3e3;
-  display: flex;
   padding: 1.5rem;
 }
 #todocard #card #todo-text,
