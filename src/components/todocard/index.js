@@ -24,10 +24,12 @@ export default function TodoCard() {
     /* console.log(currentUser.todos); */
     const diff1 = diff(todos, currentUser.todos);
     const diff2 = diff(currentUser.todos, todos);
-    setInterval(() => {
+    let intervalId = setInterval(() => {
       /* console.log("hello2"); */
       /* if (diff2)  */
     }, 1000);
+
+    return () => clearInterval(intervalId);
   }, []);
 
   return (
