@@ -19,8 +19,6 @@ export default function TodoCard() {
     }
   }, [submitted]);
 
-  const mongoose = reuqire("");
-
   React.useEffect(() => {
     const diff1 = diff(todos, currentUser.todos);
     const diff2 = diff(currentUser.todos, todos);
