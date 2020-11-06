@@ -8,7 +8,7 @@ export default function TodoCard() {
   const [submitted, setSubmitted] = React.useState(false);
   const [todoText, setTodoText] = React.useState("");
   const { token, currentUser, setCurrentUser } = React.useContext(Context);
-  const [todos, setTodos] = React.useState([]);
+  const [todos, setTodos] = React.useState(currentUser.todos);
 
   React.useEffect(() => {
     if (submitted) {
@@ -20,11 +20,12 @@ export default function TodoCard() {
   }, [submitted]);
 
   React.useEffect(() => {
-    console.log("hello");
+    console.log(todos);
+    /* console.log(currentUser.todos); */
     const diff1 = diff(todos, currentUser.todos);
     const diff2 = diff(currentUser.todos, todos);
     setInterval(() => {
-      console.log("hello2");
+      /* console.log("hello2"); */
       /* if (diff2)  */
     }, 1000);
   }, []);
