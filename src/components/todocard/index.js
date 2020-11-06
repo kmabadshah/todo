@@ -18,8 +18,8 @@ export default function TodoCard() {
       const tempUser = { ...currentUser };
       tempUser["todos"] = tempTodos;
       setCurrentUser(tempUser);
-      setTodoText("");
 
+      setTodoText("");
       updateDB(tempTodos);
     }
   }, [submitted]);
@@ -51,8 +51,6 @@ export default function TodoCard() {
       };
 
       const res = await client.request(query, data);
-
-      console.log(res);
     } catch (err) {
       console.log(err);
     }
