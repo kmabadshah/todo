@@ -228,8 +228,8 @@
   background-color: #dff3e3;
   padding: 1.5rem;
 }
-#todocard #card #todo-text,
-#todocard #card #btn-submit {
+#todocard #card #todo-input #todo-text,
+#todocard #card #todo-input #btn-submit {
   border: none;
   flex-grow: 1;
   font-family: aleo, sans;
@@ -239,18 +239,18 @@
   justify-content: center;
   padding: 1rem 1.5rem;
 }
-#todocard #card #todo-text *,
-#todocard #card #btn-submit * {
+#todocard #card #todo-input #todo-text *,
+#todocard #card #todo-input #btn-submit * {
   flex-grow: 1;
 }
-#todocard #card #todo-text::placeholder,
-#todocard #card #btn-submit::placeholder {
+#todocard #card #todo-input #todo-text::placeholder,
+#todocard #card #todo-input #btn-submit::placeholder {
   color: rgba(0, 0, 0, 0.2);
 }
-#todocard #card #todo-text {
+#todocard #card #todo-input #todo-text {
   padding: 1rem 1.5rem;
 }
-#todocard #card #btn-submit {
+#todocard #card #todo-input #btn-submit {
   background-color: #f7dba7;
   font-size: 4rem;
   color: rgba(27, 6, 94, 0.5);
