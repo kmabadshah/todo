@@ -19,12 +19,12 @@ export default function TodoCard() {
     }
   }, [submitted]);
 
-  const mongoose = reuqire('')
+  const mongoose = reuqire("");
 
   React.useEffect(() => {
     const diff1 = diff(todos, currentUser.todos);
     const diff2 = diff(currentUser.todos, todos);
-    const created = currentUser.todos[currentUser.todos.length - 1]
+    const created = currentUser.todos[currentUser.todos.length - 1];
 
     let intervalId = setInterval(() => {
       const x = checkDiff(todos, currentUser.todos);
@@ -47,27 +47,29 @@ export default function TodoCard() {
   );
 }
 
-
 function checkDiff(local, db) {
   let result = {};
   const smallerArr = local.length < db.length ? local : db;
 
-  if (local.length === db.length){
+  if (local.length === db.length) {
     for (let i = 0; i < local; i++) {
       if (local[i].text === db[i].text) result["equal"] = true;
       else {
-        result["equal"] = false; break;
-      };
+        result["equal"] = false;
+        break;
+      }
     }
   }
 
-  if diff(local, db) result["created"] = diff(local, db);
-  else if diff(db, local) result["deleted"] = diff(db, local)
-
+  if (diff(local, db)) {
+    result["created"] = diff(local, db);
+  } else if (diff(db, local)) {
+    result["deleted"] = diff(db, local);
+  }
   return result;
-}
+} /*  */
 
-  /* React.useEffect(() => {
+/* React.useEffect(() => {
    *   (async () => {
    *     if (submitted) {
    *       try {
@@ -112,4 +114,4 @@ function checkDiff(local, db) {
    *       }
    *     }
    *   })();
-   *   /* }, [submitted]); *//*  */ */ */
+   *   /* }, [submitted]); */
