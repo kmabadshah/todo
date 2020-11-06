@@ -28,9 +28,9 @@ export default function View({
           </button>
         </div>
 
-        {currentUser.todos.map(todo => {
+        {currentUser.todos.map((todo, i) => {
           return (
-            <div className="todo">
+            <div className="todo" key={i}>
               <h3>{todo.text}</h3>
             </div>
           );
