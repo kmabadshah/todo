@@ -13,6 +13,8 @@
     // border: 1px solid red;
 
     #todo-input {
+      display: flex;
+
       #todo-text,
       #btn-submit {
         border: none;
@@ -25,7 +27,6 @@
         padding: 1rem 1.5rem;
 
         * {
-          // border: 1px solid red;
           flex-grow: 1;
         }
 

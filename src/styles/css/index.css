@@ -228,6 +228,9 @@
   background-color: #dff3e3;
   padding: 1.5rem;
 }
+#todocard #card #todo-input {
+  display: flex;
+}
 #todocard #card #todo-input #todo-text,
 #todocard #card #todo-input #btn-submit {
   border: none;
