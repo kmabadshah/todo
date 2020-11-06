@@ -16,11 +16,11 @@ export default function TodoCard() {
     }
   }, [submitted]);
 
-  React.useEffect(() => {
-    setInterval(() => {
-      console.log(currentUser);
-    }, 1000);
-  }, []);
+  /* React.useEffect(() => {
+   *   setInterval(() => {
+   *     /* if (currentUser.todos) null; */
+  *   }, 1000);
+* }, []); */
 
   return (
     <View
