@@ -65,7 +65,6 @@ export default function TodoCard() {
         setSubmitted,
         setTodoText,
         todoText,
-        currentUser,
         todos,
       }}
     />
