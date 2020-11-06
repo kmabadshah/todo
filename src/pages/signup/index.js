@@ -45,6 +45,7 @@ export default function Signup() {
               id
               todos {
                 text
+                id
               }
             }
           }
