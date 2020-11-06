@@ -43,10 +43,6 @@ export default function Signup() {
           createTodoer(input: { data: { uname: $uname, pass: $pass } }) {
             todoer {
               id
-              todos {
-                text
-                id
-              }
             }
           }
         }
@@ -63,7 +59,7 @@ export default function Signup() {
             setRandErr(false);
             setUserHasSubmitted(false);
             setCurrentUser({
-              id: res.createTodoer.todoer.id,
+              ...res.createTodoer.todoer,
             });
             navigate("/user");
           })
