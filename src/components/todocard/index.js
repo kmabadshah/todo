@@ -14,6 +14,7 @@ export default function TodoCard() {
     if (submitted) {
       const tempTodos = [...currentUser.todos];
       tempTodos.unshift({ text: todoText });
+      console.log(tempTodos);
       /* setTodos(tempTodos); */
 
       const tempUser = { ...currentUser };
