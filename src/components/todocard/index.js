@@ -11,20 +11,14 @@ export default function TodoCard() {
   /* const [todos, setTodos] = React.useState(currentUser.todos); */
 
   React.useEffect(() => {
-    console.log("---------------------------------");
-    /* console.log("Hello"); */
-    console.log(currentUser);
     if (submitted) {
       const tempTodos = [...currentUser.todos];
       tempTodos.unshift({ text: todoText });
-      console.log(tempTodos);
-      /* setTodos(tempTodos); */
 
       const tempUser = { ...currentUser };
-      currentUser["todos"] = tempTodos;
+      tempUser["todos"] = tempTodos;
       setCurrentUser(tempUser);
       setTodoText("");
-      console.log(currentUser.todos);
 
       updateDB(tempTodos);
     }
