@@ -18,6 +18,10 @@ export default function TodoCard() {
       setTodoText("");
 
       updateDB(tempTodos);
+
+      const tempUser = { ...currentUser };
+      currentUser["todos"] = tempTodos;
+      setCurrentUser(tempUser);
     }
   }, [submitted]);
 
