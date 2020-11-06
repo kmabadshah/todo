@@ -11,6 +11,9 @@ export default function TodoCard() {
   /* const [todos, setTodos] = React.useState(currentUser.todos); */
 
   React.useEffect(() => {
+    console.log("---------------------------------");
+    /* console.log("Hello"); */
+    console.log(currentUser);
     if (submitted) {
       const tempTodos = [...currentUser.todos];
       tempTodos.unshift({ text: todoText });
@@ -25,7 +28,7 @@ export default function TodoCard() {
 
       updateDB(tempTodos);
     }
-  }, [submitted, currentUser]);
+  }, [submitted]);
 
   async function updateDB(tempTodos) {
     try {
