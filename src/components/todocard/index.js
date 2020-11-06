@@ -25,6 +25,7 @@ export default function TodoCard() {
     const created = currentUser.todos[currentUser.todos.length - 1];
 
     let intervalId = setInterval(() => {
+      console.log(todos, currentUser.todos);
       const diff = checkDiff(todos, currentUser.todos);
       console.log("hello");
       if (diff) {
@@ -51,6 +52,7 @@ export default function TodoCard() {
 function checkDiff(local, db) {
   let result = {};
 
+  console.log(local, db);
   if (local.length === db.length) {
     for (let i = 0; i < local; i++) {
       if (local[i].text === db[i].text) result["equal"] = true;
