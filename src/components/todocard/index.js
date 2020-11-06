@@ -54,6 +54,8 @@ export default function TodoCard() {
           isEqual(todos, currentUser.todos) ||
           (await client.request(query, data));
 
+        console.log(todos);
+
         console.log(res);
       } catch (err) {
         console.log(err);
