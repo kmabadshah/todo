@@ -19,12 +19,15 @@ export default function TodoCard() {
     }
   }, [submitted]);
 
+  const mongoose = reuqire('')
+
   React.useEffect(() => {
     const diff1 = diff(todos, currentUser.todos);
     const diff2 = diff(currentUser.todos, todos);
+    const created = currentUser.todos[currentUser.todos.length - 1]
 
     let intervalId = setInterval(() => {
-      if (diff2)
+      if ()
     }, 1000);
 
     return () => clearInterval(intervalId);
@@ -43,6 +46,17 @@ export default function TodoCard() {
   );
 }
 
+
+function checkDiff(arr1, arr2) {
+  let result = {};
+  const largerArr = arr1.length > arr2.length ? arr1 : arr2;
+
+  for (let i = 0; i < largerArr.length; i++) {
+    for (let [k1, v1] of Object.entries(arr1[i])) {
+
+    } 
+  }
+}
 /*
  *   React.useEffect(() => {
  *     (async () => {
