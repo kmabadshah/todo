@@ -21,10 +21,12 @@ export default function TodoCard() {
 
   React.useEffect(() => {
     console.log("in");
-    console.log(todos);
+    /* console.log(todos); */
+
     /* console.log(currentUser.todos); */
-    const diff1 = diff(todos, currentUser.todos);
-    const diff2 = diff(currentUser.todos, todos);
+    /* const diff1 = diff(todos, currentUser.todos);
+     * const diff2 = diff(currentUser.todos, todos); */
+
     let intervalId = setInterval(() => {
       console.log("hello2");
       /* if (diff2)  */
