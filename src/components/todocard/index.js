@@ -18,9 +18,9 @@ export default function TodoCard() {
 
   /* React.useEffect(() => {
    *   setInterval(() => {
-   *     /* if (currentUser.todos) null; */
-  *   }, 1000);
-* }, []); */
+   *     if (currentUser.todos) null;
+   *   }, 1000);
+   * }, []); */
 
   return (
     <View
