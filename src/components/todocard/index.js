@@ -12,14 +12,14 @@ export default function TodoCard() {
 
   React.useEffect(() => {
     if (submitted) {
-      const tempTodos = [...todos];
+      const tempTodos = [...currentUser.todos];
       tempTodos.unshift({ text: todoText });
       /* setTodos(tempTodos); */
-      setTodoText("");
 
       const tempUser = { ...currentUser };
       currentUser["todos"] = tempTodos;
       setCurrentUser(tempUser);
+      setTodoText("");
 
       updateDB(tempTodos);
     }
