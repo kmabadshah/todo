@@ -25,8 +25,10 @@ export default function TodoCard() {
     const created = currentUser.todos[currentUser.todos.length - 1];
 
     let intervalId = setInterval(() => {
-      const x = checkDiff(todos, currentUser.todos);
-      console.log(x);
+      const diff = checkDiff(todos, currentUser.todos);
+      if (diff) {
+        console.log(diff);
+      }
     }, 1000);
 
     return () => clearInterval(intervalId);
@@ -47,7 +49,6 @@ export default function TodoCard() {
 
 function checkDiff(local, db) {
   let result = {};
-  const smallerArr = local.length < db.length ? local : db;
 
   if (local.length === db.length) {
     for (let i = 0; i < local; i++) {
@@ -64,7 +65,11 @@ function checkDiff(local, db) {
   } else if (diff(db, local).length !== 0) {
     result["deleted"] = diff(db, local);
   }
-  return result;
+
+  const resultIsEmpty =
+    Object.keys(result).length === 0 && result.constructor === Object;
+
+  return resultIsEmpty ? null : result;
 } /*  */
 
 /* React.useEffect(() => {
