@@ -2,7 +2,12 @@ import React from "react";
 import { BsCheck } from "react-icons/bs";
 
 export default function View({
-  data: { setSubmitted, setTodoText, todoText, todos },
+  data: {
+    setSubmitted,
+    setTodoText,
+    todoText,
+    currentUser: { todos },
+  },
 }) {
   return (
     <div id="todocard">

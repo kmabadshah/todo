@@ -8,20 +8,20 @@ export default function TodoCard() {
   const [submitted, setSubmitted] = React.useState(false);
   const [todoText, setTodoText] = React.useState("");
   const { token, currentUser, setCurrentUser } = React.useContext(Context);
-  const [todos, setTodos] = React.useState(currentUser.todos);
+  /* const [todos, setTodos] = React.useState(currentUser.todos); */
 
   React.useEffect(() => {
     if (submitted) {
       const tempTodos = [...todos];
       tempTodos.unshift({ text: todoText });
-      setTodos(tempTodos);
+      /* setTodos(tempTodos); */
       setTodoText("");
-
-      updateDB(tempTodos);
 
       const tempUser = { ...currentUser };
       currentUser["todos"] = tempTodos;
       setCurrentUser(tempUser);
+
+      updateDB(tempTodos);
     }
   }, [submitted]);
 
@@ -65,7 +65,7 @@ export default function TodoCard() {
         setSubmitted,
         setTodoText,
         todoText,
-        todos,
+        currentUser,
       }}
     />
   );
