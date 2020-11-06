@@ -11,7 +11,8 @@ export default function TodoCard() {
 
   React.useEffect(() => {
     if (submitted) {
-      setTodos(todos.concat(todoText));
+      setTodos(todos.concat({ text: todoText }));
+      setTodoText("");
     }
   }, [submitted]);
 

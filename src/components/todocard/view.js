@@ -2,7 +2,7 @@ import React from "react";
 import { BsCheck } from "react-icons/bs";
 
 export default function View({
-  data: { setSubmitted, setTodoText, todoText, currentUser },
+  data: { setSubmitted, setTodoText, todoText, currentUser, todos },
 }) {
   return (
     <div id="todocard">
@@ -28,7 +28,7 @@ export default function View({
           </button>
         </div>
 
-        {currentUser.todos.map((todo, i) => {
+        {todos.map((todo, i) => {
           return (
             <div className="todo" key={i}>
               <h3>{todo.text}</h3>
