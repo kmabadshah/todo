@@ -1,7 +1,7 @@
 import React from "react";
 import { BsCheck } from "react-icons/bs";
 import { Context } from "../wrapper";
-/* import _ from "lodash"; */
+import isEqual from "lodash/isEqual";
 import View from "./view";
 
 export default function TodoCard() {
@@ -50,7 +50,9 @@ export default function TodoCard() {
           todos: todos,
         };
 
-        const res = await client.request(query, data);
+        const res =
+          isEqual(todos, currentUser.todos) ||
+          (await client.request(query, data));
 
         console.log(res);
       } catch (err) {
