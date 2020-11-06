@@ -16,54 +16,97 @@ export default function TodoCard() {
       tempTodos.unshift({ text: todoText });
       setTodos(tempTodos);
       setTodoText("");
+
+      updateDB();
     }
   }, [submitted]);
 
-  React.useEffect(() => {
-    let intervalId = setInterval(async () => {
-      try {
-        const { api } = await import("../constants");
-        const { GraphQLClient: glClient, gql, request } = await import(
-          "graphql-request"
-        );
-        const client = new glClient(`${api}/graphql`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        const query = gql`
-          mutation($id: ID!, $todos: [editComponentMultipleTodoInput]!) {
-            updateTodoer(
-              input: { where: { id: $id }, data: { todos: $todos } }
-            ) {
-              todoer {
-                todos {
-                  text
-                }
+  async function updateDB() {
+    try {
+      const { api } = await import("../constants");
+      const { GraphQLClient: glClient, gql, request } = await import(
+        "graphql-request"
+      );
+      const client = new glClient(`${api}/graphql`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const query = gql`
+        mutation($id: ID!, $todos: [editComponentMultipleTodoInput]!) {
+          updateTodoer(input: { where: { id: $id }, data: { todos: $todos } }) {
+            todoer {
+              todos {
+                text
               }
             }
           }
-        `;
+        }
+      `;
 
-        const data = {
-          id: currentUser.id,
-          todos: todos,
-        };
+      const data = {
+        id: currentUser.id,
+        todos: todos,
+      };
 
-        const res =
-          isEqual(todos, currentUser.todos) ||
-          (await client.request(query, data));
+      /* const res =
+       *   isEqual(todos, currentUser.todos) ||
+       *   (await client.request(query, data)); */
+      const res = await client.request(query, data);
 
-        console.log(todos);
+      /* console.log(todos); */
 
-        console.log(res);
-      } catch (err) {
-        console.log(err);
-      }
-    }, 1000);
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
-    return () => clearInterval(intervalId);
-  }, []);
+  /* React.useEffect(() => {
+   *   let intervalId = setInterval(async () => {
+   *     try {
+   *       const { api } = await import("../constants");
+   *       const { GraphQLClient: glClient, gql, request } = await import(
+   *         "graphql-request"
+   *       );
+   *       const client = new glClient(`${api}/graphql`, {
+   *         headers: {
+   *           Authorization: `Bearer ${token}`,
+   *         },
+   *       });
+   *       const query = gql`
+   *         mutation($id: ID!, $todos: [editComponentMultipleTodoInput]!) {
+   *           updateTodoer(
+   *             input: { where: { id: $id }, data: { todos: $todos } }
+   *           ) {
+   *             todoer {
+   *               todos {
+   *                 text
+   *               }
+   *             }
+   *           }
+   *         }
+   *       `;
+
+   *       const data = {
+   *         id: currentUser.id,
+   *         todos: todos,
+   *       };
+
+   *       const res =
+   *         isEqual(todos, currentUser.todos) ||
+   *         (await client.request(query, data));
+
+   *       console.log(todos);
+
+   *       console.log(res);
+   *     } catch (err) {
+   *       console.log(err);
+   *     }
+   *   }, 1000);
+
+   *   return () => clearInterval(intervalId);
+   * }, [todos]); */
 
   return (
     <View
