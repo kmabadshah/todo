@@ -26,6 +26,7 @@ export default function TodoCard() {
 
     let intervalId = setInterval(() => {
       const diff = checkDiff(todos, currentUser.todos);
+      console.log("hello");
       if (diff) {
         console.log(diff);
       }
