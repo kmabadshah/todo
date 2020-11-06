@@ -16,6 +16,10 @@ export default function TodoCard() {
     }
   }, [submitted]);
 
+  React.useEffect(() => {
+    setInterval(() => console.log("hello"), 1000);
+  }, []);
+
   return (
     <View
       data={{
