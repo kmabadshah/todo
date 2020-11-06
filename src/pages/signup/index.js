@@ -43,6 +43,10 @@ export default function Signup() {
           createTodoer(input: { data: { uname: $uname, pass: $pass } }) {
             todoer {
               id
+              todos {
+                text
+                id
+              }
             }
           }
         }
