@@ -58,9 +58,7 @@ function checkDiff(local, db) {
         break;
       }
     }
-  }
-
-  if (diff(local, db).length !== 0) {
+  } else if (diff(local, db).length !== 0) {
     result["created"] = diff(local, db);
   } else if (diff(db, local).length !== 0) {
     result["deleted"] = diff(db, local);
