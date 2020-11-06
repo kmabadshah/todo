@@ -1,4 +1,3 @@
 {
-  "arrowParens": "avoid",
-  "tabWidth": 4
+    "arrowParens": "avoid"
 }
