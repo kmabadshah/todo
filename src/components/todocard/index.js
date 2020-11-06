@@ -13,18 +13,18 @@ export default function TodoCard() {
   React.useEffect(() => {
     if (submitted) {
       const tempTodos = [...todos];
-      tempTodosl.unshift({ text: todoText });
+      tempTodos.unshift({ text: todoText });
       setTodos(tempTodos);
       setTodoText("");
     }
   }, [submitted]);
 
   React.useEffect(() => {
-    console.log(hello);
+    console.log("hello");
     const diff1 = diff(todos, currentUser.todos);
     const diff2 = diff(currentUser.todos, todos);
     setInterval(() => {
-      console.log(hello2);
+      console.log("hello2");
       /* if (diff2)  */
     }, 1000);
   }, []);
@@ -40,21 +40,6 @@ export default function TodoCard() {
       }}
     />
   );
-}
-
-function cmpArr(arr1, arr2) {
-  return JSON.stringify(arr1) === JSON.stringify(arr2);
-}
-
-function cmpObj(obj1, obj2) {
-  let eq = false;
-  for (let [k1, v1] of Object.entries(obj1)) {
-    for (let [k2, v2] of Object.entries(obj2)) {
-      eq = v1 === v2 && k1 === k2;
-    }
-  }
-
-  return eq;
 }
 
 /*
