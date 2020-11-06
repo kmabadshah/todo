@@ -1,7 +1,7 @@
 import React from "react";
 import { BsCheck } from "react-icons/bs";
 import { Context } from "../wrapper";
-import diff from "lodash/difference";
+/* import _ from "lodash"; */
 import View from "./view";
 
 export default function TodoCard() {
@@ -20,16 +20,43 @@ export default function TodoCard() {
   }, [submitted]);
 
   React.useEffect(() => {
-    const diff1 = diff(todos, currentUser.todos);
-    const diff2 = diff(currentUser.todos, todos);
-    const created = currentUser.todos[currentUser.todos.length - 1];
+    let intervalId = setInterval(async () => {
+      try {
+        const { api } = await import("../constants");
+        const { GraphQLClient: glClient, gql, request } = await import(
+          "graphql-request"
+        );
+        const client = new glClient(`${api}/graphql`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const query = gql`
+          mutation($id: ID!, $todos: [editComponentMultipleTodoInput]!) {
+            updateTodoer(
+              input: { where: { id: $id }, data: { todos: $todos } }
+            ) {
+              todoer {
+                todos {
+                  text
+                }
+              }
+            }
+          }
+        `;
 
-    let intervalId = setInterval(() => {
-      console.log(todos, currentUser.todos);
-      const diff = checkDiff(todos, currentUser.todos);
-      console.log("hello");
-      if (diff) {
-        console.log(diff);
+        const data = {
+          id: currentUser.id,
+          todos: todos,
+        };
+
+        const res = await client.request(query, data);
+
+        console.log(res);
+
+        setTodoText("");
+      } catch (err) {
+        console.log(err);
       }
     }, 1000);
 
@@ -49,29 +76,29 @@ export default function TodoCard() {
   );
 }
 
-function checkDiff(local, db) {
-  let result = {};
-
-  console.log(local, db);
-  if (local.length === db.length) {
-    for (let i = 0; i < local; i++) {
-      if (local[i].text === db[i].text) result["equal"] = true;
-      else {
-        result["equal"] = false;
-        break;
-      }
-    }
-  } else if (diff(local, db).length !== 0) {
-    result["created"] = diff(local, db);
-  } else if (diff(db, local).length !== 0) {
-    result["deleted"] = diff(db, local);
-  }
-
-  const resultIsEmpty =
-    Object.keys(result).length === 0 && result.constructor === Object;
-
-  return resultIsEmpty ? null : result;
-} /*  */
+/* function checkDiff(local, db) {
+ *   let result = {};
+ *
+ *   console.log(local, db);
+ *   if (local.length === db.length) {
+ *     for (let i = 0; i < local; i++) {
+ *       if (local[i].text === db[i].text) result["equal"] = true;
+ *       else {
+ *         result["equal"] = false;
+ *         break;
+ *       }
+ *     }
+ *   } else if (diff(local, db).length !== 0) {
+ *     result["created"] = diff(local, db);
+ *   } else if (diff(db, local).length !== 0) {
+ *     result["deleted"] = diff(db, local);
+ *   }
+ *
+ *   const resultIsEmpty =
+ *     Object.keys(result).length === 0 && result.constructor === Object;
+ *
+ *   return resultIsEmpty ? null : result;
+ * }  */
 
 /* React.useEffect(() => {
    *   (async () => {
