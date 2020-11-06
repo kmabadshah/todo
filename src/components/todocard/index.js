@@ -1,6 +1,7 @@
 import React from "react";
 import { BsCheck } from "react-icons/bs";
 import { Context } from "../wrapper";
+import diff from "lodash/difference";
 import View from "./view";
 
 export default function TodoCard() {
@@ -11,16 +12,22 @@ export default function TodoCard() {
 
   React.useEffect(() => {
     if (submitted) {
-      setTodos(todos.concat({ text: todoText }));
+      const tempTodos = [...todos];
+      tempTodosl.unshift({ text: todoText });
+      setTodos(tempTodos);
       setTodoText("");
     }
   }, [submitted]);
 
-  /* React.useEffect(() => {
-   *   setInterval(() => {
-   *     if (currentUser.todos) null;
-   *   }, 1000);
-   * }, []); */
+  React.useEffect(() => {
+    console.log(hello);
+    const diff1 = diff(todos, currentUser.todos);
+    const diff2 = diff(currentUser.todos, todos);
+    setInterval(() => {
+      console.log(hello2);
+      /* if (diff2)  */
+    }, 1000);
+  }, []);
 
   return (
     <View
@@ -35,13 +42,9 @@ export default function TodoCard() {
   );
 }
 
-/* function cmpArr(arr1, arr2) {
- *   arr1.map(item1 => arr2.map(item2 => {for (key, value) of item1 {
- *     for (key, value) of item2 {
- *
- *     }
- *   }}))
- * } */
+function cmpArr(arr1, arr2) {
+  return JSON.stringify(arr1) === JSON.stringify(arr2);
+}
 
 function cmpObj(obj1, obj2) {
   let eq = false;
