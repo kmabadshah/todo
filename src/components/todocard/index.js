@@ -47,8 +47,6 @@ export default function TodoCard() {
           reUser.todos = res.updateTodoer.todoer.todos;
           setCurrentUser(reUser);
 
-          console.log(currentUser);
-
           setTodoText("");
         } catch (err) {
           console.log(err);
@@ -63,6 +61,7 @@ export default function TodoCard() {
         setSubmitted,
         setTodoText,
         todoText,
+        currentUser,
       }}
     />
   );
