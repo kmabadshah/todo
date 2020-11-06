@@ -36,9 +36,7 @@ export default function TodoCard() {
         mutation($id: ID!, $todos: [editComponentMultipleTodoInput]!) {
           updateTodoer(input: { where: { id: $id }, data: { todos: $todos } }) {
             todoer {
-              todos {
-                text
-              }
+              id
             }
           }
         }
@@ -49,12 +47,7 @@ export default function TodoCard() {
         todos: tempTodos,
       };
 
-      /* const res =
-       *   isEqual(todos, currentUser.todos) ||
-       *   (await client.request(query, data)); */
       const res = await client.request(query, data);
-
-      /* console.log(todos); */
 
       console.log(res);
     } catch (err) {

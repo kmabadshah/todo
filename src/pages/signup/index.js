@@ -63,7 +63,7 @@ export default function Signup() {
             setRandErr(false);
             setUserHasSubmitted(false);
             setCurrentUser({
-              ...res.createTodoer.todoer,
+              id: res.createTodoer.todoer.id,
             });
             navigate("/user");
           })
