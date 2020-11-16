@@ -10,10 +10,13 @@
     background-color: $user-green;
     // display: flex;
     padding: 1.5rem;
-    // border: 1px solid red;
+    border: 1px solid red;
+    overflow: hidden;
+    max-width: 75%;
 
     #todo-input {
       display: flex;
+      margin: 0 0 2rem 0;
 
       #todo-text,
       #btn-submit {
@@ -36,10 +39,13 @@
       }
 
       #todo-text {
-        padding: 1rem 1.5rem;
+        padding: 1rem 2rem;
+        /* max-width: 75%; */
+        // flex-grow: 1;
       }
 
       #btn-submit {
+        // flex-grow: 2;
         background-color: $user-yellow;
         font-size: 4rem;
         color: rgba(27, 6, 94, 0.5);

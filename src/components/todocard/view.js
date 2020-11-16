@@ -1,5 +1,6 @@
 import React from "react";
 import { BsCheck } from "react-icons/bs";
+import Todo from "./todo";
 
 export default function View({
   data: {
@@ -34,11 +35,7 @@ export default function View({
         </div>
 
         {todos.map((todo, i) => {
-          return (
-            <div className="todo" key={i}>
-              <h3>{todo.text}</h3>
-            </div>
-          );
+          return <Todo key={i} index={i} data={todo} />;
         })}
       </div>
     </div>

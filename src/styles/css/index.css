@@ -227,9 +227,13 @@
 #todocard #card {
   background-color: #dff3e3;
   padding: 1.5rem;
+  border: 1px solid red;
+  overflow: hidden;
+  max-width: 75%;
 }
 #todocard #card #todo-input {
   display: flex;
+  margin: 0 0 2rem 0;
 }
 #todocard #card #todo-input #todo-text,
 #todocard #card #todo-input #btn-submit {
@@ -251,12 +255,70 @@
   color: rgba(0, 0, 0, 0.2);
 }
 #todocard #card #todo-input #todo-text {
-  padding: 1rem 1.5rem;
+  padding: 1rem 2rem;
+  /* max-width: 75%; */
 }
 #todocard #card #todo-input #btn-submit {
   background-color: #f7dba7;
   font-size: 4rem;
   color: rgba(27, 6, 94, 0.5);
+}
+
+.todo {
+  background-color: #f7dba7;
+  margin: 0 0 0.5rem 0;
+  padding: 1rem 2rem;
+  /* display: flex; */
+  /* width: 90%; */
+}
+.todo .text {
+  /* border: 1px solid red; */
+  color: rgba(27, 6, 94, 0.5);
+  line-break: anywhere;
+  /* word-break: anywhere; */
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  /* max-height: 100%; */
+  /* height: 100vh !important; */
+  /* resize: none; */
+  /* border: 1px solid red; */
+}
+.todo .col-auto {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.todo .col-auto .icon-check {
+  /* margin-left: auto; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5%;
+  width: 3.5rem;
+  font-size: 300%;
+  border: 2px solid rgba(27, 6, 94, 0.5);
+  color: rgba(27, 6, 94, 0.5);
+  background: transparent;
+}
+.todo .col-auto .icon-check * stdd {
+  stroke-width: 0.5px;
+}
+.todo .col-auto .icon-del {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5%;
+  width: 3.5rem;
+  font-size: 300%;
+  border: 2px solid rgba(27, 6, 94, 0.5);
+  color: rgba(27, 6, 94, 0.5);
+  background: transparent;
+  /* margin-left: 1rem; */
+}
+.todo .col-auto .icon-del * stdd {
+  stroke-width: 0.5px;
 }
 
 :root {

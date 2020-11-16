@@ -23,6 +23,21 @@ export default function Signup() {
   const [userHasSubmitted, setUserHasSubmitted] = React.useState(false);
   const [randErr, setRandErr] = React.useState(false);
 
+  function findVal(object, key) {
+    var value;
+    Object.keys(object).some(function (k) {
+      if (k === key) {
+        value = object[k];
+        return true;
+      }
+      if (object[k] && typeof object[k] === "object") {
+        value = findVal(object[k], key);
+        return value !== undefined;
+      }
+    });
+    return value;
+  }
+
   const onValidSubmit = async data => {
     try {
       setUserHasSubmitted(true);
@@ -68,14 +83,10 @@ export default function Signup() {
             navigate("/user");
           })
           .catch(err => {
-            if (err.response) {
-              err.response.errors.forEach(item => {
-                if (item.extensions.exception.detail.match(/exists/gi)) {
-                  setError("uname", {
-                    type: "db_check",
-                    message: "Username exists",
-                  });
-                }
+            if (findVal(err, "detail").match(/exists/g)) {
+              setError("uname", {
+                type: "manual",
+                message: "That one exists",
               });
             } else {
               setRandErr(true);

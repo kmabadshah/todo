@@ -22,6 +22,43 @@ export default function Wrapper({ children }) {
     );
   }, []);
 
+  React.useEffect(() => {
+    currentUser &&
+      (async updatedTodos => {
+        try {
+          const { api } = await import("./constants");
+          const { GraphQLClient: glClient, gql, request } = await import(
+            "graphql-request"
+          );
+          const client = new glClient(`${api}/graphql`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          const query = gql`
+            mutation($id: ID!, $todos: [editComponentMultipleTodoInput]!) {
+              updateTodoer(
+                input: { where: { id: $id }, data: { todos: $todos } }
+              ) {
+                todoer {
+                  id
+                }
+              }
+            }
+          `;
+
+          const data = {
+            id: currentUser.id,
+            todos: updatedTodos,
+          };
+
+          await client.request(query, data);
+        } catch (err) {
+          console.log(err);
+        }
+      })(currentUser.todos);
+  }, [currentUser]);
+
   if (token) {
     return (
       <Context.Provider value={{ token, currentUser, setCurrentUser }}>
