@@ -279,10 +279,6 @@
   background: transparent;
   border: none;
   font-size: 2rem;
-  /* max-height: 100%; */
-  /* height: 100vh !important; */
-  /* resize: none; */
-  /* border: 1px solid red; */
 }
 .todo .col-auto {
   /* border: 1px solid red; */
@@ -302,7 +298,7 @@
   color: rgba(27, 6, 94, 0.5);
   background: transparent;
 }
-.todo .col-auto .icon-check * stdd {
+.todo .col-auto .icon-check * {
   stroke-width: 0.5px;
 }
 .todo .col-auto .icon-del {
@@ -317,7 +313,7 @@
   background: transparent;
   /* margin-left: 1rem; */
 }
-.todo .col-auto .icon-del * stdd {
+.todo .col-auto .icon-del * {
   stroke-width: 0.5px;
 }
 
