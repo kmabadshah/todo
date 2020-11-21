@@ -1,55 +1,64 @@
 @import "variables";
 
 #todocard {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-grow: 1;
+	display: flex;
+	flex-grow: 1;
+	align-items: center;
+	padding: 10% 0;
 
-  #card {
-    background-color: $user-green;
-    // display: flex;
-    padding: 1.5rem;
-    border: 1px solid red;
-    overflow: hidden;
-    max-width: 75%;
+	#card {
+		background-color: $user-green;
+		padding: 1.5rem;
+		overflow: hidden;
+		flex-grow: 1;
+		margin: auto;
 
-    #todo-input {
-      display: flex;
-      margin: 0 0 2rem 0;
+		@include media-breakpoint-up(sm) {
+			transform: scale(0.9);
+		}
+		@include media-breakpoint-up(md2) {
+			transform: scale(1);
+			flex-grow: 0;
+			margin: 0 auto;
+		}
 
-      #todo-text,
-      #btn-submit {
-        border: none;
-        flex-grow: 1;
-        font-family: aleo, sans;
-        font-size: 2.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 1rem 1.5rem;
+		#todo-input {
+			display: flex;
+			margin: 0 0 2rem 0;
 
-        * {
-          flex-grow: 1;
-        }
+			#todo-text,
+			#btn-submit {
+				border: none;
+				font-family: aleo, sans;
+				font-size: 2.5rem;
+				display: flex;
+				flex-grow: 1;
+				align-items: center;
+				justify-content: center;
+				padding: 1rem 1.5rem;
 
-        &::placeholder {
-          color: rgba(0, 0, 0, 0.2);
-        }
-      }
+				* {
+					flex-grow: 1;
+				}
 
-      #todo-text {
-        padding: 1rem 2rem;
-        /* max-width: 75%; */
-        // flex-grow: 1;
-      }
+				&::placeholder {
+					color: rgba(0, 0, 0, 0.2);
+				}
+			}
 
-      #btn-submit {
-        // flex-grow: 2;
-        background-color: $user-yellow;
-        font-size: 4rem;
-        color: rgba(27, 6, 94, 0.5);
-      }
-    }
-  }
+			#todo-text {
+				padding: 1rem 2rem;
+				width: 100%;
+
+				@include media-breakpoint-up(md) {
+				}
+			}
+
+			#btn-submit {
+				background-color: $user-yellow;
+				font-size: 4rem;
+				color: rgba(27, 6, 94, 0.5);
+			}
+		}
+	}
 }

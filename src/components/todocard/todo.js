@@ -6,7 +6,7 @@ import autosize from "autosize"
 
 export default function Todo({ data: { text }, index }) {
 	const { currentUser, setCurrentUser } = React.useContext(Context)
-	const [tempText, setTempText] = React.useState()
+	const [tempText, setTempText] = React.useState(text)
 	const [isVisible, setIsVisible] = React.useState(true)
 	const [editable, setEditable] = React.useState(false)
 	const todoRef = React.useRef()
@@ -17,8 +17,8 @@ export default function Todo({ data: { text }, index }) {
 
 	return (
 		text && (
-			<div className="todo row no-gutters">
-				<div className="col-8">
+			<div className="todo">
+				<div className="col-text">
 					<input
 						className="text"
 						ref={todoRef}
@@ -27,14 +27,9 @@ export default function Todo({ data: { text }, index }) {
 						style={{ display: editable ? "block" : "none" }}
 						onBlur={() => {
 							setEditable(false)
-							setTempText()
-							todoRef.current.value = text
+							handleDone()
 						}}
-						onKeyUp={e =>
-							e.key === "Enter"
-								? handleDone() & e.target.blur()
-								: e.key === "Escape" && e.target.blur()
-						}
+						onKeyUp={e => e.key === "Enter" && e.target.blur()}
 					/>
 
 					<p
@@ -47,12 +42,11 @@ export default function Todo({ data: { text }, index }) {
 						{text}
 					</p>
 				</div>
-				<div className="col-auto ml-auto">
+				<div className="col-icons">
 					<button className="icon-check" onClick={() => handleDone()}>
 						<BsCheck />
 					</button>
-				</div>
-				<div className="col-auto ml-4">
+
 					<button className="icon-del" onClick={() => handleDelete()}>
 						<BiTrashAlt />
 					</button>
@@ -64,12 +58,6 @@ export default function Todo({ data: { text }, index }) {
 	function handleDone() {
 		const tempUser = { ...currentUser }
 
-		/* if (){
-			 tempText
-			 ? (tempUser.todos[index].text = tempText.trim())
-			 : tempUser.todos.splice(index, 1)
-			 } */
-
 		if (tempText !== undefined) {
 			tempText.trim()
 				? (tempUser.todos[index].text = tempText.trim())
@@ -77,6 +65,7 @@ export default function Todo({ data: { text }, index }) {
 		}
 
 		setCurrentUser(tempUser)
+		setTempText()
 	}
 
 	function handleDelete() {

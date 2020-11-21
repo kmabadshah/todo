@@ -216,20 +216,33 @@
   font-family: aleo, sans;
   color: rgba(27, 6, 94, 0.5);
   border-radius: 10px;
+  transform: scale(0.8);
 }
 
 #todocard {
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-grow: 1;
+  align-items: center;
+  padding: 10% 0;
 }
 #todocard #card {
   background-color: #dff3e3;
   padding: 1.5rem;
-  border: 1px solid red;
   overflow: hidden;
-  max-width: 75%;
+  flex-grow: 1;
+  margin: auto;
+}
+@media (min-width: 576px) {
+  #todocard #card {
+    transform: scale(0.9);
+  }
+}
+@media (min-width: 850px) {
+  #todocard #card {
+    transform: scale(1);
+    flex-grow: 0;
+    margin: 0 auto;
+  }
 }
 #todocard #card #todo-input {
   display: flex;
@@ -238,10 +251,10 @@
 #todocard #card #todo-input #todo-text,
 #todocard #card #todo-input #btn-submit {
   border: none;
-  flex-grow: 1;
   font-family: aleo, sans;
   font-size: 2.5rem;
   display: flex;
+  flex-grow: 1;
   align-items: center;
   justify-content: center;
   padding: 1rem 1.5rem;
@@ -256,7 +269,7 @@
 }
 #todocard #card #todo-input #todo-text {
   padding: 1rem 2rem;
-  /* max-width: 75%; */
+  width: 100%;
 }
 #todocard #card #todo-input #btn-submit {
   background-color: #f7dba7;
@@ -267,27 +280,53 @@
 .todo {
   background-color: #f7dba7;
   margin: 0 0 0.5rem 0;
-  padding: 1rem 2rem;
-  /* display: flex; */
-  /* width: 90%; */
+  padding: 0.2rem 2rem;
+  display: flex;
 }
-.todo .text {
-  /* border: 1px solid red; */
+@media (min-width: 576px) {
+  .todo {
+    padding: 1rem 2rem;
+  }
+}
+.todo .col-text {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transform: scale(0.9);
+}
+@media (min-width: 768px) {
+  .todo .col-text {
+    transform: scale(1);
+  }
+}
+.todo .col-text .text {
   color: rgba(27, 6, 94, 0.5);
-  line-break: anywhere;
-  /* word-break: anywhere; */
+  word-break: break-word;
   background: transparent;
-  border: none;
   font-size: 2rem;
+  flex-grow: 1;
+  width: 100%;
 }
-.todo .col-auto {
-  /* border: 1px solid red; */
+.todo .col-text .text * {
+  flex-grow: 1;
+}
+.todo .col-icons {
   display: flex;
-  justify-content: flex-end;
+  flex-flow: column;
   align-items: center;
+  justify-content: center;
+  margin-left: 1rem;
+  transform: scale(0.9);
 }
-.todo .col-auto .icon-check {
-  /* margin-left: auto; */
+@media (min-width: 768px) {
+  .todo .col-icons {
+    transform: scale(1);
+  }
+}
+.todo .col-icons .icon-check,
+.todo .col-icons .icon-del {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -297,24 +336,22 @@
   border: 2px solid rgba(27, 6, 94, 0.5);
   color: rgba(27, 6, 94, 0.5);
   background: transparent;
+  margin: 0.5rem 0;
 }
-.todo .col-auto .icon-check * {
+.todo .col-icons .icon-check *,
+.todo .col-icons .icon-del * {
   stroke-width: 0.5px;
 }
-.todo .col-auto .icon-del {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 5%;
-  width: 3.5rem;
-  font-size: 300%;
-  border: 2px solid rgba(27, 6, 94, 0.5);
-  color: rgba(27, 6, 94, 0.5);
-  background: transparent;
-  /* margin-left: 1rem; */
+@media (min-width: 576px) {
+  .todo .col-icons .icon-check,
+.todo .col-icons .icon-del {
+    margin: 0 0.5rem;
+  }
 }
-.todo .col-auto .icon-del * {
-  stroke-width: 0.5px;
+@media (min-width: 576px) {
+  .todo .col-icons {
+    flex-flow: row;
+  }
 }
 
 :root {

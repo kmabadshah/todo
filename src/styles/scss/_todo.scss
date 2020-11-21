@@ -10,43 +10,72 @@
 	border: 2px solid $user-black;
 	color: $user-black;
 	background: transparent;
+	margin: 0.5rem 0;
 
 	* {
 		stroke-width: 0.5px;
+	}
+
+	@include media-breakpoint-up(sm) {
+		margin: 0 0.5rem;
 	}
 }
 
 .todo {
 	background-color: $user-yellow;
 	margin: 0 0 0.5rem 0;
-	padding: 1rem 2rem;
-	/* display: flex; */
-	/* width: 90%; */
+	padding: 0.2rem 2rem;
+	display: flex;
 
-	.text {
-		/* border: 1px solid red; */
-		color: $user-black;
-		line-break: anywhere;
-		/* word-break: anywhere; */
-		background: transparent;
-		border: none;
-		font-size: 2rem;
+	@include media-breakpoint-up(sm) {
+		padding: 1rem 2rem;
 	}
 
-	.col-auto {
-		/* border: 1px solid red; */
+	.col-text {
+		flex-grow: 1;
 		display: flex;
-		justify-content: flex-end;
 		align-items: center;
+		justify-content: center;
+		text-align: center;
+		transform: scale(0.9);
 
-		.icon-check {
-			/* margin-left: auto; */
+		@include media-breakpoint-up(md) {
+			transform: scale(1);
+		}
+
+		.text {
+			color: $user-black;
+			word-break: break-word;
+			background: transparent;
+			font-size: 2rem;
+			flex-grow: 1;
+			width: 100%;
+
+			* {
+				flex-grow: 1;
+			}
+		}
+	}
+
+	.col-icons {
+		display: flex;
+		flex-flow: column;
+		align-items: center;
+		justify-content: center;
+		margin-left: 1rem;
+		transform: scale(0.9);
+
+		@include media-breakpoint-up(md) {
+			transform: scale(1);
+		}
+
+		.icon-check,
+		.icon-del {
 			@include icon-bg;
 		}
 
-		.icon-del {
-			@include icon-bg;
-			/* margin-left: 1rem; */
+		@include media-breakpoint-up(sm) {
+			flex-flow: row;
 		}
 	}
 }
