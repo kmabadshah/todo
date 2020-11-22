@@ -38,8 +38,6 @@ export default function View({
 				{todos.map((todo, i) => {
 					return <Todo key={i} index={i} data={todo} />
 				})}
-
-				<Link to="home">Home</Link>
 			</div>
 		</div>
 	)

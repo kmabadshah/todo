@@ -5,16 +5,11 @@ import { useStaticQuery, graphql, navigate } from "gatsby"
 export const Context = React.createContext()
 
 export default function Wrapper({ children, location: { pathname } }) {
-	const loggedIn = true
-	function whichComponentToRender() {
-		// if the user is not logged in but tries to go to /user/* then navigate to /login
-		if (pathname.includes("user") && !loggedIn) navigate("/login")
-		else return children
-	}
-
 	const [token, setToken] = React.useState()
 	const [randErr, setRandErr] = React.useState()
 	const [currentUser, setCurrentUser] = React.useState()
+
+	const loggedIn = true
 
 	React.useEffect(() => {
 		import("axios").then(axios =>
@@ -69,8 +64,10 @@ export default function Wrapper({ children, location: { pathname } }) {
 	if (token) {
 		return (
 			<Context.Provider value={{ token, currentUser, setCurrentUser }}>
-				{/* {children} */}
-				{whichComponentToRender()}
+				{(() => {
+					if (pathname.includes("user") && !loggedIn) navigate("/login")
+					else return children
+				})()}
 			</Context.Provider>
 		)
 	} else if (randErr) {
