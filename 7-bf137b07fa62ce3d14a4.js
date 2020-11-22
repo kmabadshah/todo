@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[7],{Bl7J:function(e,n,t){"use strict";t.r(n),t.d(n,"default",(function(){return a}));var r=t("q1tI"),c=t.n(r),o=t("Wbzz");function a({children:e}){const n=Object(o.useStaticQuery)("4276855009"),{publicURL:t}=n.allFile.edges[0].node;return c.a.createElement("div",{style:{backgroundImage:"url("+t+")"},id:"wrapper"},c.a.createElement("h1",{id:"logo"},"Todo APP"),e)}}}]);
-//# sourceMappingURL=7-bf137b07fa62ce3d14a4.js.map
