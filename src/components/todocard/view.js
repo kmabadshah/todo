@@ -1,6 +1,7 @@
 import React from "react"
 import { BsCheck } from "react-icons/bs"
 import Todo from "./todo"
+import { Link } from "gatsby"
 
 export default function View({
 	data: {
@@ -37,6 +38,8 @@ export default function View({
 				{todos.map((todo, i) => {
 					return <Todo key={i} index={i} data={todo} />
 				})}
+
+				<Link to="home">Home</Link>
 			</div>
 		</div>
 	)

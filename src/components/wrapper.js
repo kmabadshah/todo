@@ -1,87 +1,95 @@
-import React from "react";
-import { cred, api } from "./constants.js";
-import { useStaticQuery, graphql } from "gatsby";
+import React from "react"
+import { cred, api } from "./constants.js"
+import { useStaticQuery, graphql, navigate } from "gatsby"
 
-export const Context = React.createContext();
+export const Context = React.createContext()
 
-export default function Wrapper({ children }) {
-  const [token, setToken] = React.useState();
-  const [randErr, setRandErr] = React.useState();
-  const [currentUser, setCurrentUser] = React.useState();
+export default function Wrapper({ children, location: { pathname } }) {
+	const loggedIn = true
+	function whichComponentToRender() {
+		// if the user is not logged in but tries to go to /user/* then navigate to /login
+		if (pathname.includes("user") && !loggedIn) navigate("/login")
+		else return children
+	}
 
-  React.useEffect(() => {
-    import("axios").then(axios =>
-      axios
-        .post(`${api}/auth/local`, cred)
-        .then(data => {
-          setToken(data.data.jwt);
-        })
-        .catch(err => {
-          setRandErr(err);
-        })
-    );
-  }, []);
+	const [token, setToken] = React.useState()
+	const [randErr, setRandErr] = React.useState()
+	const [currentUser, setCurrentUser] = React.useState()
 
-  React.useEffect(() => {
-    currentUser &&
-      (async updatedTodos => {
-        try {
-          const { api } = await import("./constants");
-          const { GraphQLClient: glClient, gql, request } = await import(
-            "graphql-request"
-          );
-          const client = new glClient(`${api}/graphql`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          const query = gql`
-            mutation($id: ID!, $todos: [editComponentMultipleTodoInput]!) {
-              updateTodoer(
-                input: { where: { id: $id }, data: { todos: $todos } }
-              ) {
-                todoer {
-                  id
-                }
-              }
-            }
-          `;
+	React.useEffect(() => {
+		import("axios").then(axios =>
+			axios
+				.post(`${api}/auth/local`, cred)
+				.then(data => {
+					setToken(data.data.jwt)
+				})
+				.catch(err => {
+					setRandErr(err)
+				})
+		)
+	}, [])
 
-          const data = {
-            id: currentUser.id,
-            todos: updatedTodos,
-          };
+	React.useEffect(() => {
+		currentUser &&
+			(async updatedTodos => {
+				try {
+					const { api } = await import("./constants")
+					const { GraphQLClient: glClient, gql, request } = await import(
+						"graphql-request"
+					)
+					const client = new glClient(`${api}/graphql`, {
+						headers: {
+							Authorization: `Bearer ${token}`,
+						},
+					})
+					const query = gql`
+						mutation($id: ID!, $todos: [editComponentMultipleTodoInput]!) {
+							updateTodoer(
+								input: { where: { id: $id }, data: { todos: $todos } }
+							) {
+								todoer {
+									id
+								}
+							}
+						}
+					`
 
-          await client.request(query, data);
-        } catch (err) {
-          console.log(err);
-        }
-      })(currentUser.todos);
-  }, [currentUser]);
+					const data = {
+						id: currentUser.id,
+						todos: updatedTodos,
+					}
 
-  if (token) {
-    return (
-      <Context.Provider value={{ token, currentUser, setCurrentUser }}>
-        {children}
-      </Context.Provider>
-    );
-  } else if (randErr) {
-    return <h1>Something went wrong, please try again</h1>;
-  } else {
-    return (
-      <div id="loader">
-        <div className="lds-dual-ring">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      </div>
-    );
-  }
+					await client.request(query, data)
+				} catch (err) {
+					console.log(err)
+				}
+			})(currentUser.todos)
+	}, [currentUser])
+
+	if (token) {
+		return (
+			<Context.Provider value={{ token, currentUser, setCurrentUser }}>
+				{/* {children} */}
+				{whichComponentToRender()}
+			</Context.Provider>
+		)
+	} else if (randErr) {
+		return <h1>Something went wrong, please try again</h1>
+	} else {
+		return (
+			<div id="loader">
+				<div className="lds-dual-ring">
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+			</div>
+		)
+	}
 }

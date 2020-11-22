@@ -15,6 +15,19 @@ export default function Todo({ data: { text }, index }) {
 		todoRef.current.value = text
 	}, [currentUser])
 
+	const [tappedOnce, setTappedOnce] = React.useState(false)
+
+	// prettier-ignore
+	const onTap = () => {
+		if (tappedOnce) {
+			setEditable(true)
+			setTimeout(() => todoRef.current.focus())
+		} else {
+			setTappedOnce(true)
+			setTimeout(() => setTappedOnce(false), 600)
+		}
+	}
+
 	return (
 		text && (
 			<div className="todo">
@@ -34,10 +47,11 @@ export default function Todo({ data: { text }, index }) {
 
 					<p
 						className="text"
-						onDoubleClick={e =>
-							setEditable(true) & setTimeout(() => todoRef.current.focus())
-						}
-						style={{ display: editable ? "none" : "block" }}
+						onClick={() => onTap()}
+						style={{
+							display: editable ? "none" : "block",
+							userSelect: "none",
+						}}
 					>
 						{text}
 					</p>
