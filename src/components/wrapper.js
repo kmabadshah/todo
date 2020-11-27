@@ -1,6 +1,7 @@
 import React from "react"
-import { cred, api } from "./constants.js"
 import { useStaticQuery, graphql, navigate } from "gatsby"
+import { gql } from "graphql-request"
+import { getToken } from "../shared/utilities"
 
 export const Context = React.createContext()
 
@@ -11,54 +12,29 @@ export default function Wrapper({ children, location: { pathname } }) {
 
 	const loggedIn = true
 
+	// prettier-ignore
 	React.useEffect(() => {
-		import("axios").then(axios =>
-			axios
-				.post(`${api}/auth/local`, cred)
-				.then(data => {
-					setToken(data.data.jwt)
-				})
-				.catch(err => {
-					setRandErr(err)
-				})
-		)
+
+		(async () => {
+			try {
+				const { getToken, pullAllUsers } = await import("../shared/utilities.js")
+				const jwt = await getToken()
+				setToken(jwt)
+				pullAllUsers(jwt)
+
+			} catch (err) {
+				setRandErr(err)
+			}
+
+		})()
+
 	}, [])
 
 	React.useEffect(() => {
 		currentUser &&
-			(async updatedTodos => {
-				try {
-					const { api } = await import("./constants")
-					const { GraphQLClient: glClient, gql, request } = await import(
-						"graphql-request"
-					)
-					const client = new glClient(`${api}/graphql`, {
-						headers: {
-							Authorization: `Bearer ${token}`,
-						},
-					})
-					const query = gql`
-						mutation($id: ID!, $todos: [editComponentMultipleTodoInput]!) {
-							updateTodoer(
-								input: { where: { id: $id }, data: { todos: $todos } }
-							) {
-								todoer {
-									id
-								}
-							}
-						}
-					`
-
-					const data = {
-						id: currentUser.id,
-						todos: updatedTodos,
-					}
-
-					await client.request(query, data)
-				} catch (err) {
-					console.log(err)
-				}
-			})(currentUser.todos)
+			import("../shared/utilities.js")
+				.then(({ updateUser }) => updateUser(token, currentUser))
+				.catch(err => console.log(err))
 	}, [currentUser])
 
 	if (token) {

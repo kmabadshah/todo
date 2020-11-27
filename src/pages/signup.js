@@ -3,7 +3,7 @@ import LoggedOut from "../components/layout/loggedOut"
 import { Link, navigate } from "gatsby"
 import { useForm } from "react-hook-form"
 import { ErrorMessage } from "@hookform/error-message"
-import { err_msgs, api } from "../components/constants"
+import { err_msgs, api } from "../shared/constants"
 import { Context } from "../components/wrapper"
 
 export default function Signup() {
