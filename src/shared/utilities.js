@@ -45,13 +45,12 @@ export const updateUser = async (token, { id, todos }) => {
 		todos,
 	}
 
-	const res = makeQuery(token, query, data)
-	return res
+	return makeQuery(token, query, data)
 }
 
+// prettier-ignore
 export const pullAllUsers = async token => {
-	try {
-		const res = await makeQuery(
+		return makeQuery(
 			token,
 			`query {
 					todoers {
@@ -64,9 +63,4 @@ export const pullAllUsers = async token => {
 					}
 				}`
 		)
-
-		console.log(res)
-	} catch (err) {
-		console.log("Err: ", err)
-	}
 }

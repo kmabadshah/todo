@@ -9,6 +9,7 @@ export default function Wrapper({ children, location: { pathname } }) {
 	const [token, setToken] = React.useState()
 	const [randErr, setRandErr] = React.useState()
 	const [currentUser, setCurrentUser] = React.useState()
+	const [allUsers, setAllUsers] = React.useState()
 
 	const loggedIn = true
 
@@ -18,9 +19,8 @@ export default function Wrapper({ children, location: { pathname } }) {
 		(async () => {
 			try {
 				const { getToken, pullAllUsers } = await import("../shared/utilities.js")
-				const jwt = await getToken()
-				setToken(jwt)
-				pullAllUsers(jwt)
+				const jwt = await getToken(); setToken(jwt)
+				const users = await pullAllUsers(jwt); setAllUsers(users.todoers)
 
 			} catch (err) {
 				setRandErr(err)
@@ -39,7 +39,9 @@ export default function Wrapper({ children, location: { pathname } }) {
 
 	if (token) {
 		return (
-			<Context.Provider value={{ token, currentUser, setCurrentUser }}>
+			<Context.Provider
+				value={{ token, currentUser, setCurrentUser, allUsers }}
+			>
 				{(() => {
 					if (pathname.includes("user") && !loggedIn) navigate("/login")
 					else return children
