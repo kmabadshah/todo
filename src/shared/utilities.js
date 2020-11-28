@@ -64,3 +64,12 @@ export const pullAllUsers = async token => {
 				}`
 		)
 }
+
+// prettier-ignore
+export const checkLoginData = async (allUsers, submissionData) => {
+	const user = allUsers.filter(({ uname, pass }) => uname === submissionData.uname.trim())[0] // uname-check
+	if (!user) return false
+
+	const { compare } = await import("bcryptjs")
+	return compare(data.pass, user.pass) // passCheck
+}

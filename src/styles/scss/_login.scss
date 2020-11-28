@@ -1,14 +1,14 @@
 @import "variables";
 
 #login {
-    @include login-signup-card;
+	@include login-signup-card;
 
-    #rem-me {
-        margin-left: 0.25rem;
-        color: rgba(0, 0, 0, 0.75);
-    }
+	#rem-me {
+		margin-left: 0.25rem;
+		color: rgba(0, 0, 0, 0.75);
+	}
 
-    #btn-sign-up {
-        @include btn-login-signup;
-    }
+	#btn-sign-up {
+		@include btn-login-signup;
+	}
 }

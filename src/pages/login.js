@@ -6,14 +6,17 @@ import { ErrorMessage } from "@hookform/error-message"
 import { err_msgs, api } from "../shared/constants.js"
 import { Context } from "../components/wrapper"
 
+// prettier-ignore
 export default function Login() {
 	const { token, allUsers } = React.useContext(Context)
-	const onValidSubmit = async data => {
-		const bcrypt = await import("bcryptjs")
-		const user = allUsers.filter(({ uname, pass }) => uname === data.uname)[0]
-		const passCheck = await import("bcryptjs").then(({ compare }) =>
-			compare(data.pass, user.pass)
-		)
+	const { checkLoginData } = import("../shared/utilities.js").then(data => data)
+	const onValidSubmit = async (data) => {
+		const userDataIsValid = await checkLoginData(allUsers, data)
+		if (userDataIsValid) console.log("Correct")
+		else {
+			const {err_msgs:{cred_invalid}} = await import("../shared/constants.js")
+			setError("uname", { type: "manual", message: cred_invalid })
+		}
 	}
 
 	const {
