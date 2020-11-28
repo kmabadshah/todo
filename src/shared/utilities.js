@@ -71,5 +71,5 @@ export const checkLoginData = async (allUsers, submissionData) => {
 	if (!user) return false
 
 	const { compare } = await import("bcryptjs")
-	return compare(data.pass, user.pass) // passCheck
+	return compare(submissionData.pass, user.pass) // passCheck
 }

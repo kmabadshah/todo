@@ -20,7 +20,7 @@ export default function Wrapper({ children, location: { pathname } }) {
 			try {
 				const { getToken, pullAllUsers } = await import("../shared/utilities.js")
 				const jwt = await getToken(); setToken(jwt)
-				const users = await pullAllUsers(jwt); setAllUsers(users.todoers)
+				const { todoers } = await pullAllUsers(jwt); setAllUsers(todoers)
 
 			} catch (err) {
 				setRandErr(err)

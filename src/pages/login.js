@@ -9,9 +9,10 @@ import { Context } from "../components/wrapper"
 // prettier-ignore
 export default function Login() {
 	const { token, allUsers } = React.useContext(Context)
-	const { checkLoginData } = import("../shared/utilities.js").then(data => data)
 	const onValidSubmit = async (data) => {
+		const {checkLoginData} = await import("../shared/utilities.js")
 		const userDataIsValid = await checkLoginData(allUsers, data)
+
 		if (userDataIsValid) console.log("Correct")
 		else {
 			const {err_msgs:{cred_invalid}} = await import("../shared/constants.js")
