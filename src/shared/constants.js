@@ -1,3 +1,5 @@
+import React from "react"
+
 export const err_msgs = {
 	required: "This field is required",
 	pass_nomatch: "Passwords don't match",
@@ -13,3 +15,19 @@ export const cred = {
 	identifier: "adnan@badshah.com",
 	password: "adnanbadshah",
 }
+
+export const loader = (
+	<div id="loader">
+		<div className="lds-dual-ring">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+	</div>
+)

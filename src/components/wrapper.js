@@ -2,6 +2,7 @@ import React from "react"
 import { useStaticQuery, graphql, navigate } from "gatsby"
 import { gql } from "graphql-request"
 import { getToken } from "../shared/utilities"
+import { loader } from "../shared/constants"
 
 export const Context = React.createContext()
 
@@ -10,8 +11,7 @@ export default function Wrapper({ children, location: { pathname } }) {
 	const [randErr, setRandErr] = React.useState()
 	const [currentUser, setCurrentUser] = React.useState()
 	const [allUsers, setAllUsers] = React.useState()
-
-	const loggedIn = true
+	const [userIsLoading, setUserIsLoading] = React.useState(true)
 
 	// prettier-ignore
 	React.useEffect(() => {
@@ -21,6 +21,9 @@ export default function Wrapper({ children, location: { pathname } }) {
 				const { getToken, pullAllUsers } = await import("../shared/utilities.js")
 				const jwt = await getToken(); setToken(jwt)
 				const { todoers } = await pullAllUsers(jwt); setAllUsers(todoers)
+				const cachedUser = todoers.find(({ uname }) => uname === localStorage.getItem("uname"))
+				if (cachedUser) setCurrentUser(cachedUser)
+				setUserIsLoading(false)
 
 			} catch (err) {
 				setRandErr(err)
@@ -30,11 +33,13 @@ export default function Wrapper({ children, location: { pathname } }) {
 
 	}, [])
 
+	// prettier-ignore
 	React.useEffect(() => {
-		currentUser &&
+		if (currentUser) {
 			import("../shared/utilities.js")
 				.then(({ updateUser }) => updateUser(token, currentUser))
 				.catch(err => console.log(err))
+		}
 	}, [currentUser])
 
 	if (token) {
@@ -43,28 +48,13 @@ export default function Wrapper({ children, location: { pathname } }) {
 				value={{ token, currentUser, setCurrentUser, allUsers }}
 			>
 				{(() => {
-					if (pathname.includes("user") && !loggedIn) navigate("/login")
+					if (userIsLoading) return loader
+					if (pathname.includes("user") && !currentUser) navigate("/login")
 					else return children
 				})()}
 			</Context.Provider>
 		)
 	} else if (randErr) {
 		return <h1>Something went wrong, please try again</h1>
-	} else {
-		return (
-			<div id="loader">
-				<div className="lds-dual-ring">
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
-				</div>
-			</div>
-		)
-	}
+	} else return loader
 }

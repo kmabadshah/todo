@@ -1,23 +1,31 @@
 import React from "react"
 import LoggedOut from "../components/layout/loggedOut"
-import { Link } from "gatsby"
+import { Link, navigate } from "gatsby"
 import { useForm } from "react-hook-form"
 import { ErrorMessage } from "@hookform/error-message"
 import { err_msgs, api } from "../shared/constants.js"
+import { checkLoginData, isEmpty } from "../shared/utilities"
 import { Context } from "../components/wrapper"
 
 // prettier-ignore
 export default function Login() {
-	const { token, allUsers } = React.useContext(Context)
-	const onValidSubmit = async (data) => {
-		const {checkLoginData} = await import("../shared/utilities.js")
-		const userDataIsValid = await checkLoginData(allUsers, data)
+	const { token, allUsers, setCurrentUser } = React.useContext(Context)
+	const [loading, setLoading] = React.useState(false)
 
-		if (userDataIsValid) console.log("Correct")
-		else {
-			const {err_msgs:{cred_invalid}} = await import("../shared/constants.js")
-			setError("uname", { type: "manual", message: cred_invalid })
+	const onValidSubmit = async (data) => {
+		setLoading(true)
+
+		const user = await checkLoginData(allUsers, data)
+		if (user) {
+			setCurrentUser(user)
+			localStorage.setItem("uname", user.uname)
+			navigate("/user")
 		}
+		else {
+			setError("uname_or_pass", { type: "manual", message: err_msgs["cred_invalid"] })
+		}
+
+		setLoading(false)
 	}
 
 	const {
@@ -45,6 +53,7 @@ export default function Login() {
 							className="field"
 							id="uname"
 							name="uname"
+						onChange={() => clearErrors()}
 							ref={register({
 								required: err_msgs["required"],
 							})}
@@ -54,13 +63,14 @@ export default function Login() {
 							as="p"
 							className="err_msg"
 							errors={errors}
-							name="uname"
+							name="uname_or_pass"
 						/>
 
 						<input
 							type="password"
 							placeholder="password"
 							name="pass"
+						onChange={() => clearErrors()}
 							className="field"
 							id="pass"
 							ref={register({
@@ -88,6 +98,7 @@ export default function Login() {
 							className="align-self-start mt-4 hvr-sweep-to-top"
 							type="submit"
 							value="Submit"
+						disabled={loading || !isEmpty(errors)}
 						/>
 					</form>
 				</div>

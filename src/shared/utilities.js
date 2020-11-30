@@ -67,9 +67,29 @@ export const pullAllUsers = async token => {
 
 // prettier-ignore
 export const checkLoginData = async (allUsers, submissionData) => {
-	const user = allUsers.filter(({ uname, pass }) => uname === submissionData.uname.trim())[0] // uname-check
+	const user = allUsers.find(({ uname, pass }) => uname === submissionData.uname.trim()) // uname-check
 	if (!user) return false
 
 	const { compare } = await import("bcryptjs")
-	return compare(submissionData.pass, user.pass) // passCheck
+	const passCheck = await compare(submissionData.pass, user.pass) // passCheck
+	return passCheck ? user : false
+}
+
+export const findVal = (object, key) => {
+	var value
+	Object.keys(object).some(function (k) {
+		if (k === key) {
+			value = object[k]
+			return true
+		}
+		if (object[k] && typeof object[k] === "object") {
+			value = findVal(object[k], key)
+			return value !== undefined
+		}
+	})
+	return value
+}
+
+export const isEmpty = obj => {
+	return Object.keys(obj).length === 0 && obj.constructor === Object
 }

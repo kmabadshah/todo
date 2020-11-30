@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form"
 import { ErrorMessage } from "@hookform/error-message"
 import { err_msgs, api } from "../shared/constants"
 import { Context } from "../components/wrapper"
+import { findVal, evalUname, isEmpty } from "../shared/utilities.js"
 
 export default function Signup() {
 	const {
@@ -18,27 +19,22 @@ export default function Signup() {
 	} = useForm()
 
 	const { token, setCurrentUser } = React.useContext(Context)
-	const [userHasSubmitted, setUserHasSubmitted] = React.useState(false)
+	const [loading, setLoading] = React.useState(false)
 	const [randErr, setRandErr] = React.useState(false)
 
-	function findVal(object, key) {
-		var value
-		Object.keys(object).some(function (k) {
-			if (k === key) {
-				value = object[k]
-				return true
-			}
-			if (object[k] && typeof object[k] === "object") {
-				value = findVal(object[k], key)
-				return value !== undefined
-			}
-		})
-		return value
+	const evalUname = value => {
+		if (value.length < 3 || value.length > 10) {
+			return err_msgs["uname_minmax"]
+		} else if (/[^\w-]+/g.test(value)) {
+			return err_msgs["uname_regex"]
+		} else {
+			return true
+		}
 	}
 
 	const onValidSubmit = async data => {
 		try {
-			setUserHasSubmitted(true)
+			setLoading(true)
 			setRandErr(false)
 
 			const { GraphQLClient: glClient, gql, request } = await import(
@@ -74,7 +70,7 @@ export default function Signup() {
 					.request(query, data)
 					.then(res => {
 						setRandErr(false)
-						setUserHasSubmitted(false)
+						setLoading(false)
 						setCurrentUser({
 							...res.createTodoer.todoer,
 						})
@@ -90,27 +86,13 @@ export default function Signup() {
 							setRandErr(true)
 						}
 
-						setUserHasSubmitted(false)
+						setLoading(false)
 					})
 			})
 		} catch (err) {
 			setRandErr(true)
-			setUserHasSubmitted(false)
+			setLoading(false)
 		}
-	}
-
-	function evalUname(value) {
-		if (value.length < 3 || value.length > 10) {
-			return err_msgs["uname_minmax"]
-		} else if (/[^\w-]+/g.test(value)) {
-			return err_msgs["uname_regex"]
-		} else {
-			return true
-		}
-	}
-
-	function isEmpty(obj) {
-		return Object.keys(obj).length === 0 && obj.constructor === Object
 	}
 
 	return (
@@ -194,9 +176,9 @@ export default function Signup() {
 								id="btn-submit"
 								type="submit"
 								className="align-self-start hvr-sweep-to-top"
-								disabled={userHasSubmitted || !isEmpty(errors)}
+								disabled={loading || !isEmpty(errors)}
 							>
-								{userHasSubmitted ? (
+								{loading ? (
 									<div className="spinner-border" role="status">
 										<span className="sr-only">Loading...</span>
 									</div>
