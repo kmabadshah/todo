@@ -3,7 +3,7 @@ import LoggedOut from "../components/layout/loggedOut"
 import { Link, navigate } from "gatsby"
 import { useForm } from "react-hook-form"
 import { ErrorMessage } from "@hookform/error-message"
-import { err_msgs, api } from "../shared/constants.js"
+import { err_msgs, api, dataProcessLoader } from "../shared/constants.js"
 import { checkLoginData, isEmpty } from "../shared/utilities"
 import { Context } from "../components/wrapper"
 
@@ -21,9 +21,7 @@ export default function Login() {
 			localStorage.setItem("uname", user.uname)
 			navigate("/user")
 		}
-		else {
-			setError("uname_or_pass", { type: "manual", message: err_msgs["cred_invalid"] })
-		}
+		else setError("uname_or_pass", { type: "manual", message: err_msgs["cred_invalid"] })
 
 		setLoading(false)
 	}
@@ -53,12 +51,18 @@ export default function Login() {
 							className="field"
 							id="uname"
 							name="uname"
-						onChange={() => clearErrors()}
+						onChange={() => clearErrors("uname_or_pass")}
 							ref={register({
 								required: err_msgs["required"],
 							})}
 						/>
 
+						<ErrorMessage
+						as="p"
+						className="err_msg"
+						errors={errors}
+						name="uname"
+						/>
 						<ErrorMessage
 							as="p"
 							className="err_msg"
@@ -70,7 +74,7 @@ export default function Login() {
 							type="password"
 							placeholder="password"
 							name="pass"
-						onChange={() => clearErrors()}
+						onChange={() => clearErrors("uname_or_pass")}
 							className="field"
 							id="pass"
 							ref={register({
@@ -93,13 +97,10 @@ export default function Login() {
 							</Link>
 						</div>
 
-						<input
-							id="btn-submit"
-							className="align-self-start mt-4 hvr-sweep-to-top"
-							type="submit"
-							value="Submit"
-						disabled={loading || !isEmpty(errors)}
-						/>
+						<button type="submit" id="btn-submit"
+								className="align-self-start mt-4 hvr-sweep-to-top"
+								disabled={loading || !isEmpty(errors)}
+						>{ loading ? dataProcessLoader : "Submit"}</button>
 					</form>
 				</div>
 			</div>

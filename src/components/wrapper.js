@@ -2,7 +2,7 @@ import React from "react"
 import { useStaticQuery, graphql, navigate } from "gatsby"
 import { gql } from "graphql-request"
 import { getToken } from "../shared/utilities"
-import { loader } from "../shared/constants"
+import { initLoader } from "../shared/constants"
 
 export const Context = React.createContext()
 
@@ -48,7 +48,7 @@ export default function Wrapper({ children, location: { pathname } }) {
 				value={{ token, currentUser, setCurrentUser, allUsers }}
 			>
 				{(() => {
-					if (userIsLoading) return loader
+					if (userIsLoading) return initLoader
 					if (pathname.includes("user") && !currentUser) navigate("/login")
 					else return children
 				})()}
@@ -56,5 +56,5 @@ export default function Wrapper({ children, location: { pathname } }) {
 		)
 	} else if (randErr) {
 		return <h1>Something went wrong, please try again</h1>
-	} else return loader
+	} else return initLoader
 }

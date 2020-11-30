@@ -10,7 +10,7 @@ export default function Settings() {
 		localStorage.setItem("uname", null)
 
 		const { navigate } = await import("gatsby")
-		navigate("/")
+		navigate("/login")
 	}
 
 	return (

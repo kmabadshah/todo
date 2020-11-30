@@ -3,7 +3,7 @@ import LoggedOut from "../components/layout/loggedOut"
 import { Link, navigate } from "gatsby"
 import { useForm } from "react-hook-form"
 import { ErrorMessage } from "@hookform/error-message"
-import { err_msgs, api } from "../shared/constants"
+import { err_msgs, api, dataProcessLoader } from "../shared/constants"
 import { Context } from "../components/wrapper"
 import { findVal, evalUname, isEmpty } from "../shared/utilities.js"
 
@@ -178,13 +178,7 @@ export default function Signup() {
 								className="align-self-start hvr-sweep-to-top"
 								disabled={loading || !isEmpty(errors)}
 							>
-								{loading ? (
-									<div className="spinner-border" role="status">
-										<span className="sr-only">Loading...</span>
-									</div>
-								) : (
-									"Submit"
-								)}
+								{loading ? dataProcessLoader : "Submit"}
 							</button>
 							<Link to="/login" id="btn-login" className="align-self-end mb-3">
 								Log In

@@ -16,7 +16,7 @@ export const cred = {
 	password: "adnanbadshah",
 }
 
-export const loader = (
+export const initLoader = (
 	<div id="loader">
 		<div className="lds-dual-ring">
 			<div></div>
@@ -29,5 +29,11 @@ export const loader = (
 			<div></div>
 			<div></div>
 		</div>
+	</div>
+)
+
+export const dataProcessLoader = (
+	<div className="spinner-border" role="status">
+		<span className="sr-only">Loading...</span>
 	</div>
 )
