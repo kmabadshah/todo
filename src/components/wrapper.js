@@ -1,8 +1,8 @@
 import React from "react"
 import { useStaticQuery, graphql, navigate } from "gatsby"
 import { gql } from "graphql-request"
-import { getToken } from "../shared/utilities"
-import { initLoader } from "../shared/constants"
+import { getToken, getDataFromToken } from "../shared/utilities"
+import { initLoader, jwtSecret } from "../shared/constants"
 
 export const Context = React.createContext()
 
@@ -21,9 +21,18 @@ export default function Wrapper({ children, location: { pathname } }) {
 				const { getToken, pullAllUsers } = await import("../shared/utilities.js")
 				const jwt = await getToken(); setToken(jwt)
 				const { todoers } = await pullAllUsers(jwt); setAllUsers(todoers)
-				const cachedUser = todoers.find(({ uname }) => uname === localStorage.getItem("uname"))
-				if (cachedUser) setCurrentUser(cachedUser)
-				setUserIsLoading(false)
+				const cachedToken = localStorage.getItem('token')
+
+				if (cachedToken) {
+					getDataFromToken(cachedToken, jwtSecret).then(cachedData => {
+							const user = todoers.find(({ uname }) => uname === cachedData.uname)
+							setCurrentUser(user)
+							setUserIsLoading(false)
+						}).catch(err => null)
+				} else {
+					setUserIsLoading(false)
+				}
+
 
 			} catch (err) {
 				setRandErr(err)

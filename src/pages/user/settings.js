@@ -7,7 +7,7 @@ export default function Settings() {
 	const { setCurrentUser } = React.useContext(Context)
 	const handleLogout = async () => {
 		setCurrentUser(null)
-		localStorage.setItem("uname", null)
+		localStorage.removeItem("token")
 
 		const { navigate } = await import("gatsby")
 		navigate("/login")

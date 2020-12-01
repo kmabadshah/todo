@@ -3,9 +3,19 @@ import LoggedOut from "../components/layout/loggedOut"
 import { Link, navigate } from "gatsby"
 import { useForm } from "react-hook-form"
 import { ErrorMessage } from "@hookform/error-message"
-import { err_msgs, api, dataProcessLoader } from "../shared/constants"
+import {
+	err_msgs,
+	api,
+	dataProcessLoader,
+	jwtSecret,
+} from "../shared/constants"
 import { Context } from "../components/wrapper"
-import { findVal, evalUname, isEmpty } from "../shared/utilities.js"
+import {
+	findVal,
+	evalUname,
+	isEmpty,
+	cacheToLocalStorage,
+} from "../shared/utilities.js"
 
 export default function Signup() {
 	const {
@@ -71,9 +81,9 @@ export default function Signup() {
 					.then(res => {
 						setRandErr(false)
 						setLoading(false)
-						setCurrentUser({
-							...res.createTodoer.todoer,
-						})
+						const user = { ...res.createTodoer.todoer }
+						setCurrentUser(user)
+						cacheToLocalStorage(user, jwtSecret)
 						navigate("/user")
 					})
 					.catch(err => {

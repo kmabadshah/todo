@@ -3,8 +3,17 @@ import LoggedOut from "../components/layout/loggedOut"
 import { Link, navigate } from "gatsby"
 import { useForm } from "react-hook-form"
 import { ErrorMessage } from "@hookform/error-message"
-import { err_msgs, api, dataProcessLoader } from "../shared/constants.js"
-import { checkLoginData, isEmpty } from "../shared/utilities"
+import {
+	err_msgs,
+	api,
+	dataProcessLoader,
+	jwtSecret,
+} from "../shared/constants.js"
+import {
+	checkLoginData,
+	isEmpty,
+	cacheToLocalStorage,
+} from "../shared/utilities.js"
 import { Context } from "../components/wrapper"
 
 // prettier-ignore
@@ -18,7 +27,7 @@ export default function Login() {
 		const user = await checkLoginData(allUsers, data)
 		if (user) {
 			setCurrentUser(user)
-			localStorage.setItem("uname", user.uname)
+			cacheToLocalStorage(user, jwtSecret)
 			navigate("/user")
 		}
 		else setError("uname_or_pass", { type: "manual", message: err_msgs["cred_invalid"] })

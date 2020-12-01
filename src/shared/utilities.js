@@ -93,3 +93,18 @@ export const findVal = (object, key) => {
 export const isEmpty = obj => {
 	return Object.keys(obj).length === 0 && obj.constructor === Object
 }
+
+export const cacheToLocalStorage = async (data, secret) => {
+	const jwt = await import("jsonwebtoken")
+	jwt.sign({ uname: data.uname }, secret, (err, cacheToken) => {
+		localStorage.setItem("token", cacheToken)
+	})
+}
+
+export const getDataFromToken = async (cachedToken, secret) => {
+	const jwt = await import("jsonwebtoken")
+	return jwt.verify(cachedToken, secret, (err, decryptedData) => {
+		if (err) throw new Error("Invalid token")
+		else return decryptedData
+	})
+}

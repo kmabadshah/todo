@@ -16,6 +16,8 @@ export const cred = {
 	password: "adnanbadshah",
 }
 
+export const jwtSecret = "supersecretkey"
+
 export const initLoader = (
 	<div id="loader">
 		<div className="lds-dual-ring">
