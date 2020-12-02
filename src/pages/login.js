@@ -18,7 +18,7 @@ import { Context } from "../components/wrapper"
 
 // prettier-ignore
 export default function Login() {
-	const { token, allUsers, setCurrentUser } = React.useContext(Context)
+	const { token, allUsers, setCurrentUser, x, setX } = React.useContext(Context)
 	const [loading, setLoading] = React.useState(false)
 
 	const onValidSubmit = async (data) => {

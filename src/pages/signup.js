@@ -15,6 +15,7 @@ import {
 	evalUname,
 	isEmpty,
 	cacheToLocalStorage,
+	pullAllUsers,
 } from "../shared/utilities.js"
 
 export default function Signup() {
@@ -28,7 +29,7 @@ export default function Signup() {
 		clearErrors,
 	} = useForm()
 
-	const { token, setCurrentUser } = React.useContext(Context)
+	const { token, setCurrentUser, setAllUsers } = React.useContext(Context)
 	const [loading, setLoading] = React.useState(false)
 	const [randErr, setRandErr] = React.useState(false)
 
@@ -78,11 +79,13 @@ export default function Signup() {
 				data.pass = hash
 				client // send data
 					.request(query, data)
-					.then(res => {
+					.then(async res => {
 						setRandErr(false)
 						setLoading(false)
 						const user = { ...res.createTodoer.todoer }
 						setCurrentUser(user)
+						const { todoers } = await pullAllUsers(token)
+						setAllUsers(todoers)
 						cacheToLocalStorage(user, jwtSecret)
 						navigate("/user")
 					})

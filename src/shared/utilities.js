@@ -30,7 +30,7 @@ export const makeQuery = async (token, query, data=null) => {
 	}
 }
 
-export const updateUser = async (token, { id, todos }) => {
+export const updateUser = async (token, currentUser, allUsers, setAllUsers) => {
 	const query = `
 		mutation($id: ID!, $todos: [editComponentMultipleTodoInput]!) {
 			updateTodoer(input: { where: { id: $id }, data: { todos: $todos } }) {
@@ -41,11 +41,18 @@ export const updateUser = async (token, { id, todos }) => {
 		}
 	`
 	const data = {
-		id,
-		todos,
+		id: currentUser.id,
+		todos: currentUser.todos,
 	}
 
-	return makeQuery(token, query, data)
+	await makeQuery(token, query, data)
+
+	const tempUsers = [...allUsers]
+	const userIndex = tempUsers.findIndex(
+		({ uname }) => uname === currentUser.uname
+	)
+	tempUsers[userIndex] = currentUser
+	setAllUsers(tempUsers)
 }
 
 // prettier-ignore

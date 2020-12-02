@@ -12,6 +12,7 @@ export default function Wrapper({ children, location: { pathname } }) {
 	const [currentUser, setCurrentUser] = React.useState()
 	const [allUsers, setAllUsers] = React.useState()
 	const [userIsLoading, setUserIsLoading] = React.useState(true)
+	const [x, setX] = React.useState(69)
 
 	// prettier-ignore
 	React.useEffect(() => {
@@ -22,13 +23,14 @@ export default function Wrapper({ children, location: { pathname } }) {
 				const jwt = await getToken(); setToken(jwt)
 				const { todoers } = await pullAllUsers(jwt); setAllUsers(todoers)
 				const cachedToken = localStorage.getItem('token')
-
+				
 				if (cachedToken) {
 					getDataFromToken(cachedToken, jwtSecret).then(cachedData => {
 							const user = todoers.find(({ uname }) => uname === cachedData.uname)
 							setCurrentUser(user)
 							setUserIsLoading(false)
-						}).catch(err => null)
+
+						}).catch(() => setUserIsLoading(false))
 				} else {
 					setUserIsLoading(false)
 				}
@@ -46,7 +48,7 @@ export default function Wrapper({ children, location: { pathname } }) {
 	React.useEffect(() => {
 		if (currentUser) {
 			import("../shared/utilities.js")
-				.then(({ updateUser }) => updateUser(token, currentUser))
+				.then(async ({ updateUser }) => updateUser(token, currentUser, allUsers, setAllUsers))
 				.catch(err => console.log(err))
 		}
 	}, [currentUser])
@@ -54,7 +56,7 @@ export default function Wrapper({ children, location: { pathname } }) {
 	if (token) {
 		return (
 			<Context.Provider
-				value={{ token, currentUser, setCurrentUser, allUsers }}
+				value={{ token, currentUser, setCurrentUser, allUsers, setAllUsers }}
 			>
 				{(() => {
 					if (userIsLoading) return initLoader
