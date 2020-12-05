@@ -27,7 +27,7 @@ export default function Login() {
 		const user = await checkLoginData(allUsers, data)
 		if (user) {
 			setCurrentUser(user)
-			cacheToLocalStorage(user, jwtSecret)
+			if (data.rem_me) cacheToLocalStorage(user, jwtSecret)
 			navigate("/user")
 		}
 		else setError("uname_or_pass", { type: "manual", message: err_msgs["cred_invalid"] })
@@ -99,7 +99,7 @@ export default function Login() {
 						/>
 
 						<div className="d-flex w-100 align-items-center">
-							<input name="" type="checkbox" value="" />
+								<input name="rem_me" ref={register()} type="checkbox" />
 							<p id="rem-me">Remember me</p>
 							<Link className="ml-auto" id="btn-sign-up" to="/signup">
 								Sign up
