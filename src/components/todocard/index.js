@@ -8,22 +8,27 @@ export default function TodoCard() {
 	const [todoText, setTodoText] = React.useState("")
 	const { token, currentUser, setCurrentUser } = React.useContext(Context)
 
-	const [todosInCurrentSet, setTodosInCurrentSet] = React.useState(
-		currentUser.todos.slice(0, 5)
-	)
+	// prettier-ignore
+	const [todosInCurrentSet, setTodosInCurrentSet] = React.useState(currentUser.todos.slice(0, 5))
 	const [currentTodoSetNumber, setCurrentTodoSetNumber] = React.useState(0)
-	/* const [todos, setTodos] = React.useState(currentUser.todos); */
 
 	React.useEffect(() => {
 		if (submitted && todoText) {
+			/* update the user with new todos */
 			const tempTodos = [...currentUser.todos]
-			tempTodos.unshift({ text: todoText })
-
+			tempTodos.splice(currentTodoSetNumber * 5, 0, { text: todoText })
 			const tempUser = { ...currentUser }
 			tempUser["todos"] = tempTodos
 			setCurrentUser(tempUser)
 			setTodoText("")
 			setSubmitted(false)
+
+			/* update the todos in current set */
+			const tempSet = tempTodos.slice(
+				currentTodoSetNumber * 5,
+				currentTodoSetNumber * 5 + 5
+			)
+			setTodosInCurrentSet(tempSet)
 		}
 	}, [submitted])
 
@@ -71,17 +76,17 @@ export default function TodoCard() {
 	function getButtons() {
 		const amountOfTodoSets = Math.ceil(currentUser.todos.length / 5)
 
-		return [...Array(amountOfTodoSets).keys()].map((item, i) => (
+		return [...Array(amountOfTodoSets).keys()].map((btnNum, i) => (
 			<button
 				key={i}
 				onClick={() => {
-					setCurrentTodoSetNumber(item)
-					setTodosInCurrentSet(() => {
-						return currentUser.todos.slice(item * 5, item * 5 + 5)
-					})
+					setCurrentTodoSetNumber(btnNum)
+					setTodosInCurrentSet(
+						currentUser.todos.slice(btnNum * 5, btnNum * 5 + 5)
+					)
 				}}
 			>
-				{item + 1}
+				{btnNum + 1}
 			</button>
 		))
 	}
