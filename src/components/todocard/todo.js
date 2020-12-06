@@ -4,7 +4,7 @@ import { BiTrashAlt } from "react-icons/bi"
 import { Context } from "../wrapper"
 import autosize from "autosize"
 
-export default function Todo({ data: { text }, index }) {
+export default function Todo({ data: { text, currentTodoSetNumber }, index }) {
 	const { currentUser, setCurrentUser } = React.useContext(Context)
 	const [tempText, setTempText] = React.useState(text)
 	const [isVisible, setIsVisible] = React.useState(true)
@@ -14,6 +14,10 @@ export default function Todo({ data: { text }, index }) {
 	React.useEffect(() => {
 		todoRef.current.value = text
 	}, [currentUser])
+
+	React.useEffect(() => {
+		console.log(currentTodoSetNumber)
+	}, [currentTodoSetNumber])
 
 	const [tappedOnce, setTappedOnce] = React.useState(false)
 
