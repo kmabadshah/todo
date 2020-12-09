@@ -21,6 +21,13 @@
 	}
 }
 
+.op-0 {
+	opacity: 0 !important;
+}
+.op-1 {
+	opacity: 1 !important;
+}
+
 .todo {
 	background-color: $user-yellow;
 	margin: 0 0 0.5rem 0;
@@ -30,6 +37,8 @@
 	@include media-breakpoint-up(sm) {
 		padding: 1rem 2rem;
 	}
+
+	transition: all 0.1s linear;
 
 	.col-text {
 		flex-grow: 1;
@@ -78,4 +87,19 @@
 			flex-flow: row;
 		}
 	}
+}
+
+.item-enter {
+	opacity: 0;
+}
+.item-enter-active {
+	opacity: 1;
+	transition: opacity 500ms ease-in;
+}
+.item-exit {
+	opacity: 1;
+}
+.item-exit-active {
+	opacity: 0;
+	transition: opacity 500ms ease-in;
 }

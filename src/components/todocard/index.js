@@ -2,33 +2,26 @@ import React from "react"
 import { BsCheck } from "react-icons/bs"
 import { Context } from "../wrapper"
 import Todo from "./todo"
+import { SwitchTransition, CSSTransition } from "react-transition-group"
 
 export default function TodoCard() {
 	const [submitted, setSubmitted] = React.useState(false)
 	const [todoText, setTodoText] = React.useState("")
 	const { token, currentUser, setCurrentUser } = React.useContext(Context)
+	const [userIsUpdaing, setUserIsUpdating] = React.useState(false)
 
 	// prettier-ignore
-	const [todosInCurrentSet, setTodosInCurrentSet] = React.useState(currentUser.todos.slice(0, 5))
 	const [currentTodoSetNumber, setCurrentTodoSetNumber] = React.useState(0)
 
 	React.useEffect(() => {
 		if (submitted && todoText) {
 			/* update the user with new todos */
-			const tempTodos = [...currentUser.todos]
-			tempTodos.splice(currentTodoSetNumber * 5, 0, { text: todoText })
 			const tempUser = { ...currentUser }
-			tempUser["todos"] = tempTodos
+			tempUser.todos.splice(currentTodoSetNumber * 5, 0, { text: todoText })
+
 			setCurrentUser(tempUser)
 			setTodoText("")
 			setSubmitted(false)
-
-			/* update the todos in current set */
-			const tempSet = tempTodos.slice(
-				currentTodoSetNumber * 5,
-				currentTodoSetNumber * 5 + 5
-			)
-			setTodosInCurrentSet(tempSet)
 		}
 	}, [submitted])
 
@@ -63,14 +56,29 @@ export default function TodoCard() {
 	)
 
 	function getTodosInCurrentSet() {
-		/* console.log(todosInCurrentSet) */
-		return todosInCurrentSet.map((todo, i) => (
-			<Todo
-				key={i}
-				index={i}
-				data={{ text: todo.text, currentTodoSetNumber }}
-			/>
-		))
+		const todosToBeReturned = []
+
+		for (let todoIndex in currentUser.todos) {
+			const minLimit = currentTodoSetNumber * 5
+			const maxLimit = currentTodoSetNumber * 5 + 5
+			if (todoIndex >= minLimit && todoIndex < maxLimit) {
+				const { text } = currentUser.todos[todoIndex]
+
+				todosToBeReturned.push(
+					(() => {
+						return (
+							<Todo
+								key={Math.random()}
+								index={todoIndex}
+								data={{ text, currentTodoSetNumber }}
+							/>
+						)
+					})()
+				)
+			}
+		}
+
+		return todosToBeReturned
 	}
 
 	function getButtons() {
@@ -79,11 +87,9 @@ export default function TodoCard() {
 		return [...Array(amountOfTodoSets).keys()].map((btnNum, i) => (
 			<button
 				key={i}
+				className="btn-inside-btn-set"
 				onClick={() => {
 					setCurrentTodoSetNumber(btnNum)
-					setTodosInCurrentSet(
-						currentUser.todos.slice(btnNum * 5, btnNum * 5 + 5)
-					)
 				}}
 			>
 				{btnNum + 1}
@@ -91,3 +97,5 @@ export default function TodoCard() {
 		))
 	}
 }
+
+// style them buttons

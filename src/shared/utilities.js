@@ -61,7 +61,7 @@ export const pullAllUsers = async token => {
 			token,
 			`query {
 					todoers {
-						id
+id
 						uname
 						pass
 						todos {
