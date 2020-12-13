@@ -37,6 +37,7 @@ export default function Wrapper({ children, location: { pathname } }) {
 
 
 			} catch (err) {
+        console.log(err)
 				setRandErr(err)
 			}
 

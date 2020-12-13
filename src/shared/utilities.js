@@ -1,7 +1,7 @@
 // prettier-ignore
 export const getToken = async () => {
 	try {
-		const axios = await import ("axios")
+		const axios = await import("axios")
 		const { cred, api } = await import("./constants.js")
 		const {data:{ jwt }} = await axios.post(`${api}/auth/local`, cred)
 		return jwt

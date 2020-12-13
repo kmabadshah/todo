@@ -4,18 +4,26 @@
 	display: flex;
 	justify-content: center;
 	background-color: $user-green;
+	padding: 1rem;
 
 	#btn-home,
-	#btn-about,
-	#btn-settings {
+	#btn-logout {
 		background-color: $user-yellow;
 		border: none;
-		padding: 1rem 2rem;
-		font-size: 2.375rem;
-		margin: 2rem 0rem;
+		text-align: center;
+		font-size: 1.25rem;
+		padding: 0.5rem;
+		margin: 0 5px;
 		font-family: aleo, sans;
 		color: rgba(27, 6, 94, 0.5);
 		border-radius: 10px;
-		transform: scale(0.8);
+		flex-grow: 1;
+		text-decoration: none;
+
+		@include media-breakpoint-up(md) {
+			font-size: 2rem;
+			padding: 1rem 3rem;
+			flex-grow: 0;
+		}
 	}
 }

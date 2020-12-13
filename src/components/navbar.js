@@ -1,18 +1,25 @@
 import React from "react"
 import { Link } from "gatsby"
+import { Context } from "./wrapper.js"
 
 export default function Navbar() {
+	const { setCurrentUser } = React.useContext(Context)
+	const handleLogout = async () => {
+		setCurrentUser(null)
+		localStorage.removeItem("token")
+
+		const { navigate } = await import("gatsby")
+		navigate("/login")
+	}
+
 	return (
 		<div id="navbar">
 			<Link to="/user" id="btn-home">
 				Home
 			</Link>
-			<Link to="/user/about" id="btn-about">
-				About
-			</Link>
-			<Link to="/user/settings" id="btn-settings">
-				Settings
-			</Link>
+			<button onClick={() => handleLogout()} id="btn-logout">
+				Logout
+			</button>
 		</div>
 	)
 }
