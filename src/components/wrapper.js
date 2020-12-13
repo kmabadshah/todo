@@ -61,6 +61,7 @@ export default function Wrapper({ children, location: { pathname } }) {
 			>
 				{(() => {
 					if (userIsLoading) return initLoader
+					if (currentUser) navigate("/user")
 					if (pathname.includes("user") && !currentUser) navigate("/login")
 					else return children
 				})()}
