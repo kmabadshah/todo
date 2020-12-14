@@ -29,7 +29,9 @@ export default function Signup() {
 		clearErrors,
 	} = useForm()
 
-	const { token, setCurrentUser, setAllUsers } = React.useContext(Context)
+	const { allUsers, token, setCurrentUser, setAllUsers } = React.useContext(
+		Context
+	)
 	const [loading, setLoading] = React.useState(false)
 	const [randErr, setRandErr] = React.useState(false)
 
@@ -83,9 +85,11 @@ export default function Signup() {
 						setRandErr(false)
 						setLoading(false)
 						const user = { ...res.createTodoer.todoer }
-						setCurrentUser(user)
+
 						const { todoers } = await pullAllUsers(token)
+
 						setAllUsers(todoers)
+						setCurrentUser(user)
 						cacheToLocalStorage(user, jwtSecret)
 						navigate("/user")
 					})

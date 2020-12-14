@@ -9,7 +9,7 @@ export const err_msgs = {
 	cred_invalid: "Invalid username or password",
 }
 
-export const api = "http://localhost:1337"
+export const api = "https://todo0821.herokuapp.com"
 
 export const cred = {
 	identifier: "adnan@badshah.com",

@@ -48,11 +48,14 @@ export default function Wrapper({ children, location: { pathname } }) {
 	// prettier-ignore
 	React.useEffect(() => {
 		if (currentUser) {
+      console.log("Hello")
 			import("../shared/utilities.js")
 				.then(async ({ updateUser }) => updateUser(token, currentUser, allUsers, setAllUsers))
 				.catch(err => console.log(err))
 		}
 	}, [currentUser])
+
+	// React.useEffect(() => console.log(allUsers), [allUsers])
 
 	if (token) {
 		return (

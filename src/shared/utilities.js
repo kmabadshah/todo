@@ -52,6 +52,8 @@ export const updateUser = async (token, currentUser, allUsers, setAllUsers) => {
 		({ uname }) => uname === currentUser.uname
 	)
 	tempUsers[userIndex] = currentUser
+
+	console.log(tempUsers)
 	setAllUsers(tempUsers)
 }
 
